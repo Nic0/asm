@@ -20,14 +20,6 @@
             // register our StandardAutoloader with the SPL autoloader
             $autoLoader->register();
 
-
-
-
-
-            $reader = new Zend\Config\Reader\Yaml();
-            $data   = $reader->fromFile('config.yaml');
-var_dump($data);
-
         }
 
 
