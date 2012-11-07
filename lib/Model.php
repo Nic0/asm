@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'lib/AbstractModel';
+    require_once 'lib/AbstractModel.php';
 
     class Model extends AbstractModel {
 

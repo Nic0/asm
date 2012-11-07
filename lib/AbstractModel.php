@@ -6,7 +6,7 @@
 
     class AbstractModel {
 
-        private $adapter;
+        public $adapter;
 
         public function __construct($dbname) {
             $mysql = AsmConfig::getConfig()->mysql;
@@ -21,15 +21,11 @@
         }
 
 
-        public function select() {
+        public function select($select) {
 
-            $sql = new Sql($this->adapter);
-            $select = $sql->select();
-            $select->from('hosts');
-            $select->limit('10, 10');
-            $selectString = $sql->getSqlStringForSqlObject($select);
-            $ad = $this->adapter;
-            $results = $this->adapter->query($selectString, $ad::QUERY_MODE_EXECUTE);
+            $selectString = $this->sql->getSqlStringForSqlObject($select);
+            $adapter = $this->adapter;
+            $results = $adapter->query($selectString, $adapter::QUERY_MODE_EXECUTE);
             debug($results, 'sql');
 
             return $results;

@@ -7,6 +7,6 @@
     debug($config, "config");
 
 
-    require_once 'lib/AbstractModel.php';
-    $am = new AbstractModel("zabbix");
-    var_dump($am->select());
+    require_once 'model/ZabbixEvent.php';
+    $am = new ZabbixEvent();
+    var_dump($am->getLast());

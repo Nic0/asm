@@ -2,10 +2,10 @@
 
     require_once 'lib/Model.php';
 
-    class ZabbixModel extends Model {
+    class GLPIModel extends Model {
 
         public function __construct() {
-            parent::__construct('zabbix');
+            parent::__construct('glpi');
         }
 
     }
