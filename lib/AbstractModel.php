@@ -9,14 +9,14 @@
         private $adapter;
 
         public function __construct($dbname) {
-            $config = AsmConfig::getConfig();
+            $mysql = AsmConfig::getConfig()->mysql;
             $this->adapter = new Zend\Db\Adapter\Adapter(array(
-               'driver'   => $config->mysql->driver,
-               'host'     => $config->mysql->host,
-               'port'     => $config->mysql->port,
-               'username' => $config->mysql->username,
-               'password' => $config->mysql->password,
-               'database' => $config->mysql->dbname->$dbname
+               'driver'   => $mysql->driver,
+               'host'     => $mysql->host,
+               'port'     => $mysql->port,
+               'username' => $mysql->username,
+               'password' => $mysql->password,
+               'database' => $mysql->dbname->$dbname
             ));
         }
 
