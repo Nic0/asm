@@ -1,0 +1,7 @@
+mysql:
+    host:     mysql.crbn.intra
+    port:     3306
+    username: phpasm
+    password: NWL6WM6hU9WMBAYY
+    dbzabbix: zabbix
+    dbglpi:   glpi
