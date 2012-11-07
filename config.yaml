@@ -1,4 +1,5 @@
 mysql:
+    driver:   Pdo_Mysql
     host:     mysql.crbn.intra
     port:     3306
     username: phpasm
@@ -8,3 +9,4 @@ mysql:
         glpi:   glpi
 debug:
     config: true
+    sql: true

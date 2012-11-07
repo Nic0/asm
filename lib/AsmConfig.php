@@ -1,14 +1,15 @@
 <?php
 
     use Zend\Config\Reader\Yaml;
+    use Zend\Config\Config;
     require_once 'lib/utils.php';
 
-    class Config {
+    class AsmConfig {
 
         static function getConfig() {
-            $reader = new Zend\Config\Reader\Yaml();
-            $config = $reader->fromFile('config.yaml');
-
+            $reader = new Yaml();
+            $configArray = $reader->fromFile('config.yaml');
+            $config = new Config($configArray);
             return $config;
         }
 
