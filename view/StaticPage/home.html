@@ -3,12 +3,24 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <table class="table table-bordered">
+    <table class="table
+        {% if config.css.table.condensed %}table-condensed{% endif %}
+        {% if config.css.table.bordered %}table-bordered{% endif %}
+    ">
+        <thead>
+            <tr>
+                <th>Host</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Last Change</th>
+            </tr>
+        </thead>
         {% for event in zabbix %}
             <tr>
                 <td>{{ event.host }}</td>
                 <td>{{ event.description }}</td>
                 <td>{{ event.priority }}</td>
+                <td>{{ event.lastchange }}</td>
             </tr>
         {% endfor %}
     </table>

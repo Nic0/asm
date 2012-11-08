@@ -9,8 +9,12 @@ mysql:
         glpi:   glpi
 install:
     baseurl: /
+css:
+    table:
+        condensed: true
+        bordered:  true
 debug:
-    config: true
-    sql: true
-    route: true
-    url: true
+    config: false
+    sql:    false
+    route:  false
+    url:    false
