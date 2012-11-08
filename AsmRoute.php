@@ -1,8 +1,8 @@
 <?php
 
-    require_once 'lib/Route.php';
-    require_once 'controller/StaticPageController.php';
-    require_once 'controller/UserController.php';
+    require_once '../lib/Route.php';
+    require_once '../controller/StaticPageController.php';
+    require_once '../controller/UserController.php';
 
     class AsmRoute extends Route {
 

@@ -8,8 +8,11 @@
             $this->template = $template;
         }
 
-        public function render($data) {
-            // TODO twig render
+        public function render($data=array()) {
+            $loader = new Twig_Loader_Filesystem('../view/');
+            $twig = new Twig_Environment($loader);
+
+            echo $twig->render($this->template, $data);
         }
 
     }

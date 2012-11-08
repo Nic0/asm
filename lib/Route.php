@@ -1,5 +1,5 @@
 <?php
-    require_once 'controller/StaticPageController.php';
+    require_once '../controller/StaticPageController.php';
     class Route {
 
         public $requestURL;
@@ -53,7 +53,7 @@
 
         private function getTemplate () {
             if (isset($this->match['template'])) {
-                return $this->match['template'];
+                return $this->match['controller'] . '/' .$this->match['template'] .'.html';
             } else {
                 return null;
             }

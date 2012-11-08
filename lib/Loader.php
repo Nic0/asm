@@ -19,5 +19,8 @@
             // register our StandardAutoloader with the SPL autoloader
             $autoLoader->register();
 
+            require_once '../vendor/Twig/Autoloader.php';
+            Twig_Autoloader::register();
+
         }
     }
