@@ -2,11 +2,16 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+    <link href="/css/style.css" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    {% block content %}
+    {% include 'partial/navbar.html' %}
 
-    {% endblock %}
+    {% block content %}{% endblock %}
+
+    {% include 'partial/javascript.html' %}
 </body>
 </html>

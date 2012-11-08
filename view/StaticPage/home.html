@@ -1,5 +1,13 @@
 {% extends 'layout.html' %}
 
+{% block title %}{% endblock %}
+
 {% block content %}
-    foobar
+    {% for event in zabbix %}
+        <td>
+            <tr>{{ event.host }}</tr>
+            <tr>{{ event.description }}</tr>
+            <tr>{{ event.priority }}</tr>
+        </td>
+    {% endfor %}
 {% endblock %}
