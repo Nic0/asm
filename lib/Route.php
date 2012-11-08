@@ -5,14 +5,18 @@
         public $requestURL;
         public $match;
 
-        public function __construct() {
+        public function __construct () {
             $this->getRouteArgs();
             $this->match = $this->matchRoute();
-            $this->sendToController();
+            if ($this->match !== null) {
+                $this->callController();
+            } else {
+                $this->render404();
+            }
         }
 
 
-        private function getRouteArgs() {
+        private function getRouteArgs () {
             $config = AsmConfig::getConfig();
             $requestURL = $this->explodeUrl($_SERVER['REQUEST_URI']);
             $baseurl = $this->explodeUrl('/', $config->install->baseurl);
@@ -27,7 +31,7 @@
             debug($this->requestURL, 'url');
         }
 
-        private function matchRoute() {
+        private function matchRoute () {
             foreach ($this->route as $key => $value) {
                 if ($this->explodeUrl($key) == $this->requestURL) {
                     debug($value, 'route');
@@ -40,19 +44,24 @@
             return array_values(array_filter(explode('/', $url)));
         }
 
-        private function sendToController() {
+        private function callController () {
             $controllerName = $this->match['controller'] . 'Controller';
             $controller = new $controllerName($this->getTemplate());
             $action = $this->match['action'];
             $controller->$action();
         }
 
-        private function getTemplate() {
+        private function getTemplate () {
             if (isset($this->match['template'])) {
                 return $this->match['template'];
             } else {
                 return null;
             }
+        }
+
+        private function render404 () {
+            // TODO create 404
+            echo "404";
         }
 
     }

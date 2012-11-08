@@ -4,7 +4,7 @@
 
     class StaticPageController extends Controller {
 
-        public function home() {
+        public function home () {
             echo "trop de la balle !!!";
         }
     }
