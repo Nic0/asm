@@ -7,6 +7,8 @@
     debug($config, "config");
 
 
-    require_once 'model/ZabbixEvent.php';
-    $am = new ZabbixEvent();
-    var_dump($am->getLast());
+    new AsmRoute();
+
+    // require_once 'model/ZabbixEvent.php';
+    // $am = new ZabbixEvent();
+    // var_dump($am->getLast());

@@ -3,6 +3,7 @@
     require_once 'Zend/Loader/StandardAutoloader.php';
     use Zend\Loader\StandardAutoloader;
     use Zend\Config\Reader\Yaml;
+    use Zend\Loader\loadFile;
 
     class Loader {
 
@@ -12,7 +13,7 @@
                     'MyVendor' => __DIR__ . '/MyVendor',
                 ),
                 'namespaces' => array(
-                    'MyNamespace' => __DIR__ . '/MyNamespace',
+                    'Asm' => __DIR__ . '/',
                 ),
                 'fallback_autoloader' => true,
             ));
@@ -21,6 +22,4 @@
             $autoLoader->register();
 
         }
-
-
     }

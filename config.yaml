@@ -7,6 +7,10 @@ mysql:
     dbname:
         zabbix: zabbix
         glpi:   glpi
+install:
+    baseurl: /
 debug:
     config: true
     sql: true
+    route: true
+    url: true
