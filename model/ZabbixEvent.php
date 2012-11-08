@@ -32,10 +32,14 @@
                    ->columns(array('eventid', 'clock'));
             $results = $this->select($select);
 
-
+            $data = array();
             foreach ($results as $row) {
-                var_dump($row);
+
+                $event = $this->createObjectFromSingleData($row, "ZabbixEvent");
+                $event->description = str_replace('{HOSTNAME}', $event->host, $event->description);
+                $data[] = $event;
             }
 
+            return $data;
         }
     }

@@ -3,11 +3,13 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    {% for event in zabbix %}
-        <td>
-            <tr>{{ event.host }}</tr>
-            <tr>{{ event.description }}</tr>
-            <tr>{{ event.priority }}</tr>
-        </td>
-    {% endfor %}
+    <table class="table table-bordered">
+        {% for event in zabbix %}
+            <tr>
+                <td>{{ event.host }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.priority }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
