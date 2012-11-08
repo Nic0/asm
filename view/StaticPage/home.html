@@ -11,7 +11,6 @@
             <tr>
                 <th>Host</th>
                 <th>Description</th>
-                <th>Priority</th>
                 <th>Last Change</th>
             </tr>
         </thead>
@@ -23,8 +22,7 @@
             >
                 <td>{{ event.host }}</td>
                 <td>{{ event.description }}</td>
-                <td>{{ event.priority }}</td>
-                <td>{{ event.lastchange }}</td>
+                <td>{{ event.lastchange | date('d/m/y H:i') }}</td>
             </tr>
         {% endfor %}
     </table>
