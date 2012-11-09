@@ -24,7 +24,7 @@
                    ->limit('20')
                    ->order('t.date_mod DESC')
                    ->where("status != 'closed' AND status != 'solved' AND r.type=1")
-                   ->columns(array('date', 'name', 'content', 'priority', 'status'));
+                   ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
             $results = $this->select($select);
 
             $data = array();
