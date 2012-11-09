@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}{% endblock %}
+{% block title %}ASM{% endblock %}
 
 {% block content %}
     <table class="table
@@ -16,9 +16,13 @@
         </thead>
         {% for event in zabbix %}
             <tr
-                {% if event.priority == 4 %}class="error"{% endif %}
-                {% if event.priority == 3 %}class="warning"{% endif %}
-                {% if event.priority <= 2 %}class="info"{% endif %}
+                {% if event.priority == 4 %}
+                    class="error"
+                {% elseif event.priority == 3 %}
+                    class="warning"
+                {% else %}
+                    class="info"
+                {% endif %}
             >
                 <td>{{ event.host }}</td>
                 <td>{{ event.description }}</td>

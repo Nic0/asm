@@ -14,5 +14,4 @@
 
             echo $twig->render($this->template, $data);
         }
-
     }
