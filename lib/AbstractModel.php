@@ -16,7 +16,8 @@
                'port'     => $mysql->port,
                'username' => $mysql->username,
                'password' => $mysql->password,
-               'database' => $mysql->dbname->$dbname
+               'database' => $mysql->dbname->$dbname,
+               'options'  => array( 'charset' => 'utf8' )
             ));
         }
 

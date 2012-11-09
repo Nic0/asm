@@ -3,31 +3,68 @@
 {% block title %}ASM{% endblock %}
 
 {% block content %}
-    <table class="table
-        {% if config.css.table.condensed %}table-condensed{% endif %}
-        {% if config.css.table.bordered %}table-bordered{% endif %}
-    ">
-        <thead>
-            <tr>
-                <th>Host</th>
-                <th>Description</th>
-                <th>Last Change</th>
-            </tr>
-        </thead>
-        {% for event in zabbix %}
-            <tr
-                {% if event.priority == 4 %}
-                    class="error"
-                {% elseif event.priority == 3 %}
-                    class="warning"
-                {% else %}
-                    class="info"
-                {% endif %}
-            >
-                <td>{{ event.host }}</td>
-                <td>{{ event.description }}</td>
-                <td>{{ event.lastchange | date('d/m/y H:i') }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+
+    <div class="span4">
+        {# ZABBIX TRIGGERS #}
+        <table class="table
+            {% if config.css.table.condensed %}table-condensed{% endif %}
+            {% if config.css.table.bordered %}table-bordered{% endif %}
+        ">
+            <thead>
+                <tr>
+                    <th>Host</th>
+                    <th>Description</th>
+                    <th>Last Change</th>
+                </tr>
+            </thead>
+            {% for event in zabbix %}
+                <tr
+                    {% if event.priority == 4 %}
+                        class="error"
+                    {% elseif event.priority == 3 %}
+                        class="warning"
+                    {% else %}
+                        class="info"
+                    {% endif %}
+                >
+                    <td>{{ event.host }}</td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.lastchange | date('d/m/y H:i') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="span8">
+        {# GLPI TICKETS #}
+        <table class="table
+            {% if config.css.table.condensed %}table-condensed{% endif %}
+            {% if config.css.table.bordered %}table-bordered{% endif %}
+        ">
+            <thead>
+                <tr>
+                    <th>Ticket</th>
+                    <th>Demandeur</th>
+                    <th>Ouverture</th>
+                    <th>Dernière modif</th>
+                </tr>
+            </thead>
+            {% for ticket in glpi %}
+                <tr
+                    style='background-color:
+                    {% if ticket.priority == 1 %}#{{  config.css.glpi.priority1 }}{% endif %}
+                    {% if ticket.priority == 2 %}#{{  config.css.glpi.priority2 }}{% endif %}
+                    {% if ticket.priority == 3 %}#{{  config.css.glpi.priority3 }}{% endif %}
+                    {% if ticket.priority == 4 %}#{{  config.css.glpi.priority4 }}{% endif %}
+                    {% if ticket.priority == 5 %}#{{  config.css.glpi.priority5 }}{% endif %}
+                    {% if ticket.priority == 6 %}#{{  config.css.glpi.priority6 }}{% endif %}'
+                >
+                    <td>{{ ticket.name|raw }}</td>
+                    <td>{{ ticket.realname }} {{ ticket.firstname|raw }}</td>
+                    <td>{{ ticket.date | date('d/m/y H:i') }}</td>
+                    <td>{{ ticket.date_mod | date('d/m/y H:i') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

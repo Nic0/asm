@@ -13,6 +13,13 @@ css:
     table:
         condensed: true
         bordered:  true
+    glpi:
+        priority1: fff2f2
+        priority2: ffe0e0
+        priority3: ffcece
+        priority4: ffbfbf
+        priority5: f4f10b
+        priority6: f81cd6
 debug:
     config: false
     sql:    false
