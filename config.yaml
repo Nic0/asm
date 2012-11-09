@@ -1,12 +1,18 @@
 mysql:
-    driver:   Pdo_Mysql
-    host:     mysql.crbn.intra
-    port:     3306
-    username: phpasm
-    password: NWL6WM6hU9WMBAYY
-    dbname:
-        zabbix: zabbix
-        glpi:   glpi
+    zabbix:
+        driver:   Pdo_Mysql
+        host:     mysql.crbn.intra
+        port:     3306
+        username: phpasm
+        password: NWL6WM6hU9WMBAYY
+        dbname:   zabbix
+    glpi:
+        driver:   Pdo_Mysql
+        host:     mysql.crbn.intra
+        port:     3306
+        username: phpasm
+        password: NWL6WM6hU9WMBAYY
+        dbname:   glpi
 install:
     baseurl: /
 css:
@@ -14,6 +20,13 @@ css:
         condensed: true
         bordered:  true
     glpi:
+        priority1: fff2f2
+        priority2: ffe0e0
+        priority3: ffcece
+        priority4: ffbfbf
+        priority5: f4f10b
+        priority6: f81cd6
+    zabbix:
         priority1: fff2f2
         priority2: ffe0e0
         priority3: ffcece

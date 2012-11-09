@@ -11,13 +11,13 @@
     </thead>
     {% for event in zabbix %}
         <tr
-            {% if event.priority == 4 %}
-                class="error"
-            {% elseif event.priority == 3 %}
-                class="warning"
-            {% else %}
-                class="info"
-            {% endif %}
+            style='background-color:
+            {% if event.priority == 1 %}#{{  config.css.zabbix.priority1 }}{% endif %}
+            {% if event.priority == 2 %}#{{  config.css.zabbix.priority2 }}{% endif %}
+            {% if event.priority == 3 %}#{{  config.css.zabbix.priority3 }}{% endif %}
+            {% if event.priority == 4 %}#{{  config.css.zabbix.priority4 }}{% endif %}
+            {% if event.priority == 5 %}#{{  config.css.zabbix.priority5 }}{% endif %}
+            {% if event.priority == 6 %}#{{  config.css.zabbix.priority6 }}{% endif %}'
         >
             <td>{{ event.host }}</td>
             <td>{{ event.description }}</td>

@@ -8,15 +8,15 @@
 
         public $adapter;
 
-        public function __construct($dbname) {
-            $mysql = AsmConfig::getConfig()->mysql;
+        public function __construct($name) {
+            $mysql = AsmConfig::getConfig()->mysql->$name;
             $this->adapter = new Zend\Db\Adapter\Adapter(array(
                'driver'   => $mysql->driver,
                'host'     => $mysql->host,
                'port'     => $mysql->port,
                'username' => $mysql->username,
                'password' => $mysql->password,
-               'database' => $mysql->dbname->$dbname,
+               'database' => $mysql->dbname,
                'options'  => array( 'charset' => 'utf8' )
             ));
         }
