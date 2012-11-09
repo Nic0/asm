@@ -1,6 +1,7 @@
 <?php
 
     require_once 'Zend/Loader/StandardAutoloader.php';
+    require_once '../lib/AsmConfig.php';
     use Zend\Loader\StandardAutoloader;
 
     class Loader {
