@@ -38,6 +38,12 @@ html:
         title: ASM - Dashboard
         spanzabbix: 4
         spanglpi:   8
+db:
+    zabbix:
+        limit: 10
+    glpi:
+        limit: 20
+        orderby: t.date_mod
 debug:
     config: false
     sql:    false

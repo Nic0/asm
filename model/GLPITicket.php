@@ -16,13 +16,16 @@
         public $date;
 
         public function getLast () {
+
+            $config = AsmConfig::getConfig();
+
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
             $select->from(array('t' => 'glpi_tickets'))
                    ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array())
                    ->join(array('u' => 'glpi_users'), 'r.users_id = u.id', array('realname', 'firstname'))
-                   ->limit('20')
-                   ->order('t.date_mod DESC')
+                   ->limit($config->db->glpi->limit)
+                   ->order($config->db->glpi->orderby . ' DESC')
                    ->where("status != 'closed' AND status != 'solved' AND r.type=1")
                    ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
             $results = $this->select($select);

@@ -13,6 +13,9 @@
         public $lastchange;
 
         public function getLast() {
+
+            $config = AsmConfig::getConfig();
+
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
             $select->from(array('e' => 'events'))
@@ -20,7 +23,7 @@
                    ->join(array('f' => 'functions'), 't.triggerid = f.triggerid', array())
                    ->join(array('i' => 'items'), 'f.itemid = i.itemid', array())
                    ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('host'))
-                   ->limit('20')
+                   ->limit($config->db->zabbix->limit)
                    ->order('lastchange DESC')
                    ->group('triggerid')
                    ->where(array(
