@@ -33,6 +33,7 @@
             $results = $this->select($select);
 
             $data = array();
+
             foreach ($results as $row) {
 
                 $event = $this->createObjectFromSingleData($row, "ZabbixEvent");

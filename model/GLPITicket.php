@@ -29,11 +29,7 @@
 
             $data = array();
             foreach ($results as $row) {
-                $ticket = $this->createObjectFromSingleData($row, "GLPITicket");
-                $ticket->name = htmlentities($ticket->name);
-                $ticket->firstname = htmlentities($ticket->firstname);
-
-                $data[] = $ticket;
+                $data[] = $this->createObjectFromSingleData($row, "GLPITicket");
             }
 
             return $data;

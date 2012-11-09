@@ -33,6 +33,11 @@ css:
         priority4: ffbfbf
         priority5: f4f10b
         priority6: f81cd6
+html:
+    home:
+        title: ASM - Dashboard
+        spanzabbix: 4
+        spanglpi:   8
 debug:
     config: false
     sql:    false

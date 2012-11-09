@@ -1,14 +1,13 @@
 {% extends 'layout.html' %}
 
-{% block title %}ASM{% endblock %}
+{% block title %}{{ config.html.home.title }}{% endblock %}
 
 {% block content %}
-
-    <div class="span4">
+    <div class="span{{ config.html.home.spanzabbix }}">
         {% include 'StaticPage/zabbix.html' %}
     </div>
 
-    <div class="span8 ui-widget-content" id="resizable">
+    <div class="span{{ config.html.home.spanglpi }}">
         {% include 'StaticPage/glpi.html' %}
     </div>
 {% endblock %}
