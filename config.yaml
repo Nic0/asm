@@ -44,6 +44,11 @@ db:
     glpi:
         limit: 20
         orderby: t.date_mod
+js:
+    zabbix:
+        interval: 30000
+    glpi:
+        interval: 30000
 debug:
     config: false
     sql:    false

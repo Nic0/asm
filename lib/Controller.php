@@ -14,4 +14,9 @@
 
             echo $twig->render($this->template, $data);
         }
+
+        public function renderJson ($json) {
+            header('Content-Type: application/json');
+            echo $json;
+        }
     }

@@ -17,4 +17,12 @@
             # code...
         }
 
+        static public function getJsonConfig () {
+
+            $reader = new Yaml();
+            $configArray = $reader->fromFile('../config.yaml');
+            $json = json_encode($configArray);
+            return $json;
+        }
+
     }
