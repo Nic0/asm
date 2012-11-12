@@ -3,20 +3,12 @@
 {% block title %}{{ config.html.home.title }}{% endblock %}
 
 {% block content %}
-<div class="column span{{ config.html.home.spanzabbix }}">
-    <div class="portlet">
-        <div class="portlet-header">Zabbix</div>
-        <div class="protlet-content" id="zabbix">
-            {% include 'StaticPage/zabbix.html' %}
-        </div>
+
+    <div class="pane ui-layout-west" id="zabbix">
+        {% include 'StaticPage/zabbix.html' %}
     </div>
-</div>
-<div class="column span{{ config.html.home.spanglpi }}">
-    <div class="portlet">
-        <div class="portlet-header">GLPI</div>
-        <div class="protlet-content" id="glpi">
-            {% include 'StaticPage/glpi.html' %}
-        </div>
+    <div class="pane ui-layout-center" id="glpi">
+        {% include 'StaticPage/glpi.html' %}
     </div>
-</div>
+
 {% endblock %}

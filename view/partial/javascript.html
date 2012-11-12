@@ -1,3 +1,16 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/jquery-ui.js"></script>
+<script src="/js/jquery.layout-latest.min.js"></script>
 <script src="/js/script.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var layout = $('#container').layout({
+            north: {
+                closable: true,
+                resizable: false
+            }
+        });
+        layout.sizePane("west", 400);
+    });
+</script>
