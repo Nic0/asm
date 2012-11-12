@@ -39,7 +39,7 @@
 
             foreach ($results as $row) {
 
-                $event = $this->createObjectFromSingleData($row, "ZabbixEvent");
+                $event = $this->createObjectFromSingleData($row);
                 $event->description = str_replace('{HOSTNAME}', $event->host, $event->description);
                 $data[] = $event;
             }

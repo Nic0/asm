@@ -30,10 +30,7 @@
                    ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
             $results = $this->select($select);
 
-            $data = array();
-            foreach ($results as $row) {
-                $data[] = $this->createObjectFromSingleData($row, "GLPITicket");
-            }
+            $data = $this->createObjectFromArrayData($results);
 
             return $data;
         }

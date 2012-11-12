@@ -1,13 +1,13 @@
 function ajax_update_glpi (config) {
     setInterval(function() {
         $('#glpi').load('/glpi/update');
-    }, config.js.glpi.interval);
+    }, config.js.glpi.interval * 1000);
 }
 
 function ajax_update_zabbix (config) {
     setInterval(function() {
-        $('#glpi').load('/zabbix/update');
-    }, config.js.zabbix.interval);
+        $('#zabbix').load('/zabbix/update');
+    }, config.js.zabbix.interval * 1000);
 }
 
 
