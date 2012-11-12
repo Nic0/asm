@@ -4,17 +4,40 @@
 
     use Zend\Db\Sql\Sql;
 
+    /**
+     * @brief Modèle pour un ticket de l'application GLPI
+     */
     class GLPITicket extends GLPIModel {
 
-        public $name;
-        public $content;
-        public $priority;
-        public $status;
-        public $realname;
-        public $firstname;
-        public $date_mod;
-        public $date;
+        public $name;       /** @brief Titre */
+        public $content;    /** @brief Contenu (non utilisé) */
+        public $priority;   /** @brief Niveau de priorité (1-6) */
+        public $status;     /** @brief En cours, cloturé, résolu ? */
+        public $realname;   /** @brief Nom du demandeur */
+        public $firstname;  /** @brief Prénom du demandeur */
+        public $date_mod;   /** @brief Date de la dernière modification */
+        public $date;       /** @brief Date de création (non utilisé) */
 
+        /**
+         * @brief Permet d'obtenir les X derniers tickets
+         * @return array(GLPITicket) Tableau d'objet des X derniers tickets GLPI
+         *
+         * La requête est construite avec un select de Zend (\Db\Sql\Sql)
+         *
+         * Deux paramètres pris dans la configuration permet de construire
+         * la requête.
+         *
+         * - db:glpi:limit: Le nombre d'éléments à retourner
+         * - db:glpi:orderby: nom de la colonne pour lequel le résultat sera trié
+         *                    par défaut, ce devrait être t.data_mod
+         *
+         * La requête SQL est construite sur une jointure de trois table:
+         *
+         * `glpi_tickets(t)->glpi_tickets_users(r)->glpi_users(u)`
+         *
+         * L'alias `r` de la table glpi_tickets_users signifie "relation".
+         *
+         */
         public function getLast () {
 
             $config = AsmConfig::getConfig();
