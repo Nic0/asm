@@ -16,7 +16,7 @@
      */
     class AsmConfig {
 
-        public $filename = '../config.yaml'; /** @brief Nom du fichier de config */
+        static $filename = '../config.yaml'; /** @brief Nom du fichier de config */
 
         /**
          * @brief Permet d'obtenir la configuration
@@ -40,7 +40,7 @@
          */
         static function getConfig() {
             $reader = new Yaml();
-            $configArray = $reader->fromFile($this->filename);
+            $configArray = $reader->fromFile(self::$filename);
             $config = new Config($configArray);
             return $config;
         }
@@ -56,7 +56,7 @@
         static public function getJsonConfig () {
 
             $reader = new Yaml();
-            $configArray = $reader->fromFile($this->filename);
+            $configArray = $reader->fromFile(self::$filename);
             $json = json_encode($configArray);
             return $json;
         }
