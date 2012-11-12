@@ -1,7 +1,0 @@
-<map id="AbstractModel" name="AbstractModel">
-<area shape="rect" id="node3" href="$class_model.html" title="méthodes commune à tout les modèles." alt="" coords="79,83,135,112"/>
-<area shape="rect" id="node5" href="$class_g_l_p_i_model.html" title="Permet de différencier les accès aux deux bases de données." alt="" coords="7,160,92,189"/>
-<area shape="rect" id="node9" href="$class_zabbix_model.html" title="Permet de différencier les accès aux deux bases de données." alt="" coords="116,160,212,189"/>
-<area shape="rect" id="node7" href="$class_g_l_p_i_ticket.html" title="GLPITicket" alt="" coords="5,237,93,267"/>
-<area shape="rect" id="node11" href="$class_zabbix_event.html" title="ZabbixEvent" alt="" coords="117,237,211,267"/>
-</map>
