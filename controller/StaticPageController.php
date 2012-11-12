@@ -4,8 +4,15 @@
     require_once '../model/ZabbixEvent.php';
     require_once '../model/GLPITicket.php';
 
+    /**
+     * @brief Controlleur pour la page principale
+     */
     class StaticPageController extends Controller {
 
+        /**
+         * @brief Page d'accueil "home" principale
+         * @return None
+         */
         public function home () {
             $data = array();
 
@@ -20,6 +27,10 @@
             $this->render($data);
         }
 
+        /**
+         * @brief Obtient le rendu pour Zabbix, utilisé pour un appel AJAX
+         * @return None
+         */
         public function updateZabbix () {
             $data = array();
 
@@ -31,6 +42,10 @@
             $this->render($data);
         }
 
+        /**
+         * @brief Obtient le rendu pour GLPI, utilisé pour un appel AJAX
+         * @return None
+         */
         public function updateGlpi () {
             $data = array();
 
