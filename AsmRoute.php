@@ -70,6 +70,11 @@
                     'controller' =>'Config',
                     'action' => 'getJsonConfig'
                 ),
+                '/config' => array(
+                    'controller' =>'Config',
+                    'action' => 'setup',
+                    'template' => 'setup'
+                ),
             );
             parent::__construct();
         }

@@ -22,12 +22,12 @@
         >
             <td>
                 {% if ticket.name|length < config.html.zabbix.maxlentitle %}
-                    {{ ticket.name|raw }}
+                    {{ ticket.name }}
                 {% else %}
-                    {{ ticket.name|slice(0, config.html.zabbix.maxlentitle)|raw }}...
+                    {{ ticket.name|slice(0, config.html.zabbix.maxlentitle) }}...
                 {% endif %}
             </td>
-            <td>{{ ticket.realname }} {{ ticket.firstname|raw }}</td>
+            <td>{{ ticket.realname }} {{ ticket.firstname }}</td>
             <td>{{ ticket.date | date('d/m/y H:i') }}</td>
             <td>{{ ticket.date_mod | date('H:i')}}</td>
         </tr>

@@ -16,7 +16,8 @@ function ajax_update_zabbix (config) {
 
 function update_time () {
     var currentTime = new Date()
-    $('a[name=update]').html(currentTime.getHours() + ':' + currentTime.getMinutes());
+    $('a[name=update]').html(('0' + currentTime.getHours()).slice(-2) + ':' +
+                             ('0' + currentTime.getMinutes()).slice(-2));
 }
 
 

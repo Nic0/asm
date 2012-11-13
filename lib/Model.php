@@ -30,7 +30,7 @@
 
             foreach ($data as $key => $value) {
                 // utilisation d'une variable variable pour les données membres
-                $object->$key = htmlentities($value);
+                $object->$key = $value;
             }
 
             return $object;

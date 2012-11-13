@@ -34,6 +34,7 @@
          */
         public function __construct($name) {
             $mysql = AsmConfig::getConfig()->mysql->$name;
+
             $this->adapter = new Zend\Db\Adapter\Adapter(array(
                'driver'   => $mysql->driver,
                'host'     => $mysql->host,
@@ -41,7 +42,7 @@
                'username' => $mysql->username,
                'password' => $mysql->password,
                'database' => $mysql->dbname,
-               'options'  => array( 'charset' => 'utf8' )
+               'driver_options'  => array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "utf8"')
             ));
         }
 

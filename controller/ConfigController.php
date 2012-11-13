@@ -17,4 +17,9 @@
             $this->renderJson($json);
         }
 
+        public function setup () {
+            $data['config'] = AsmConfig::getConfig();
+            $this->render($data);
+        }
+
     }
