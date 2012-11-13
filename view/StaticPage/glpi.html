@@ -20,7 +20,13 @@
             {% if ticket.priority == 5 %}#{{  config.css.glpi.priority5 }}{% endif %}
             {% if ticket.priority == 6 %}#{{  config.css.glpi.priority6 }}{% endif %}'
         >
-            <td>{{ ticket.name|raw }}</td>
+            <td>
+                {% if ticket.name|length < config.html.zabbix.maxlentitle %}
+                    {{ ticket.name|raw }}
+                {% else %}
+                    {{ ticket.name|slice(0, config.html.zabbix.maxlentitle)|raw }}...
+                {% endif %}
+            </td>
             <td>{{ ticket.realname }} {{ ticket.firstname|raw }}</td>
             <td>{{ ticket.date | date('d/m/y H:i') }}</td>
             <td>{{ ticket.date_mod | date('H:i')}}</td>

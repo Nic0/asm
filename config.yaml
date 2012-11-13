@@ -36,8 +36,8 @@ css:
 html:
     home:
         title: ASM - Dashboard
-        spanzabbix: 4
-        spanglpi:   8
+    zabbix:
+        maxlentitle: 30
 db:
     zabbix:
         limit: 10
