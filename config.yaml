@@ -46,7 +46,7 @@ html:
     placeholder6:
 db:
     zabbix:
-        limit: 1000
+        limit: 10
     glpi:
         limit: 20
         orderby: t.date_mod

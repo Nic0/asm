@@ -22,4 +22,9 @@
             $this->render($data);
         }
 
+        public function dbglpi () {
+            $data['config'] = AsmConfig::getConfig();
+            $this->render($data);
+        }
+
     }

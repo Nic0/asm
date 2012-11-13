@@ -52,9 +52,9 @@
                    ->join(array('i' => 'items'), 'f.itemid = i.itemid', array())
                    ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('host'))
                    ->limit($config->db->zabbix->limit)
-                   ->order('clock DESC')
+                   ->order('lastchange DESC')
                    //->group('acknowledged')
-                   //->group('triggerid')
+                   ->group('triggerid')
                    ->where(array(
                         'h.status' => 0,
                         'i.status' => 0,

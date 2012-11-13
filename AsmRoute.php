@@ -66,6 +66,10 @@
                     'controller' =>'User',
                     'action' => 'logout'
                 ),
+
+                /**
+                 * Route de CONFIGURATION
+                 */
                 '/config/config.json' => array(
                     'controller' =>'Config',
                     'action' => 'getJsonConfig'
@@ -74,6 +78,11 @@
                     'controller' =>'Config',
                     'action' => 'setup',
                     'template' => 'setup'
+                ),
+                '/config/dbglpi' => array(
+                    'controller' =>'Config',
+                    'action' => 'dbglpi',
+                    'template' => '_db_glpi'
                 ),
             );
             parent::__construct();
