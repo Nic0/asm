@@ -39,11 +39,19 @@ function ajax_config () {
         }
     });
     return json;
-})();
+    })();
 }
 
 
 jQuery(document).ready(function($) {
     ajax_config();
-});
 
+    var layout = $('#container').layout({
+        north: {
+            closable: true,
+            resizable: false
+        },
+        stateManagement__enabled:   true,
+        cookie: {expires: "999"}
+    });
+});
