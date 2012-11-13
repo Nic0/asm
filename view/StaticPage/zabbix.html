@@ -7,6 +7,7 @@
             <th>Host</th>
             <th>Description</th>
             <th>Last Change</th>
+            <th>Clock</th>
         </tr>
     </thead>
     {% for event in zabbix %}
@@ -18,10 +19,21 @@
             {% if event.priority == 4 %}#{{  config.css.zabbix.priority4 }}{% endif %}
             {% if event.priority == 5 %}#{{  config.css.zabbix.priority5 }}{% endif %}
             {% if event.priority == 6 %}#{{  config.css.zabbix.priority6 }}{% endif %}'
+             {% if event.acknowledged == "1" %}class="acknowledged"{% endif %}
         >
-            <td>{{ event.host }}</td>
-            <td>{{ event.description }}</td>
-            <td>{{ event.lastchange | date('d/m/y H:i') }}</td>
+
+            <td>
+                {{ event.host }}
+            </td>
+            <td>
+                {{ event.description }}
+            </td>
+            <td>
+                {{ event.lastchange | date('d/m/y H:i') }}
+            </td>
+            <td>
+                {{ event.clock | date('d/m/y H:i') }}
+            </td>
         </tr>
     {% endfor %}
 </table>

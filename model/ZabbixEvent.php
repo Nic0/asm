@@ -14,6 +14,7 @@
         public $description;    /** @brief Descriptif */
         public $priority;       /** @brief Niveau de priorité (1-6) */
         public $lastchange;     /** @brief Date de la dernière modification */
+        public $acknowledged;
 
         /**
          * @brief Permet d'obtenir les X dernier évènements déclanché.
@@ -51,15 +52,16 @@
                    ->join(array('i' => 'items'), 'f.itemid = i.itemid', array())
                    ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('host'))
                    ->limit($config->db->zabbix->limit)
-                   ->order('lastchange DESC')
-                   ->group('triggerid')
+                   ->order('clock DESC')
+                   //->group('acknowledged')
+                   //->group('triggerid')
                    ->where(array(
                         'h.status' => 0,
                         'i.status' => 0,
                         't.status' => 0,
                         'e.object' => 0,
                         't.value' => 1))
-                   ->columns(array('eventid', 'clock'));
+                   ->columns(array('eventid', 'clock', 'acknowledged'));
             $results = $this->select($select);
 
             $data = array();

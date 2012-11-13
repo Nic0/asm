@@ -20,6 +20,7 @@
          *
          */
         public function createObjectFromSingleData($data, $class=null) {
+            debug($data, 'data');
             if ($class == null) {
                 $class = get_called_class();
             }
