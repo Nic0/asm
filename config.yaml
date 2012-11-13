@@ -38,6 +38,12 @@ html:
         title: ASM - Dashboard
     zabbix:
         maxlentitle: 30
+    placeholder1: zabbix
+    placeholder2:
+    placeholder3:
+    placeholder4: glpi
+    placeholder5:
+    placeholder6:
 db:
     zabbix:
         limit: 10

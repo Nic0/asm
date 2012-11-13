@@ -40,28 +40,50 @@ function ajax_config () {
 
 jQuery(document).ready(function($) {
     ajax_config();
+
+
+
+        // init the Sortables
+        $(".column").sortable({
+            connectWith:    $(".column")
+        ,   placeholder:    'widget-placeholder'
+        ,   cursor:         'move'
+        //  use a helper-clone that is append to 'body' so is not 'contained' by a pane
+        ,   helper:         function (evt, ui) { return $(ui).clone().appendTo('body').show(); }
+        ,   over:           function (evt, ui) {
+                                var
+                                    $target_UL  = $(ui.placeholder).parent()
+                                ,   targetWidth = $target_UL.width()
+                                ,   helperWidth = ui.helper.width()
+                                ,   padding     = parseInt( ui.helper.css('paddingLeft') )
+                                                + parseInt( ui.helper.css('paddingRight') )
+                                                + parseInt( ui.helper.css('borderLeftWidth') )
+                                                + parseInt( ui.helper.css('borderRightWidth') )
+                                ;
+                                //if (( (helperWidth + padding) - targetWidth ) > 20)
+                                    ui.helper
+                                        .height('auto')
+                                        .width( targetWidth - padding )
+                                    ;
+                            }
+        });
+/*
+        $("#draggable").draggable({
+        //  use a helper-clone that is append to 'body' so is not 'contained' by a pane
+            helper: function () { return $(this).clone().appendTo('body').css('zIndex',5).show(); }
+        ,   cursor: 'move'
+        });
+
+        $('#droppable').droppable({
+           accept:  '#draggable'
+        ,  drop:    function () { alert('The Draggable was Dropped!'); }
+        });
+*/
+
+
+
+
+
+
 });
 
-/**
- * Gestion du drag n drop
- */
-
-    $(function() {
-        $( ".column" ).sortable({
-            connectWith: ".column"
-        });
-
-        $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-            .find( ".portlet-header" )
-                .addClass( "ui-widget-header ui-corner-all" )
-                .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
-                .end()
-            .find( ".portlet-content" );
-
-        $( ".portlet-header .ui-icon" ).click(function() {
-            $( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
-            $( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
-        });
-
-        $( ".column" ).disableSelection();
-    });

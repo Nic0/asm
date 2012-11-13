@@ -4,11 +4,40 @@
 
 {% block content %}
 
-    <div class="pane ui-layout-west" id="zabbix">
-        {% include 'StaticPage/zabbix.html' %}
+    <div class="pane ui-layout-west">
+        {% if config.html.placeholder1 is defined %}
+            <div id="{{ config.html.placeholder1 }}">
+                {% include 'StaticPage/' ~ config.html.placeholder1 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.html.placeholder2 is defined %}
+            <div id="{{ config.html.placeholder2 }}">
+                {% include 'StaticPage/' ~ config.html.placeholder2 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.html.placeholder3 is defined %}
+            <div id="{{ config.html.placeholder3 }}">
+                {% include 'StaticPage/' ~ config.html.placeholder3 ~ '.html' %}
+            </div>
+        {% endif %}
     </div>
+
     <div class="pane ui-layout-center" id="glpi">
-        {% include 'StaticPage/glpi.html' %}
+        {% if config.html.placeholder4 is defined %}
+            <div id="{{ config.html.placeholder4 }}">
+                {% include 'StaticPage/' ~ config.html.placeholder4 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.html.placeholder5 is defined %}
+            <div id="{{ config.html.placeholder5 }}">
+                {% include 'StaticPage/' ~ config.html.placeholder5 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.html.placeholder6 is defined %}
+            <div id="{{ config.html.placeholder6 }}">
+                {% include 'StaticPage/' ~ config.html.placeholder6 ~ '.html' %}
+            </div>
+        {% endif %}
     </div>
 
 {% endblock %}
