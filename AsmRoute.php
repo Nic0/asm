@@ -81,7 +81,7 @@
                 ),
                 '/config/dbglpi' => array(
                     'controller' =>'Config',
-                    'action' => 'dbglpi',
+                    'action' => 'ajax_dbglpi',
                     'template' => '_db_glpi'
                 ),
             );

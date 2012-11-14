@@ -1,7 +1,9 @@
 <?php
 
-    use Zend\Config\Reader\Yaml;
+    use Zend\Config\Reader\Yaml as YamlR;
+    use Zend\Config\Writer\Yaml as YamlW;
     use Zend\Config\Config;
+
     require_once '../lib/utils.php';
 
     /**
@@ -38,15 +40,20 @@
          * $host = $conf->mysql->zabbix->host;
          * ~~~~~~~~~~~~~~
          */
-        static function getConfig() {
-            $reader = new Yaml();
+        static public function getConfig() {
+            $reader = new YamlR();
             $configArray = $reader->fromFile(self::$filename);
             $config = new Config($configArray);
             return $config;
         }
 
-        public function setConfig($config) {
-            # code...
+        static public function setConfig($post) {
+            $config = self::postToArray($post);
+            //$reader = new YamlR();
+            //$config = $reader->fromFile(self::$filename);
+
+            //$writer = new YamlW();
+            //echo $writer->toFile(self::$filename, $config);
         }
 
         /**
@@ -55,10 +62,34 @@
          */
         static public function getJsonConfig () {
 
-            $reader = new Yaml();
+            $reader = new YamlR();
             $configArray = $reader->fromFile(self::$filename);
             $json = json_encode($configArray);
             return $json;
+        }
+
+        static private function postToArray ($post) {
+            $config = array();
+
+            foreach ($post as $key => $value) {
+
+                $pointeur = &$config;
+                $path = explode('_', $key);
+
+                for ($i=0; $i < sizeOf($path); $i++) {
+                    if ($i == sizeOf($path)-1) {
+                        $pointeur[$path[$i]] = $value;
+                    } else {
+                        if (!array_key_exists($path[$i], $pointeur)) {
+                            $pointeur[$path[$i]] = array();
+                        }
+                        $pointeur = &$pointeur[$path[$i]];
+                    }
+                }
+            }
+            debug($config, 'postarray');
+
+            return $config;
         }
 
     }

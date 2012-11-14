@@ -18,13 +18,18 @@
         }
 
         public function setup () {
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                $data['config'] = AsmConfig::getConfig();
+                $this->render($data);
+            } else {
+                debug($_POST, 'post');
+                AsmConfig::setConfig($_POST);
+                die;
+            }
+        }
+
+        public function ajax_dbglpi () {
             $data['config'] = AsmConfig::getConfig();
             $this->render($data);
         }
-
-        public function dbglpi () {
-            $data['config'] = AsmConfig::getConfig();
-            $this->render($data);
-        }
-
     }

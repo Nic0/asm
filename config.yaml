@@ -57,6 +57,8 @@ js:
         interval: 30
 debug:
     data:   false
+    post:   true
+    postarray: true
     config: false
     sql:    false
     route:  false
