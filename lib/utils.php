@@ -10,6 +10,11 @@
         }
     }
 
+    function isAjax () {
+        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND
+                $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest');
+    }
+
     function time2str($ts)
     {
         if(!ctype_digit($ts))

@@ -13,8 +13,10 @@
          * @return None
          */
         public function getJsonConfig () {
-            $json = AsmConfig::getJsonConfig();
-            $this->renderJson($json);
+            if (isAjax()) {
+                $json = AsmConfig::getJsonConfig();
+                $this->renderJson($json);
+            }
         }
 
         public function setup () {
@@ -29,13 +31,17 @@
         }
 
         public function ajax_dbglpi () {
-            $data['config'] = AsmConfig::getConfig();
-            $this->render($data);
+            if (isAjax()) {
+                $data['config'] = AsmConfig::getConfig();
+                $this->render($data);
+            }
         }
 
         public function ajax_dbzabbix () {
-            $data['config'] = AsmConfig::getConfig();
-            $this->render($data);
+            if (isAjax()) {
+                $data['config'] = AsmConfig::getConfig();
+                $this->render($data);
+            }
         }
 
     }

@@ -32,14 +32,16 @@
          * @return None
          */
         public function updateZabbix () {
-            $data = array();
+            if (isAjax()) {
+                $data = array();
 
-            $zEvent = new ZabbixEvent();
-            $data['zabbix'] = $zEvent->getLast();
+                $zEvent = new ZabbixEvent();
+                $data['zabbix'] = $zEvent->getLast();
 
-            $data['config'] = AsmConfig::getConfig();
+                $data['config'] = AsmConfig::getConfig();
 
-            $this->render($data);
+                $this->render($data);
+            }
         }
 
         /**
@@ -47,13 +49,15 @@
          * @return None
          */
         public function updateGlpi () {
-            $data = array();
+            if (isAjax()) {
+                $data = array();
 
-            $gpliTickets = new GLPITicket();
-            $data['glpi'] = $gpliTickets->getLast();
+                $gpliTickets = new GLPITicket();
+                $data['glpi'] = $gpliTickets->getLast();
 
-            $data['config'] = AsmConfig::getConfig();
+                $data['config'] = AsmConfig::getConfig();
 
-            $this->render($data);
+                $this->render($data);
+            }
         }
     }
