@@ -11,20 +11,12 @@
         </tr>
     </thead>
     {% for ticket in glpi %}
-        <tr
-            style='background-color:
-            {% if ticket.priority == 1 %}#{{  config.css.glpi.priority1 }}{% endif %}
-            {% if ticket.priority == 2 %}#{{  config.css.glpi.priority2 }}{% endif %}
-            {% if ticket.priority == 3 %}#{{  config.css.glpi.priority3 }}{% endif %}
-            {% if ticket.priority == 4 %}#{{  config.css.glpi.priority4 }}{% endif %}
-            {% if ticket.priority == 5 %}#{{  config.css.glpi.priority5 }}{% endif %}
-            {% if ticket.priority == 6 %}#{{  config.css.glpi.priority6 }}{% endif %}'
-        >
+        <tr {{ displayPriority(ticket.priority, 'glpi')|raw }}>
             <td>
-                {% if ticket.name|length < config.html.zabbix.maxlentitle %}
+                {% if ticket.name|length < config.html.glpi.maxlentitle %}
                     {{ ticket.name }}
                 {% else %}
-                    {{ ticket.name|slice(0, config.html.zabbix.maxlentitle) }}...
+                    {{ ticket.name|slice(0, config.html.glpi.maxlentitle) }}...
                 {% endif %}
             </td>
             <td>{{ ticket.realname }} {{ ticket.firstname }}</td>

@@ -48,12 +48,14 @@
         }
 
         static public function setConfig($post) {
-            $config = self::postToArray($post);
-            //$reader = new YamlR();
-            //$config = $reader->fromFile(self::$filename);
+            $post = self::postToArray($post);
+            $reader = new YamlR();
+            $config = $reader->fromFile(self::$filename);
 
-            //$writer = new YamlW();
-            //echo $writer->toFile(self::$filename, $config);
+            $merged_config = array_merge_recursive_distinct($config, $post);
+
+            $writer = new YamlW();
+            echo $writer->toFile(self::$filename, $merged_config);
         }
 
         /**

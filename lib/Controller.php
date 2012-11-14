@@ -25,10 +25,8 @@
          *
          */
         public function render($data=array()) {
-            $loader = new Twig_Loader_Filesystem('../view/');
-            $twig = new Twig_Environment($loader);
-
-            echo $twig->render($this->template, $data);
+            $this->handleTwig();
+            echo $this->twig->render($this->template, $data);
         }
 
         /**
@@ -40,4 +38,75 @@
             header('Content-Type: application/json');
             echo $json;
         }
+
+        private function handleTwig() {
+            $loader = new Twig_Loader_Filesystem('../view/');
+            $this->twig = new Twig_Environment($loader);
+
+            $this->addInputFunctionPassword();
+            $this->addInputFunctionColor();
+            $this->addInputFunction();
+            $this->addDisplayPriorityColor();
+
+        }
+
+
+        private function addInputFunctionColor() {
+            function inputcolor ($label, $name, $value) {
+
+                return
+                '<div class="control-group">'
+                    .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
+                    .'<div class="controls">'
+                    .'<input class="color" type="text" name="'.$name.'"'
+                           .'value="'.$value.'">'
+                    .'</div>'
+                .'</div>';
+
+            }
+            $this->twig->addFunction('inputcolor', new Twig_Function_Function('inputcolor'));
+        }
+
+        private function addInputFunctionPassword() {
+            function inputpass ($label, $name, $value) {
+
+                return
+                '<div class="control-group">'
+                    .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
+                    .'<div class="controls">'
+                    .'<input type="password" name="'.$name.'"'
+                           .'value="'.$value.'">'
+                    .'</div>'
+                .'</div>';
+
+            }
+            $this->twig->addFunction('inputpass', new Twig_Function_Function('inputpass'));
+        }
+
+        private function addInputFunction() {
+            function input ($label, $name, $value) {
+
+                return
+                '<div class="control-group">'
+                    .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
+                    .'<div class="controls">'
+                    .'<input type="text" name="'.$name.'"'
+                           .'value="'.$value.'">'
+                    .'</div>'
+                .'</div>';
+
+            }
+            $this->twig->addFunction('input', new Twig_Function_Function('input'));
+        }
+
+        private function addDisplayPriorityColor () {
+            function displayPriority ($priority, $element) {
+                $conf = AsmConfig::getConfig();
+                $p = 'priority' . $priority;
+                return "style='background-color: #". $conf->css->$element->$p ."' ";
+
+            }
+            $this->twig->addFunction('displayPriority', new Twig_Function_Function('displayPriority'));
+        }
+
     }

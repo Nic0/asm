@@ -68,7 +68,7 @@
                 ),
 
                 /**
-                 * Route de CONFIGURATION
+                 * Route pour la CONFIGURATION
                  */
                 '/config/config.json' => array(
                     'controller' =>'Config',
@@ -79,10 +79,20 @@
                     'action' => 'setup',
                     'template' => 'setup'
                 ),
+                '/config/dbzabbix' => array(
+                    'controller' =>'Config',
+                    'action' => 'ajax_dbzabbix',
+                    'template' => '_db_zabbix'
+                ),
                 '/config/dbglpi' => array(
                     'controller' =>'Config',
                     'action' => 'ajax_dbglpi',
                     'template' => '_db_glpi'
+                ),
+                '/config/general' => array(
+                    'controller' =>'Config',
+                    'action' => 'ajax_general',
+                    'template' => '_general'
                 ),
             );
             parent::__construct();
