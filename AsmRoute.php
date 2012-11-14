@@ -89,11 +89,6 @@
                     'action' => 'ajax_dbglpi',
                     'template' => '_db_glpi'
                 ),
-                '/config/general' => array(
-                    'controller' =>'Config',
-                    'action' => 'ajax_general',
-                    'template' => '_general'
-                ),
             );
             parent::__construct();
         }

@@ -38,9 +38,4 @@
             $this->render($data);
         }
 
-        public function ajax_general () {
-            $data['config'] = AsmConfig::getConfig();
-            $this->render($data);
-        }
-
     }
