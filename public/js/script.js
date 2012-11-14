@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
             resizable: false
         },
         stateManagement__enabled:   true,
-        cookie: {expires: "999"}
+        cookie__expires: 999
     });
 
 
