@@ -43,20 +43,17 @@ function ajax_config () {
     })();
 }
 
-
-jQuery(document).ready(function($) {
-    ajax_config();
-
+function setup_layout () {
     var layout = $('#container').layout({
-        north: {
-            closable: true,
-            resizable: false
-        },
+        north: { resizable: false },
         stateManagement__enabled:   true,
-        cookie__expires: 999
+        cookie__expires: 999,
+        cookie__path: '/',
+        cookie__autoSave: false
     });
+}
 
-
+function setup_config_tabs () {
     $(function() {
         $( "#tabs" ).tabs({
             beforeLoad: function( event, ui ) {
@@ -68,5 +65,11 @@ jQuery(document).ready(function($) {
             }
         });
     });
+}
 
+
+jQuery(document).ready(function($) {
+    ajax_config();
+    setup_layout();
+    setup_config_tabs();
 });
