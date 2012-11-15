@@ -23,6 +23,7 @@
     </div>
 
     <div class="pane ui-layout-center" id="glpi">
+        {% include 'partial/message.html' %}
         {% if config.html.placeholder4 is defined %}
             <div id="{{ config.html.placeholder4 }}">
                 {% include 'StaticPage/' ~ config.html.placeholder4 ~ '.html' %}

@@ -5,8 +5,10 @@
      */
     class Controller {
 
-        public $template; /** @brief Template dont le rendu sera généré */
-        public $data = array(); /** @brief Les données sous forme d'array qui seront envoyé au template */
+        /** @brief Template dont le rendu sera généré */
+        public $template;
+        /** @brief Les données sous forme d'array qui seront envoyé au template */
+        public $data = array();
 
         /**
          * @brief Constructeur permettant de mettre le template en place
@@ -15,6 +17,7 @@
         public function __construct($template=null) {
             $this->template = $template;
             $this->data['config'] = AsmConfig::getConfig();
+            $this->data['session'] = $_SESSION;
         }
 
         /**

@@ -7,8 +7,10 @@
      */
     class Route {
 
-        public $requestURL; /** @brief URL demandé (sans http... */
-        public $match; /** @brief ensemble controller/action/template qui match à la route */
+        /** @brief URL demandé (sans http...) */
+        public $requestURL;
+        /** @brief ensemble controller/action/template qui match à la route */
+        public $match;
 
         /**
          * @brief Trouver les controller/action/template, et appeler en fonction

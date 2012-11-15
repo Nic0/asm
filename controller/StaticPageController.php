@@ -19,9 +19,8 @@
             $gpliTickets = new GLPITicket();
 
             $this->addData('zabbix', $zEvent->getLast())
-                 ->addData('glpi',   $gpliTickets->getLast());
-
-            $this->render();
+                 ->addData('glpi',   $gpliTickets->getLast())
+                 ->render();
         }
 
         /**
@@ -32,9 +31,8 @@
             if (isAjax()) {
 
                 $zEvent = new ZabbixEvent();
-                $this->addData('zabbix', $zEvent->getLast());
-
-                $this->render();
+                $this->addData('zabbix', $zEvent->getLast())
+                     ->render();
             }
         }
 
@@ -46,9 +44,8 @@
             if (isAjax()) {
 
                 $gpliTickets = new GLPITicket();
-                $this->addData('glpi', $gpliTickets->getLast());
-
-                $this->render();
+                $this->addData('glpi', $gpliTickets->getLast())
+                     ->render();
             }
         }
     }

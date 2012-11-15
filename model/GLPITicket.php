@@ -9,14 +9,22 @@
      */
     class GLPITicket extends GLPIModel {
 
-        public $name;       /** @brief Titre */
-        public $content;    /** @brief Contenu (non utilisé) */
-        public $priority;   /** @brief Niveau de priorité (1-6) */
-        public $status;     /** @brief En cours, cloturé, résolu ? */
-        public $realname;   /** @brief Nom du demandeur */
-        public $firstname;  /** @brief Prénom du demandeur */
-        public $date_mod;   /** @brief Date de la dernière modification */
-        public $date;       /** @brief Date de création (non utilisé) */
+        /** @brief Titre */
+        public $name;
+        /** @brief Contenu (non utilisé) */
+        public $content;
+        /** @brief Niveau de priorité (1-6) */
+        public $priority;
+        /** @brief En cours, cloturé, résolu ? */
+        public $status;
+        /** @brief Nom du demandeur */
+        public $realname;
+        /** @brief Prénom du demandeur */
+        public $firstname;
+        /** @brief Date de la dernière modification */
+        public $date_mod;
+        /** @brief Date de création (non utilisé) */
+        public $date;
 
         /**
          * @brief Permet d'obtenir les X derniers tickets

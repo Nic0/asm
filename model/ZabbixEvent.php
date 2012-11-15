@@ -9,11 +9,17 @@
      */
     class ZabbixEvent extends ZabbixModel {
 
-        public $eventid;        /** @brief ID de l'évènement (non utilisé) */
-        public $host;           /** @brief Nom de l'hôte */
-        public $description;    /** @brief Descriptif */
-        public $priority;       /** @brief Niveau de priorité (1-6) */
-        public $lastchange;     /** @brief Date de la dernière modification */
+        /** @brief ID de l'évènement (non utilisé) */
+        public $eventid;
+        /** @brief Nom de l'hôte */
+        public $host;
+        /** @brief Descriptif */
+        public $description;
+        /** @brief Niveau de priorité (1-6) */
+        public $priority;
+        /** @brief Date de la dernière modification */
+        public $lastchange;
+        /** @brief Aquittement de l'évènement */
         public $acknowledged;
 
         /**

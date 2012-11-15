@@ -1,5 +1,7 @@
 <?php
 
+    require_once '../lib/Flash.php';
+
     function debug($data, $param=null) {
         $conf = AsmConfig::getConfig();
 
