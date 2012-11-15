@@ -25,21 +25,18 @@
                 AsmConfig::setConfig($_POST);
             }
 
-            $data['config'] = AsmConfig::getConfig();
-            $this->render($data);
+            $this->render();
         }
 
         public function ajax_dbglpi () {
             if (isAjax()) {
-                $data['config'] = AsmConfig::getConfig();
-                $this->render($data);
+                $this->render();
             }
         }
 
         public function ajax_dbzabbix () {
             if (isAjax()) {
-                $data['config'] = AsmConfig::getConfig();
-                $this->render($data);
+                $this->render();
             }
         }
 

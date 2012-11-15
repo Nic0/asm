@@ -6,6 +6,7 @@
     class Controller {
 
         public $template; /** @brief Template dont le rendu sera généré */
+        public $data = array(); /** @brief Les données sous forme d'array qui seront envoyé au template */
 
         /**
          * @brief Constructeur permettant de mettre le template en place
@@ -13,6 +14,7 @@
          */
         public function __construct($template=null) {
             $this->template = $template;
+            $this->data['config'] = AsmConfig::getConfig();
         }
 
         /**
@@ -22,11 +24,12 @@
          *
          * Le rendu se fait à l'aide de Twig (template utilisé pour Synfony2)
          * Se référer à leur documentation pour les deux lignes le concernant.
+         * $this->data sera automatiquement envoyé au template.
          *
          */
-        public function render($data=array()) {
+        public function render() {
             $this->handleTwig();
-            echo $this->twig->render($this->template, $data);
+            echo $this->twig->render($this->template, $this->data);
         }
 
         /**
@@ -39,12 +42,21 @@
             echo $json;
         }
 
+        /**
+         * @brief charge et rajoute les helpers pour Twig
+         * @return None
+         */
         private function handleTwig() {
             $loader = new Twig_Loader_Filesystem('../view/');
             $this->twig = new Twig_Environment($loader);
             require_once '../lib/helper.php';
         }
 
+        /**
+         * @brief Simple redirection
+         * @param  string $url location vers lequel on souhaite être redirigé
+         * @return None
+         */
         public function redirect ($url) {
             header('Location: ' . $url);
         }
