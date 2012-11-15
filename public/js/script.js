@@ -46,10 +46,11 @@ function ajax_config () {
 function setup_layout () {
     var layout = $('#container').layout({
         north: { resizable: false },
+        west: {size: 400},
         stateManagement__enabled:   true,
         cookie__expires: 999,
         cookie__path: '/',
-        cookie__autoSave: false
+        cookie__autoSave: true
     });
 }
 
