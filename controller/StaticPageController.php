@@ -16,10 +16,10 @@
         public function home () {
 
             $zEvent = new ZabbixEvent();
-            $this->data['zabbix'] = $zEvent->getLast();
-
             $gpliTickets = new GLPITicket();
-            $this->data['glpi'] = $gpliTickets->getLast();
+
+            $this->addData('zabbix', $zEvent->getLast())
+                 ->addData('glpi',   $gpliTickets->getLast());
 
             $this->render();
         }
@@ -32,7 +32,7 @@
             if (isAjax()) {
 
                 $zEvent = new ZabbixEvent();
-                $this->data['zabbix'] = $zEvent->getLast();
+                $this->addData('zabbix', $zEvent->getLast());
 
                 $this->render();
             }
@@ -46,7 +46,7 @@
             if (isAjax()) {
 
                 $gpliTickets = new GLPITicket();
-                $this->data['glpi'] = $gpliTickets->getLast();
+                $this->addData('glpi', $gpliTickets->getLast());
 
                 $this->render();
             }

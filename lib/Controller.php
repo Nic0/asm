@@ -60,4 +60,9 @@
         public function redirect ($url) {
             header('Location: ' . $url);
         }
+
+        public function addData ($label, $data) {
+            $this->data[$label] = $data;
+            return $this;
+        }
     }
