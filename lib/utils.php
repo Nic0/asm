@@ -26,7 +26,9 @@
     function isPost () {
         return ($_SERVER['REQUEST_METHOD'] == 'POST');
     }
-
+    /**
+     * @note pas utilisé
+     */
     function time2str($ts)
     {
         if(!ctype_digit($ts))
