@@ -23,6 +23,7 @@
             if (isPost()) {
                 debug($_POST, 'post');
                 AsmConfig::setConfig($_POST);
+                $this->redirect('/config');
             }
 
             $this->render();

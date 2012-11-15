@@ -10,11 +10,19 @@
         }
     }
 
+    /**
+     * @brief savoir si une requête provient d'un appel en AJAX
+     * @return boolean vrai si c'est de l'AJAX
+     */
     function isAjax () {
         return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND
                 $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest');
     }
 
+    /**
+     * @brief savoir si une requête provient d'un appel avec POST
+     * @return boolean vrai si c'est du POST
+     */
     function isPost () {
         return ($_SERVER['REQUEST_METHOD'] == 'POST');
     }
@@ -63,25 +71,32 @@
             return date('F Y', $ts);
         }
     }
+
     /**
      * @brief merge deux arrays, repris sur
      * http://www.php.net/manual/en/function.array-merge-recursive.php#92195
      */
-    function array_merge_recursive_distinct ( array &$array1, array &$array2 )
-    {
+    function array_merge_recursive_distinct ( array &$array1, array &$array2 ) {
       $merged = $array1;
 
-      foreach ( $array2 as $key => &$value )
-      {
-        if ( is_array ( $value ) && isset ( $merged [$key] ) && is_array ( $merged [$key] ) )
-        {
+      foreach ( $array2 as $key => &$value ) {
+        if ( is_array ( $value ) && isset ( $merged [$key] ) && is_array ( $merged [$key] ) ) {
           $merged [$key] = array_merge_recursive_distinct ( $merged [$key], $value );
-        }
-        else
-        {
+        } else {
           $merged [$key] = $value;
         }
       }
 
       return $merged;
+    }
+
+    /**
+     * Créer un objet `Flash` en l'affectant à la session.
+     * @param  string $msg message à affiche
+     * @param  string $lvl niveau d'alerte (success, info, warning)
+     * @return None
+     */
+    function flash($msg, $lvl="warning") {
+        $flash = new Flash($msg, $lvl);
+        $_SESSION['flash'] = $flash;
     }
