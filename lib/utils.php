@@ -15,6 +15,10 @@
                 $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest');
     }
 
+    function isPost () {
+        return ($_SERVER['REQUEST_METHOD'] == 'POST');
+    }
+
     function time2str($ts)
     {
         if(!ctype_digit($ts))

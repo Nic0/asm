@@ -20,13 +20,12 @@
         }
 
         public function setup () {
-            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                $data['config'] = AsmConfig::getConfig();
-            } else {
+            if (isPost()) {
                 debug($_POST, 'post');
                 AsmConfig::setConfig($_POST);
             }
 
+            $data['config'] = AsmConfig::getConfig();
             $this->render($data);
         }
 
@@ -41,6 +40,15 @@
             if (isAjax()) {
                 $data['config'] = AsmConfig::getConfig();
                 $this->render($data);
+            }
+        }
+
+        public function ajax_reset () {
+            if (isAjax()) {
+                $this->render();
+            } elseif (isPost()) {
+                AsmConfig::resetConfig();
+                $this->redirect('/config');
             }
         }
 

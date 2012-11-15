@@ -18,7 +18,9 @@
      */
     class AsmConfig {
 
-        static $filename = '../config.yaml'; /** @brief Nom du fichier de config */
+        static $filename = '../config/config.yaml'; /** @brief Nom du fichier de config */
+        static $defaultFilename = '../config/config.default.yaml';
+        static $userFilename = '../config/config.USER.yaml';
 
         /**
          * @brief Permet d'obtenir la configuration
@@ -68,6 +70,10 @@
             $configArray = $reader->fromFile(self::$filename);
             $json = json_encode($configArray);
             return $json;
+        }
+
+        static public function resetConfig () {
+            copy(self::$defaultFilename, self::$filename);
         }
 
         static private function postToArray ($post) {

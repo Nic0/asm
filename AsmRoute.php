@@ -89,6 +89,11 @@
                     'action' => 'ajax_dbglpi',
                     'template' => '_db_glpi'
                 ),
+                '/config/reset' => array(
+                    'controller' =>'Config',
+                    'action' => 'ajax_reset',
+                    'template' => '_reset'
+                ),
             );
             parent::__construct();
         }

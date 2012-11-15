@@ -45,8 +45,6 @@ html:
   placeholder4: glpi
   placeholder5: ~
   placeholder6: ~
-  zabbix:
-    maxlentitle: "30"
 db:
   zabbix:
     limit: "10"

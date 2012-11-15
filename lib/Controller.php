@@ -44,4 +44,8 @@
             $this->twig = new Twig_Environment($loader);
             require_once '../lib/helper.php';
         }
+
+        public function redirect ($url) {
+            header('Location: ' . $url);
+        }
     }
