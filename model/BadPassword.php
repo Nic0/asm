@@ -5,11 +5,10 @@
     class BadPassword extends LDAPModel {
 
         public $cn;
-        public $distinguishedname;
         public $samaccountname;
         public $lockouttime;
 
-        private $attributes = array('cn', 'distinguishedname', 'samaccountname', 'lockouttime');
+        private $attributes = array('cn', 'samaccountname', 'lockouttime');
         static private $filter = "(&(objectClass=user)(!(objectClass=computer))(badPwdCount>=5))";
 
         public function getAll () {

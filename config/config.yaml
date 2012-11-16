@@ -15,8 +15,12 @@ mysql:
     password: NWL6WM6hU9WMBAYY
     dbname: glpi
 ldap:
-  dn:  "CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra"
-  password: 'Ni4Ief3jo'
+  host: dc1.crbn.intra
+  port: 636
+  usessl: true
+  basedn: dc=crbn,dc=intra
+  username: CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra
+  password: Ni4Ief3jo
 install:
   baseurl: /
 css:
@@ -40,6 +44,8 @@ css:
 html:
   home:
     title: ASM - Dashboard
+  auth:
+    msg: "En cas de problème, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
   glpi:
     maxlentitle: "40"
   placeholder1: zabbix
@@ -52,16 +58,17 @@ db:
   zabbix:
     limit: "10"
   glpi:
-    limit: "20"
+    limit: "10"
     orderby: t.date_mod
 js:
   zabbix:
     interval: "30"
   glpi:
-    interval: "30"
+    interval: "60"
   badpasswd:
     interval: "60"
 debug:
+  auth: true
   data: false
   post: false
   postarrray: false
@@ -69,4 +76,6 @@ debug:
   sql: false
   route: false
   url: false
+username: paris_n
+password: paris569
 ...

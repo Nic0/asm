@@ -4,14 +4,14 @@
 
     class LDAPModel extends Model {
 
-        private $dn;
+        private $username;
         private $pass;
         private $host;
         private $connect;
 
         function __construct() {
             $config = AsmConfig::getConfig();
-            $this->dn = $config->ldap->dn;
+            $this->username = $config->ldap->username;
             $this->pass = $config->ldap->password;
         }
 
@@ -32,7 +32,7 @@
                 ldap_set_option($this->connect, LDAP_OPT_REFERRALS, 0);
                 ldap_set_option($this->connect, LDAP_OPT_PROTOCOL_VERSION, 3);
 
-                ldap_bind($this->connect, $this->dn, $this->pass);
+                ldap_bind($this->connect, $this->username, $this->pass);
             }
         }
     }

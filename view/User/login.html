@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Authentification{% endblock %}
+
+{% block content %}
+    <div class="pane ui-layout-center">
+        <div class="container">
+            {% include 'partial/message.html' %}
+            <form action="/login" class="form-horizontal" method="post">
+                <legend>Authentification</legend>
+                {{ input('Username', 'username', null) | raw }}
+                {{ input('Password', 'password', null) | raw }}
+                </fieldset>
+
+                {{ submit("S'identifier") | raw }}
+                {{ config.html.auth.msg }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
