@@ -8,7 +8,8 @@
         public $cn;
         public $distinguishedname;
         public $samaccountname;
-        public $attributes = array('cn', 'distinguishedname', 'samaccountname');
+        public $lockouttime;
+        public $attributes = array('cn', 'distinguishedname', 'samaccountname', 'lockouttime');
 
         public function getAll () {
 

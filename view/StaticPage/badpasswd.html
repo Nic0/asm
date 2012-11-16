@@ -2,12 +2,13 @@
     {% if config.css.table.condensed %}table-condensed{% endif %}
     {% if config.css.table.bordered %}table-bordered{% endif %}
 ">
-    <caption>Compte bloqué sur LDAP</caption>
+    <caption>Comptes bloqués sur LDAP</caption>
     <thead>
         <tr>
             <th>CN</th>
             <th>sAMAccountname</th>
             <th>DN</th>
+            <th>Date</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
                 <td>{{ item.cn }}</td>
                 <td>{{ item.samaccountname }}</td>
                 <td>{{ item.distinguishedname }}</td>
+                <td>{{ convert_ldap_date(item.lockouttime) }}</td>
             </tr>
         {% endfor %}
     </tbody>
