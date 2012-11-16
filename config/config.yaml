@@ -76,6 +76,5 @@ debug:
   sql: false
   route: false
   url: false
-username: paris_n
-password: paris569
+  session: true
 ...

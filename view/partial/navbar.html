@@ -9,7 +9,11 @@
         <a class="brand" href="/">ASM</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="/login"><i class="icon-user"></i> Login</a></li>
+            {% if logged() %}
+              <li><a href="/logout"><i class="icon-user"></i> Logout</a></li>
+            {% else %}
+              <li><a href="/logout"><i class="icon-user"></i> Logout</a></li>
+            {% endif %}
             <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
           </ul>
           <ul class="nav pull-right">

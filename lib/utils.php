@@ -28,6 +28,10 @@
     function isPost () {
         return ($_SERVER['REQUEST_METHOD'] == 'POST');
     }
+
+    function isLogged () {
+        return isset($_SESSION['user']);
+    }
     /**
      * @note pas utilisé
      */

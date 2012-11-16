@@ -37,6 +37,7 @@
                         break;
 
                     case Result::SUCCESS:
+                        $_SESSION['user'] = $auth->getIdentity();
                         $this->redirect('/');
                         break;
 
@@ -56,6 +57,8 @@
          * @return None
          */
         public function logout () {
-
+            unset($_SESSION['user']);
+            flash('Vous avez été correctement déconnecté', 'success');
+            $this->redirect('login');
         }
     }

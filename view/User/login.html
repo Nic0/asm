@@ -8,11 +8,11 @@
             {% include 'partial/message.html' %}
             <form action="/login" class="form-horizontal" method="post">
                 <legend>Authentification</legend>
-                {{ input('Username', 'username', null) | raw }}
-                {{ input('Password', 'password', null) | raw }}
+                    {{ input('Username', 'username', null)|raw }}
+                    {{ inputpass('Password', 'password', null)|raw }}
                 </fieldset>
 
-                {{ submit("S'identifier") | raw }}
+                {{ submit("S'identifier")|raw }}
                 {{ config.html.auth.msg }}
             </form>
         </div>

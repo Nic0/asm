@@ -15,15 +15,19 @@
          * @return None
          */
         public function home () {
+            if(isLogged()) {
+                $zEvent = new ZabbixEvent();
+                $gpliTickets = new GLPITicket();
+                $badPassword = new BadPassword();
 
-            $zEvent = new ZabbixEvent();
-            $gpliTickets = new GLPITicket();
-            $badPassword = new BadPassword();
-
-            $this->addData('zabbix', $zEvent->getLast())
-                 ->addData('glpi',   $gpliTickets->getLast())
-                 ->addData('badpasswd', $badPassword->getAll())
-                 ->render();
+                $this->addData('zabbix', $zEvent->getLast())
+                     ->addData('glpi',   $gpliTickets->getLast())
+                     ->addData('badpasswd', $badPassword->getAll())
+                     ->render();
+            } else {
+                flash('Vous devez vous identifier', 'warning');
+                $this->redirect('/login');
+            }
         }
 
         /**

@@ -89,3 +89,11 @@
     }
 
     $this->twig->addFunction('convert_ldap_date', new Twig_Function_Function('convert_ldap_date'));
+
+
+
+    function logged () {
+        return (isset($_SESSION['user']));
+    }
+
+    $this->twig->addFunction('logged', new Twig_Function_Function('logged'));
