@@ -14,6 +14,9 @@ mysql:
     username: phpasm
     password: NWL6WM6hU9WMBAYY
     dbname: glpi
+ldap:
+  dn:  "CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra"
+  password: 'Ni4Ief3jo'
 install:
   baseurl: /
 css:

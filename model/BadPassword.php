@@ -4,12 +4,13 @@
 
     class BadPassword extends LDAPModel {
 
-        static public $filter = "(&(objectClass=user)(!(objectClass=computer))(badPwdCount>=5))";
         public $cn;
         public $distinguishedname;
         public $samaccountname;
         public $lockouttime;
-        public $attributes = array('cn', 'distinguishedname', 'samaccountname', 'lockouttime');
+
+        private $attributes = array('cn', 'distinguishedname', 'samaccountname', 'lockouttime');
+        static private $filter = "(&(objectClass=user)(!(objectClass=computer))(badPwdCount>=5))";
 
         public function getAll () {
 
@@ -38,7 +39,15 @@
             }
 
             $data = array_map("unserialize", array_unique(array_map("serialize", $data)));
+            return $this->sort_by_lockouttime($data);
+        }
 
+        private function sort_by_lockouttime ($data) {
+
+            function custom($a, $b) {
+                return strcmp($b["lockouttime"], $a["lockouttime"]);
+            }
+            usort($data, 'custom');
             return $data;
         }
 

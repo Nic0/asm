@@ -62,6 +62,10 @@
                     'action' => 'updateBadpasswd',
                     'template' => 'badpasswd'
                 ),
+
+                /**
+                 * Route pour USER
+                 */
                 '/login' => array(
                     'controller' =>'User',
                     'action' => 'login',
