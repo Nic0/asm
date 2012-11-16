@@ -1,11 +1,9 @@
 <?php
 
-    require_once '../lib/AbstractModel.php';
-
     /**
      * @brief méthodes commune à tout les modèles.
      */
-    class Model extends AbstractModel {
+    class Model {
 
         /**
          * @brief Construction d'un objet grâce à un tableau, ou un autre objet.

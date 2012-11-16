@@ -1,11 +1,11 @@
 <?php
 
-    require_once '../lib/Model.php';
+    require_once '../lib/SQLModel.php';
 
     /**
      * @brief Permet de différencier les accès aux deux bases de données
      */
-    class GLPIModel extends Model {
+    class GLPIModel extends SQLModel {
 
         /**
          * @brief Le constructeur se contente d'appeler le constructeur parent

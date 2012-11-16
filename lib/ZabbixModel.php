@@ -1,11 +1,11 @@
 <?php
 
-    require_once '../lib/Model.php';
+    require_once '../lib/SQLModel.php';
 
     /**
      * @brief Permet de différencier les accès aux deux bases de données
      */
-    class ZabbixModel extends Model {
+    class ZabbixModel extends SQLModel {
         /**
          * @brief Le constructeur se contente d'appeler le constructeur parent
          *        avec le bon mon de base (repris dans config)

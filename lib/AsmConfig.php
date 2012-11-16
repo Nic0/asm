@@ -18,7 +18,8 @@
      */
     class AsmConfig {
 
-        static $filename = '../config/config.yaml'; /** @brief Nom du fichier de config */
+        /** @brief Nom du fichier de config */
+        static $filename = '../config/config.yaml';
         static $defaultFilename = '../config/config.default.yaml';
         static $userFilename = '../config/config.USER.yaml';
 

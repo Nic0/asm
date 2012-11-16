@@ -14,6 +14,12 @@ function ajax_update_zabbix (config) {
     }, config.js.zabbix.interval * 1000);
 }
 
+function ajax_update_badpasswd (config) {
+    setInterval(function() {
+        $('#badpasswd').load('/badpasswd/update', update_time());
+    }, config.js.badpasswd.interval * 1000);
+}
+
 function update_time () {
     var currentTime = new Date()
     $('a[name=update]').html(('0' + currentTime.getHours()).slice(-2) + ':' +
@@ -24,6 +30,7 @@ function update_time () {
 function do_update (config) {
     ajax_update_glpi(config);
     ajax_update_zabbix(config);
+    ajax_update_badpasswd(config);
 }
 
 function ajax_config () {
@@ -46,7 +53,7 @@ function ajax_config () {
 function setup_layout () {
     var layout = $('#container').layout({
         north: { resizable: false },
-        west: {size: 400},
+        west: {size: 600},
         stateManagement__enabled:   true,
         cookie__expires: 999,
         cookie__path: '/',

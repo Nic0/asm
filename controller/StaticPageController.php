@@ -3,6 +3,7 @@
     require_once '../lib/Controller.php';
     require_once '../model/ZabbixEvent.php';
     require_once '../model/GLPITicket.php';
+    require_once '../model/BadPassword.php';
 
     /**
      * @brief Controlleur pour la page principale
@@ -17,9 +18,11 @@
 
             $zEvent = new ZabbixEvent();
             $gpliTickets = new GLPITicket();
+            $badPassword = new BadPassword();
 
             $this->addData('zabbix', $zEvent->getLast())
                  ->addData('glpi',   $gpliTickets->getLast())
+                 ->addData('badpasswd', $badPassword->getAll())
                  ->render();
         }
 
@@ -48,4 +51,14 @@
                      ->render();
             }
         }
+
+        public function updateBadpasswd () {
+            if (isAjax()) {
+
+            $badPassword = new BadPassword();
+                $this->addData('badpasswd', $badPassword->getAll())
+                     ->render();
+            }
+        }
+
     }

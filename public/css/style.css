@@ -32,3 +32,33 @@ tr.acknowledged {
     color: #666;
     font-style:italic
 }
+
+tr.badpasswd {
+    background-color: #EDDEFF;
+}
+
+caption {
+    background-image: linear-gradient(bottom, #CFCFCF 32%, #EDEDED 53%);
+    background-image: -o-linear-gradient(bottom, #CFCFCF 32%, #EDEDED 53%);
+    background-image: -moz-linear-gradient(bottom, #CFCFCF 32%, #EDEDED 53%);
+    background-image: -webkit-linear-gradient(bottom, #CFCFCF 32%, #EDEDED 53%);
+    background-image: -ms-linear-gradient(bottom, #CFCFCF 32%, #EDEDED 53%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.32, #CFCFCF),
+        color-stop(0.53, #EDEDED)
+    );
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+table td {
+    border-color: #888 !important;
+}

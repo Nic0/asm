@@ -57,6 +57,11 @@
                     'action' => 'updateGlpi',
                     'template' => 'glpi'
                 ),
+                '/badpasswd/update' => array(
+                    'controller' =>'StaticPage',
+                    'action' => 'updateBadpasswd',
+                    'template' => 'badpasswd'
+                ),
                 '/login' => array(
                     'controller' =>'User',
                     'action' => 'login',
