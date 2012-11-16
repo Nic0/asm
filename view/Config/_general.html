@@ -1,0 +1,29 @@
+<form action="/config" class="form-horizontal" method="post">
+
+    <!-- DATABASE -->
+    <fieldset>
+    <legend>Database</legend>
+        {{ input('Nombre alert Zabbix', 'db.zabbix.limit', config.db.zabbix.limit)|raw }}
+        {{ input('Nombre tickets GLPI', 'db.glpi.limit', config.db.glpi.limit)|raw }}
+    </fieldset>
+
+    <!-- JAVASCRIPT -->
+    <fieldset>
+    <legend>JavaScript</legend>
+        {{ input('Rafraichissement de Zabbix', 'js.zabbix.interval', config.js.zabbix.interval)|raw }}
+        {{ input('Rafraichissement de GLPI', 'js.glpi.interval', config.js.glpi.interval)|raw }}
+    </fieldset>
+
+    <!-- HTML -->
+    <legend>HTML</legend>
+        {{ input('Titre principal', 'html.home.title', config.html.home.title)|raw }}
+        {{ input('Longueur max des titres de GLPI', 'html.glpi.maxlentitle', config.html.glpi.maxlentitle)|raw }}
+    </fieldset>
+
+    <!-- LAYOUT -->
+    <legend>Layout</legend>
+
+    </fieldset>
+
+    {{ submit('Sauvegarder')|raw }}
+</form>

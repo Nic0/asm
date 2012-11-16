@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %}ASM Configuration Database{% endblock %}
+
+{% block content %}
+<div class="pane ui-layout-center">
+    <div class="container">
+        {% include 'partial/message.html' %}
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Configuration</a></li>
+                <li><a href="#tabs-css">CSS</a></li>
+                <li><a href="/config/dbzabbix">DB Zabbix</a></li>
+                <li><a href="/config/dbglpi">DB GLPI</a></li>
+                <li><a href="/config/reset">Reset</a></li>
+            </ul>
+
+            <div id="tabs-1">
+                {% include 'Config/_general.html' %}
+            </div>
+
+            <div id="tabs-css">
+                {% include 'Config/_css.html' %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

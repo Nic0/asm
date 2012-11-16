@@ -1,0 +1,21 @@
+<form action="/config" class="form-horizontal" method="post">
+    <legend>CSS priorité Zabbix</legend>
+        {{ inputcolor('Priorité 1', 'css.zabbix.priority1', config.css.zabbix.priority1)|raw }}
+        {{ inputcolor('Priorité 2', 'css.zabbix.priority2', config.css.zabbix.priority2)|raw }}
+        {{ inputcolor('Priorité 3', 'css.zabbix.priority3', config.css.zabbix.priority3)|raw }}
+        {{ inputcolor('Priorité 4', 'css.zabbix.priority4', config.css.zabbix.priority4)|raw }}
+        {{ inputcolor('Priorité 5', 'css.zabbix.priority5', config.css.zabbix.priority5)|raw }}
+        {{ inputcolor('Priorité 6', 'css.zabbix.priority6', config.css.zabbix.priority6)|raw }}
+    </fieldset>
+
+    <legend>CSS priorité GLPI</legend>
+        {{ inputcolor('Priorité 1', 'css.glpi.priority1', config.css.glpi.priority1)|raw }}
+        {{ inputcolor('Priorité 2', 'css.glpi.priority2', config.css.glpi.priority2)|raw }}
+        {{ inputcolor('Priorité 3', 'css.glpi.priority3', config.css.glpi.priority3)|raw }}
+        {{ inputcolor('Priorité 4', 'css.glpi.priority4', config.css.glpi.priority4)|raw }}
+        {{ inputcolor('Priorité 5', 'css.glpi.priority5', config.css.glpi.priority5)|raw }}
+        {{ inputcolor('Priorité 6', 'css.glpi.priority6', config.css.glpi.priority6)|raw }}
+    </fieldset>
+
+    {{ submit('Sauvegarder')|raw }}
+</form>

@@ -1,0 +1,13 @@
+<form action="/config" class="form-horizontal" method="post">
+    <legend>Connection Database Zabbix</legend>
+    <fieldset>
+        {{ input('Driver', 'mysql.zabbix.driver', config.mysql.zabbix.driver)|raw }}
+        {{ input('Host', 'mysql.zabbix.host', config.mysql.zabbix.host)|raw }}
+        {{ input('Port', 'mysql.zabbix.port', config.mysql.zabbix.port)|raw }}
+        {{ input('Username', 'mysql.zabbix.username', config.mysql.zabbix.username)|raw }}
+        {{ inputpass('Password', 'mysql.zabbix.password', config.mysql.zabbix.password)|raw }}
+        {{ input('DB name', 'mysql.zabbix.dbname', config.mysql.zabbix.dbname)|raw }}
+
+       {{ submit('Sauvegarder')|raw }}
+    </fieldset>
+</form>

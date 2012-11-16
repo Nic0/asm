@@ -1,0 +1,6 @@
+{% if session.flash %}
+    <div class="alert alert-{{ session.flash.level }}">
+        {{ session.flash.message }}
+    </div>
+    {{ resetFlash() }}
+{% endif %}

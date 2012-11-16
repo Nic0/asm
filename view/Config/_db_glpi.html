@@ -1,0 +1,14 @@
+<form action="/config" class="form-horizontal" method="post">
+    <legend>Connection Database GLPI</legend>
+    <fieldset>
+
+        {{ input('Driver', 'mysql.glpi.driver', config.mysql.glpi.driver)|raw }}
+        {{ input('Host', 'mysql.glpi.host', config.mysql.glpi.host)|raw }}
+        {{ input('Port', 'mysql.glpi.port', config.mysql.glpi.port)|raw }}
+        {{ input('Username', 'mysql.glpi.username', config.mysql.glpi.username)|raw }}
+        {{ inputpass('Password', 'mysql.glpi.password', config.mysql.glpi.password)|raw }}
+        {{ input('DB name', 'mysql.glpi.dbname', config.mysql.glpi.dbname)|raw }}
+
+       {{ submit('Sauvegarder')|raw }}
+    </fieldset>
+</form>

@@ -1,0 +1,67 @@
+---
+mysql:
+  zabbix:
+    driver: Pdo_Mysql
+    host: mysql.crbn.intra
+    port: "3306"
+    username: phpasm
+    password: NWL6WM6hU9WMBAYY
+    dbname: zabbix
+  glpi:
+    driver: Pdo_Mysql
+    host: mysql.crbn.intra
+    port: "3306"
+    username: phpasm
+    password: NWL6WM6hU9WMBAYY
+    dbname: glpi
+install:
+  baseurl: /
+css:
+  table:
+    condensed: true
+    bordered: true
+  zabbix:
+    priority1: FFF2F2
+    priority2: FFE0E0
+    priority3: FFCECE
+    priority4: FFBFBF
+    priority5: F4F10B
+    priority6: F81CD6
+  glpi:
+    priority1: FFF2F2
+    priority2: FFE0E0
+    priority3: FFCECE
+    priority4: FFBFBF
+    priority5: F4F10B
+    priority6: F81CD6
+html:
+  home:
+    title: ASM - Dashboard
+  glpi:
+    maxlentitle: "30"
+  placeholder1: zabbix
+  placeholder2: ~
+  placeholder3: ~
+  placeholder4: glpi
+  placeholder5: ~
+  placeholder6: ~
+db:
+  zabbix:
+    limit: "10"
+  glpi:
+    limit: "20"
+    orderby: t.date_mod
+js:
+  zabbix:
+    interval: "30"
+  glpi:
+    interval: "30"
+debug:
+  data: false
+  post: false
+  postarrray: false
+  config: false
+  sql: false
+  route: false
+  url: false
+...

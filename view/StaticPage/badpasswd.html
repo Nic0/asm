@@ -1,0 +1,22 @@
+<table class="table
+    {% if config.css.table.condensed %}table-condensed{% endif %}
+    {% if config.css.table.bordered %}table-bordered{% endif %}
+">
+    <caption>Compte bloqué sur LDAP</caption>
+    <thead>
+        <tr>
+            <th>CN</th>
+            <th>sAMAccountname</th>
+            <th>DN</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in badpasswd %}
+            <tr class="badpasswd">
+                <td>{{ item.cn }}</td>
+                <td>{{ item.samaccountname }}</td>
+                <td>{{ item.distinguishedname }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
