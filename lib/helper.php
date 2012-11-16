@@ -95,5 +95,9 @@
     function logged () {
         return (isset($_SESSION['user']));
     }
-
     $this->twig->addFunction('logged', new Twig_Function_Function('logged'));
+
+    function loggedName () {
+        return $_SESSION['user'];
+    }
+    $this->twig->addFunction('loggedName', new Twig_Function_Function('loggedName'));

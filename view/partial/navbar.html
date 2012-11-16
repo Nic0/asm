@@ -10,11 +10,11 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             {% if logged() %}
-              <li><a href="/logout"><i class="icon-user"></i> Logout</a></li>
+              <li><a href="/logout"><i class="icon-user"></i> Logout ({{ loggedName() }})</a></li>
+              <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
             {% else %}
-              <li><a href="/logout"><i class="icon-user"></i> Logout</a></li>
+              <li><a href="/login"><i class="icon-user"></i> Login</a></li>
             {% endif %}
-            <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
           </ul>
           <ul class="nav pull-right">
             <li class="pull-right"><a name="update">{{ "now"|date('H:i') }}</a></li>

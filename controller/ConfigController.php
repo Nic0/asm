@@ -20,13 +20,18 @@
         }
 
         public function setup () {
-            if (isPost()) {
-                debug($_POST, 'post');
-                AsmConfig::setConfig($_POST);
-                $this->redirect('/config');
-            }
+            if (isLogged()) {
+                if (isPost()) {
+                    debug($_POST, 'post');
+                    AsmConfig::setConfig($_POST);
+                    $this->redirect('/config');
+                }
 
-            $this->render();
+                $this->render();
+            } else {
+                flash('Vous devez vous identifier', 'warning');
+                $this->redirect('/login');
+            }
         }
 
         public function ajax_dbglpi () {
