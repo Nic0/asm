@@ -61,6 +61,10 @@
 
     $this->twig->addFunction('submit', new Twig_Function_Function('submit'));
 
+    /**
+     * @brief Efface le message `flash` une fois que celui-ci a été effacé
+     * @return None
+     */
     function resetFlash () {
         $_SESSION['flash'] = null;
     }
@@ -68,6 +72,11 @@
     $this->twig->addFunction('resetFlash', new Twig_Function_Function('resetFlash'));
 
 
+    /**
+     * @brief Convertion d'une date ldap en date réel
+     * @param  long  $ad_date date au format ldap
+     * @return string          date au format dd/mm/yyyy
+     */
     function convert_ldap_date ($ad_date) {
 
         if ($ad_date == 0) {
@@ -91,12 +100,19 @@
     $this->twig->addFunction('convert_ldap_date', new Twig_Function_Function('convert_ldap_date'));
 
 
-
+    /**
+     * @brief Un utilisateur est-il loggué ?
+     * @return boolean Oui si un utilisateur est loggué
+     */
     function logged () {
         return (isset($_SESSION['user']));
     }
     $this->twig->addFunction('logged', new Twig_Function_Function('logged'));
 
+    /**
+     * @brief Obtiens le nom (login) de l'utilisateur loggué
+     * @return string nom
+     */
     function loggedName () {
         return $_SESSION['user'];
     }

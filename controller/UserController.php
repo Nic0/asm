@@ -15,6 +15,7 @@
         /**
          * @brief Gestion du login d'un utilisateur
          * @return None
+         * @todo y a moyen de faire plus simple pour gérer les messages/redirection
          */
         public function login () {
 

@@ -19,6 +19,10 @@
             }
         }
 
+        /**
+         * @brief Point d'entrée de la page de configuration
+         * @return None
+         */
         public function setup () {
             if (isLogged()) {
                 if (isPost()) {
@@ -34,24 +38,40 @@
             }
         }
 
+        /**
+         * @brief Rendu AJAX pour la configuration de l'accès à la base de donnée
+         * de GLPI
+         * @return None
+         */
         public function ajax_dbglpi () {
             if (isAjax()) {
                 $this->render();
             }
         }
 
+        /**
+         * @brief Rendu AJAX pour la configuration de l'accès à la base de donnée
+         * de Zabbix
+         * @return None
+         */
         public function ajax_dbzabbix () {
             if (isAjax()) {
                 $this->render();
             }
         }
 
+        /**
+         * @brief Rendu AJAX pour le bouton de réinitialisation
+         * @return [type] [description]
+         */
         public function ajax_reset () {
             if (isAjax()) {
                 $this->render();
             } elseif (isPost()) {
-                AsmConfig::resetConfig();
-                $this->redirect('/config');
+                if (isLogged()) {
+                    AsmConfig::resetConfig();
+                    $this->redirect('/config');
+                }
             }
         }
 
