@@ -20,7 +20,11 @@
                     {{ ticket.name|slice(0, config.html.glpi.maxlentitle) }}...
                 {% endif %}
             </td>
-            <td>{{ ticket.realname }} {{ ticket.firstname }}</td>
+            <td>
+                {% if ticket.type == 1 %}
+                {{ ticket.realname }} {{ ticket.firstname }}
+                {% endif %}
+            </td>
             <td>{{ ticket.date | date('d/m/y H:i') }}</td>
             <td>{{ ticket.date_mod | date('H:i')}}</td>
         </tr>

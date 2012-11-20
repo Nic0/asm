@@ -26,6 +26,8 @@
         /** @brief Date de création (non utilisé) */
         public $date;
 
+        public $type;
+
         /**
          * @brief Permet d'obtenir les X derniers tickets
          * @return array(GLPITicket) Tableau d'objet des X derniers tickets GLPI
@@ -53,11 +55,12 @@
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
             $select->from(array('t' => 'glpi_tickets'))
-                   ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array())
+                   ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array('type'))
                    ->join(array('u' => 'glpi_users'), 'r.users_id = u.id', array('realname', 'firstname'))
                    ->limit($config->db->glpi->limit)
+                   ->group('t.id')
                    ->order($config->db->glpi->orderby . ' DESC')
-                   ->where("status != 'closed' AND status != 'solved' AND r.type=1")
+                   ->where("status != 'closed' AND status != 'solved'")
                    ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
             $results = $this->select($select);
 

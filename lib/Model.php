@@ -34,6 +34,7 @@
 
             return $object;
         }
+
         /**
          * @brief Permet de construire un tableau d'object en utilisant createObjectFromSingleData
          * @param  mixed  $array array ou ArrayObject provenant d'une requête

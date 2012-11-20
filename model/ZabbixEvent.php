@@ -59,21 +59,16 @@
                    ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('host'))
                    ->limit($config->db->zabbix->limit)
                    ->order('lastchange DESC')
-                   //->group('acknowledged')
                    ->group('triggerid')
                    ->where(array(
-                        'h.status' => 0,
-                        'i.status' => 0,
-                        't.status' => 0,
-                        'e.object' => 0,
-                        't.value' => 1))
+                        'h.status' => 0, 'i.status' => 0, 't.status' => 0,
+                        'e.object' => 0, 't.value' => 1))
                    ->columns(array('eventid', 'clock', 'acknowledged'));
             $results = $this->select($select);
 
             $data = array();
 
             foreach ($results as $row) {
-
                 $event = $this->createObjectFromSingleData($row);
                 $event->description = str_replace('{HOSTNAME}', $event->host, $event->description);
                 $data[] = $event;
