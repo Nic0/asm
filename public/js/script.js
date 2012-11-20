@@ -80,4 +80,5 @@ jQuery(document).ready(function($) {
     ajax_config();
     setup_layout();
     setup_config_tabs();
+    $('[name="username"]').focus();
 });
