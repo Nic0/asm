@@ -165,7 +165,7 @@ jQuery(document).ready(function($) {
                     width: 1,
                     color: '#808080'
                 }],
-                max: 500,
+                max: 5000,
                 min: 0
             },
             tooltip: {
