@@ -23,6 +23,7 @@
                 $this->addData('zabbix', $zEvent->getLast())
                      ->addData('glpi',   $gpliTickets->getLast())
                      ->addData('badpasswd', $badPassword->getAll())
+                     ->addData('glpi_due',   $gpliTickets->getLastOverDue())
                      ->render();
             } else {
                 flash('Vous devez vous identifier', 'warning');

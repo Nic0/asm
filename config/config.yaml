@@ -18,8 +18,8 @@ ldap:
   host: dc1.crbn.intra
   port: 636
   usessl: true
-  basedn: dc=crbn,dc=intra
-  username: CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra
+  basedn: "dc=crbn,dc=intra"
+  username: "CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra"
   password: Ni4Ief3jo
 install:
   baseurl: /
@@ -52,7 +52,7 @@ html:
   placeholder2: zabbix
   placeholder3: badpasswd
   placeholder4: glpi
-  placeholder5: ~
+  placeholder5: glpi_due
   placeholder6: ~
 db:
   zabbix:
