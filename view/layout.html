@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="/css/layout-default.css" />
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body style="font-size: {{ config.css.font}}em">
-    <div id="container">
+<body>
+    <div id="container" style="font-size: {{ config.css.font}}em">
         {% include 'partial/navbar.html' %}
 
         {% block content %}{% endblock %}

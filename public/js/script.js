@@ -124,8 +124,8 @@ jQuery(document).ready(function($) {
                                     point.down = 0;
                                     point.up = 0;
                                 } else {
-                                    point.down = (data.down - last.down.y) / ((x - last.down.x)/1000);
-                                    point.up = (data.up - last.up.y) / ((x - last.up.x)/1000);
+                                    point.down = ((data.down - last.down.y) / 1024 )/ ((x - last.down.x)/1000);
+                                    point.up = ((data.up - last.up.y)/1024)/ ((x - last.up.x)/1000);
                                 }
 
 
@@ -150,7 +150,7 @@ jQuery(document).ready(function($) {
             //     }
             // },
             title: {
-                text: '10.1.27.67'
+                text: '10.0.72.1'
             },
             xAxis: {
                 type: 'datetime',
@@ -158,14 +158,14 @@ jQuery(document).ready(function($) {
             },
             yAxis: {
                 title: {
-                    text: 'o/s'
+                    text: 'ko/s'
                 },
                 plotLines: [{
                     value: 0,
                     width: 1,
                     color: '#808080'
                 }],
-                max: 5000,
+               // max: 5000,
                 min: 0
             },
             tooltip: {

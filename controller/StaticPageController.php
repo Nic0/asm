@@ -67,16 +67,16 @@
         }
 
         public function snmp () {
-            $host = "10.1.27.67";
+            $host = "10.0.72.1";
             $community = "public";
-            $oid = ".1.3.6.1.2.1.2.2.1.10.10007";
+            $oid = ".1.3.6.1.2.1.2.2.1.10.1";
             $timeout =  1000000;
 
             $down = snmp2_get($host, $community, $oid, $timeout);
             $down = explode(' ', $down);
             $down = $down[1];
 
-            $oid = ".1.3.6.1.2.1.2.2.1.16.10007";
+            $oid = ".1.3.6.1.2.1.2.2.1.16.1";
             $up = snmp2_get($host, $community, $oid, $timeout);
             $up = explode(' ', $up);
             $up = $up[1];
