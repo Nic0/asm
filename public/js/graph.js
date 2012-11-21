@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
                     width: 1,
                     color: '#808080'
                 }],
-                max: 20000000,
+                max: 50000000,
                 min: 0
             },
             tooltip: {
@@ -195,7 +195,7 @@ jQuery(document).ready(function($) {
                     width: 1,
                     color: '#808080'
                 }],
-                max: 20000000,
+                max: 50000000,
                 min: 0
             },
             tooltip: {
