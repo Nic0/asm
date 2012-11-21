@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/jquery-ui.css" />
     <link rel="stylesheet" href="/css/layout-default.css" />
     <title>{% block title %}{% endblock %}</title>
+
+    {% include 'partial/javascript.html' %}
 </head>
 <body>
     <div id="container" style="font-size: {{ config.css.font}}em">
@@ -15,7 +17,5 @@
 
         {% block content %}{% endblock %}
     </div>
-
-    {% include 'partial/javascript.html' %}
 </body>
 </html>
