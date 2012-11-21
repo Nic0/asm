@@ -158,7 +158,7 @@ jQuery(document).ready(function($) {
             },
             yAxis: {
                 title: {
-                    text: 'Mo/s'
+                    text: 'Ko/s'
                 },
                 plotLines: [{
                     value: 0,
