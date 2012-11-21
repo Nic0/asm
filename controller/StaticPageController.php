@@ -74,12 +74,12 @@
 
             $down = snmp2_get($host, $community, $oid, $timeout);
             $down = explode(' ', $down);
-            $down = $down[1];
+            $down = intval($down[1])*8;
 
             $oid = ".1.3.6.1.2.1.2.2.1.16.1";
             $up = snmp2_get($host, $community, $oid, $timeout);
             $up = explode(' ', $up);
-            $up = $up[1];
+            $up = intval($up[1])*8;
 
             $this->renderJson(json_encode(array("down"=>$down, "up"=>$up)));
         }
