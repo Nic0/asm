@@ -62,3 +62,7 @@ caption {
 table td {
     border-color: #888 !important;
 }
+
+#snmp {
+    height: 200px;
+}

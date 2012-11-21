@@ -48,9 +48,9 @@ html:
     msg: "En cas de problème, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
   glpi:
     maxlentitle: "40"
-  placeholder1: zabbix
-  placeholder2: badpasswd
-  placeholder3: snmp
+  placeholder1: snmp
+  placeholder2: zabbix
+  placeholder3: badpasswd
   placeholder4: glpi
   placeholder5: ~
   placeholder6: ~
