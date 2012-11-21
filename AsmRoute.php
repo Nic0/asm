@@ -62,7 +62,15 @@
                     'action' => 'updateBadpasswd',
                     'template' => 'badpasswd'
                 ),
-
+                '/snmp' => array(
+                    'controller' =>'StaticPage',
+                    'action' => 'snmp'
+                ),
+                '/test' => array(
+                    'controller' =>'StaticPage',
+                    'action' => 'graph',
+                    'template' => 'graph'
+                ),
                 /**
                  * Route pour USER
                  */

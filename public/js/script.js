@@ -81,4 +81,144 @@ jQuery(document).ready(function($) {
     setup_layout();
     setup_config_tabs();
     $('[name="username"]').focus();
+
+
+
+
+
+
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+
+        var chart;
+        var last = {
+            down: {
+                'x': null, 'y': null
+            },
+            up: {
+                'x': null, 'y': null
+            }
+        };
+
+        var point;
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'snmp',
+                type: 'spline',
+                marginRight: 10,
+                events: {
+                    load: function() {
+
+                        // set up the updating of the chart each second
+                        var download = this.series[0];
+                        var upload = this.series[1];
+                        setInterval(function() {
+                            $.getJSON('/snmp', function(data) {
+
+                                var x = (new Date()).getTime(); // current time
+                                var point = {};
+                                if (last.down.y == null) {
+                                    point.down = 0;
+                                    point.up = 0;
+                                } else {
+                                    point.down = (data.down - last.down.y) / ((x - last.down.x)/1000);
+                                    point.up = (data.up - last.up.y) / ((x - last.up.x)/1000);
+                                }
+
+
+
+                                last.down.y = parseInt(data.down);
+                                last.up.y = parseInt(data.up);
+                                last.down.x = x;
+                                last.up.x = x;
+
+                                download.addPoint([x, point.down], true, true);
+                                upload.addPoint([x, point.up], true, true);
+                            });
+
+
+                        }, 5000);
+                    }
+                }
+            },
+            // plotOptions: {
+            //     spline: {
+            //         color: '#666666'
+            //     }
+            // },
+            title: {
+                text: '10.1.27.67'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'o/s'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }],
+                max: 500,
+                min: 0
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'Download',
+                    data: (function() {
+                        // generate an array of random data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i;
+
+                        for (i = -19; i <= 0; i++) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: 0
+                            });
+                        }
+                        return data;
+                    })()
+                },
+                {
+                    name: 'Upload',
+                    data: (function() {
+                        // generate an array of random data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i;
+
+                        for (i = -19; i <= 0; i++) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: 0
+                            });
+                        }
+                        return data;
+                    })()
+                },
+            ]
+        });
+
+
+
 });

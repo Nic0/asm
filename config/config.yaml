@@ -50,7 +50,7 @@ html:
     maxlentitle: "40"
   placeholder1: zabbix
   placeholder2: badpasswd
-  placeholder3: ~
+  placeholder3: snmp
   placeholder4: glpi
   placeholder5: ~
   placeholder6: ~
