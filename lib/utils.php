@@ -108,3 +108,8 @@
         $flash = new Flash($msg, $lvl);
         $_SESSION['flash'] = $flash;
     }
+
+    function snmp_get_value ($host, $community, $oid, $timeout) {
+      $data = explode(' ', snmp2_get($host, $community, $oid, $timeout));
+      return intval($data[1])*8;
+    }

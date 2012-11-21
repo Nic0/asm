@@ -63,6 +63,17 @@ table td {
     border-color: #888 !important;
 }
 
-#snmp {
+#renater, #adista {
+    height: 200px;
+    width: 50%;
+}
+#renater {
+    float: left;
+}
+
+#adistsa {
+    float: right;
+}
+.graph {
     height: 200px;
 }

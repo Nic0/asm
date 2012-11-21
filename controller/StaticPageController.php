@@ -66,21 +66,31 @@
             }
         }
 
-        public function snmp () {
-            $host = "10.0.72.1";
+        public function snmp_renater () {
+            $renater = "10.0.72.1";
             $community = "public";
-            $oid = ".1.3.6.1.2.1.2.2.1.10.1";
+            $oidD = ".1.3.6.1.2.1.2.2.1.10.1";
+            $oidU = ".1.3.6.1.2.1.2.2.1.16.1";
             $timeout =  1000000;
 
-            $down = snmp2_get($host, $community, $oid, $timeout);
-            $down = explode(' ', $down);
-            $down = intval($down[1])*8;
+            $data = array(
+                    "down" => snmp_get_value($renater, $community, $oidD, $timeout),
+                    "up" => snmp_get_value($renater, $community, $oidU, $timeout)
+            );
+            $this->renderJson(json_encode($data));
+        }
 
-            $oid = ".1.3.6.1.2.1.2.2.1.16.1";
-            $up = snmp2_get($host, $community, $oid, $timeout);
-            $up = explode(' ', $up);
-            $up = intval($up[1])*8;
+        public function snmp_adista () {
+            $adista = "10.0.72.9";
+            $community = "public";
+            $oidD = ".1.3.6.1.2.1.2.2.1.10.1";
+            $oidU = ".1.3.6.1.2.1.2.2.1.16.1";
+            $timeout =  1000000;
 
-            $this->renderJson(json_encode(array("down"=>$down, "up"=>$up)));
+            $data = array(
+                    "down" => snmp_get_value($adista, $community, $oidD, $timeout),
+                    "up" => snmp_get_value($adista, $community, $oidU, $timeout)
+            );
+            $this->renderJson(json_encode($data));
         }
     }

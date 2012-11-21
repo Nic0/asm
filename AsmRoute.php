@@ -62,14 +62,13 @@
                     'action' => 'updateBadpasswd',
                     'template' => 'badpasswd'
                 ),
-                '/snmp' => array(
+                '/snmp_renater' => array(
                     'controller' =>'StaticPage',
-                    'action' => 'snmp'
+                    'action' => 'snmp_renater'
                 ),
-                '/test' => array(
+                '/snmp_adista' => array(
                     'controller' =>'StaticPage',
-                    'action' => 'graph',
-                    'template' => 'graph'
+                    'action' => 'snmp_adista'
                 ),
                 /**
                  * Route pour USER
