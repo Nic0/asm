@@ -24,6 +24,7 @@ ldap:
 install:
   baseurl: /
 css:
+  font: 0.85
   table:
     condensed: true
     bordered: true
