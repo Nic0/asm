@@ -53,7 +53,8 @@
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
             $select->from(array('e' => 'events'))
-                   ->join(array('t' => 'triggers'), 'e.objectid = t.triggerid',  array('triggerid', 'description', 'priority', 'lastchange'))
+                   ->join(array('t' => 'triggers'), 'e.objectid = t.triggerid',
+                                array('triggerid', 'description', 'priority', 'lastchange'))
                    ->join(array('f' => 'functions'), 't.triggerid = f.triggerid', array())
                    ->join(array('i' => 'items'), 'f.itemid = i.itemid', array())
                    ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('host'))
