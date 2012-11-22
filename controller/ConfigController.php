@@ -38,6 +38,21 @@
             }
         }
 
+        public function setup_sys () {
+            if (isLogged()) {
+                if (isPost()) {
+                    debug($_POST, 'post');
+                    AsmConfig::setSysConfig($_POST);
+                    $this->redirect('/config');
+                }
+
+                $this->render();
+            } else {
+                flash('Vous devez vous identifier', 'warning');
+                $this->redirect('/login');
+            }
+        }
+
         /**
          * @brief Rendu AJAX pour la configuration de l'accès à la base de donnée de GLPI
          * @return None

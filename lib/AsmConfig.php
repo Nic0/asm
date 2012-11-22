@@ -80,6 +80,19 @@
             echo $writer->toFile($filename, $merged_config);
         }
 
+
+        static public function setSysConfig($post) {
+            $post = self::postToArray($post);
+            $reader = new YamlR();
+            $filename = self::$filename;
+            $config = $reader->fromFile($filename);
+
+            $merged_config = array_merge_recursive_distinct($config, $post);
+
+            $writer = new YamlW();
+            echo $writer->toFile($filename, $merged_config);
+        }
+
         /**
          * @brief  Permet de récupérer la configuration sous format JSON
          * @return string configuration sous format JSON

@@ -25,14 +25,14 @@ ldap:
   host: dc1.crbn.intra
   port: 636
   usessl: true
-  basedn: "dc=crbn,dc=intra"
-  username: "CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra"
+  basedn: dc=crbn,dc=intra
+  username: CN=Binding PHPAsm,OU=Comptes Gestion DSI,OU=CRBN,DC=crbn,DC=intra
   password: Ni4Ief3jo
 install:
   baseurl: /
 html:
   auth:
-    msg: "En cas de problème, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
+    msg: "En cas de probl\xE8me, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
 debug:
   auth: true
   data: false

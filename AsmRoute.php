@@ -95,6 +95,10 @@
                     'action' => 'setup',
                     'template' => 'setup'
                 ),
+                '/config-sys' => array(
+                    'controller' =>'Config',
+                    'action' => 'setup_sys',
+                ),
                 '/config/dbzabbix' => array(
                     'controller' =>'Config',
                     'action' => 'ajax_dbzabbix',
