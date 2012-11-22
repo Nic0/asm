@@ -34,7 +34,7 @@ html:
   auth:
     msg: "En cas de probl\xE8me, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
 debug:
-  auth: true
+  auth: false
   data: false
   post: false
   postarrray: false
@@ -42,5 +42,5 @@ debug:
   sql: false
   route: false
   url: false
-  session: true
+  session: false
 ...

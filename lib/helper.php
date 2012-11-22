@@ -1,6 +1,6 @@
 <?php
 
-    function inputcolor ($label, $name, $value) {
+    function inputcolor ($label, $name, $value=null) {
 
         return
         '<div class="control-group">'
@@ -14,7 +14,7 @@
     }
     $this->twig->addFunction('inputcolor', new Twig_Function_Function('inputcolor'));
 
-    function inputpass ($label, $name, $value) {
+    function inputpass ($label, $name, $value=null) {
 
         return
         '<div class="control-group">'
@@ -28,10 +28,10 @@
     }
     $this->twig->addFunction('inputpass', new Twig_Function_Function('inputpass'));
 
-    function input ($label, $name, $value) {
+    function input ($label, $name, $value=null, $warning=null) {
 
         return
-        '<div class="control-group">'
+        '<div class="control-group '.$warning.'">'
             .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
             .'<div class="controls">'
             .'<input type="text" name="'.$name.'"'

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}Ajout d'un état{% endblock %}
+
+{% block content %}
+<div class="pane ui-layout-center">
+    <div class="container">
+        {% include 'partial/message.html' %}
+
+
+
+        <form action="/state/add" class="form-horizontal" method="post">
+
+        <div class="control-group">
+            <label class="control-label" for="host">Host</label>
+            <div class="controls">
+                <select name="host" class="host">
+                    {% for h in host %}
+                        <option value="{{ h.hostid }}">{{ h.host }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="item"></div>
+
+            {{ submit('Ajouter')|raw }}
+        </form>
+
+    </div>
+</div>
+{% endblock %}

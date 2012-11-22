@@ -28,4 +28,15 @@ jQuery(document).ready(function($) {
     setup_layout();
     setup_config_tabs();
     $('[name="username"]').focus();
+
+    $('.host').change(function() {
+        var hostid = $('.host').val();
+        $('.item').load('/state/ajax_zabbix_host', { 'hostid': hostid }, function  (data) {
+            // body...
+        });
+    });
+
+    $('.item').change(function() {
+        // do something... or not
+    });
 });

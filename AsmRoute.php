@@ -4,6 +4,8 @@
     require_once '../controller/StaticPageController.php';
     require_once '../controller/UserController.php';
     require_once '../controller/ConfigController.php';
+    require_once '../controller/StateController.php';
+
     /**
      * @brief permet de construire un tableau servant à router les requêtes
      *
@@ -69,6 +71,29 @@
                 '/snmp_adista' => array(
                     'controller' =>'StaticPage',
                     'action' => 'snmp_adista'
+                ),
+                /**
+                 * Route pour STATE
+                 */
+
+                '/state/add' => array(
+                    'controller' =>'State',
+                    'action' => 'add',
+                    'template' => 'add'
+                ),
+                '/state/view' => array(
+                    'controller' =>'State',
+                    'action' => 'view',
+                    'template' => 'view'
+                ),
+
+                /**
+                 * AJAX pour STATE
+                 */
+                '/state/ajax_zabbix_host' => array(
+                    'controller' =>'State',
+                    'action' => 'ajax_item',
+                    'template' => 'ajax_item'
                 ),
                 /**
                  * Route pour USER

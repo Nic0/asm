@@ -1,0 +1,22 @@
+<div class="control-group">
+    <label class="control-label" for="item">Items</label>
+    <div class="controls">
+        <select name="item" class="item">
+            {% for i in item %}
+                <option value="{{ i.itemid }}" id="{{ i.lastvalue }}">{{ i.name }} ({{ i.lastvalue }})</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="lastvalue">Dernière valeur</label>
+    <div class="controls">
+        <div class="lastvalue"></div>
+    </div>
+</div>
+
+
+{{ input('low', 'low', null, 'success')|raw }}
+{{ input('high', 'high', null, 'error')|raw }}
+{{ input('coeff', 'coeff', 1)|raw }}
