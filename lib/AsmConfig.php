@@ -20,8 +20,7 @@
 
         /** @brief Nom du fichier de config */
         static $filename = '../config/config.yaml';
-        static $defaultFilename = '../config/config.default.yaml';
-        static $userFilename = '../config/config.USER.yaml';
+        static $userFilename = '../config/USER.yaml';
 
         /**
          * @brief Permet d'obtenir la configuration
@@ -45,9 +44,28 @@
          */
         static public function getConfig() {
             $reader = new YamlR();
-            $configArray = $reader->fromFile(self::$filename);
-            $config = new Config($configArray);
+            $configAdmin = $reader->fromFile(self::$filename);
+            $userFilename = self::handleUserConfigName();
+            $configUser = $reader->fromFile($userFilename);
+            $configMerge = array_merge_recursive_distinct($configAdmin, $configUser);
+
+            $config = new Config($configMerge);
             return $config;
+        }
+
+        static private function handleUserConfigName() {
+            if (isLogged()) {
+                $login = loginName();
+                $filename = str_replace('USER', $login, self::$userFilename);
+
+                if (!file_exists($filename)) {
+                    copy(self::$userFilename, $filename);
+                }
+
+                return $filename;
+            } else {
+                return self::$userFilename;
+            }
         }
 
         static public function setConfig($post) {
@@ -74,7 +92,9 @@
         }
 
         static public function resetConfig () {
-            copy(self::$defaultFilename, self::$filename);
+            $login = loginName();
+            $filename = str_replace('USER', $login, self::$userFilename);
+            copy(self::$userFilename, $filename);
         }
 
         static private function postToArray ($post) {
@@ -102,3 +122,4 @@
         }
 
     }
+?>

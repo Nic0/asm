@@ -39,8 +39,7 @@
         }
 
         /**
-         * @brief Rendu AJAX pour la configuration de l'accès à la base de donnée
-         * de GLPI
+         * @brief Rendu AJAX pour la configuration de l'accès à la base de donnée de GLPI
          * @return None
          */
         public function ajax_dbglpi () {

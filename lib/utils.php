@@ -32,6 +32,12 @@
     function isLogged () {
         return isset($_SESSION['user']);
     }
+
+
+    function loginName () {
+      return $_SESSION['user'];
+    }
+
     /**
      * @note pas utilisé
      */
