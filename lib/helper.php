@@ -110,3 +110,9 @@
         return $_SESSION['user'];
     }
     $this->twig->addFunction('loggedName', new Twig_Function_Function('loggedName'));
+
+    function loggedRole () {
+        return $_SESSION['role'];
+    }
+    $this->twig->addFunction('loggedRole', new Twig_Function_Function('loggedRole'));
+

@@ -14,6 +14,13 @@ mysql:
     username: phpasm
     password: NWL6WM6hU9WMBAYY
     dbname: glpi
+  phpasm:
+    driver: Pdo_Mysql
+    host: mysql.crbn.intra
+    port: "3306"
+    username: phpasm
+    password: NWL6WM6hU9WMBAYY
+    dbname: phpasm
 ldap:
   host: dc1.crbn.intra
   port: 636

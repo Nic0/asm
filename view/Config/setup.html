@@ -10,8 +10,10 @@
             <ul>
                 <li><a href="#tabs-1">Configuration</a></li>
                 <li><a href="#tabs-css">CSS</a></li>
-                <li><a href="/config/dbzabbix">DB Zabbix</a></li>
-                <li><a href="/config/dbglpi">DB GLPI</a></li>
+                  {% if loggedRole() == 'admin' %}
+                    <li><a href="/config/dbzabbix">DB Zabbix</a></li>
+                    <li><a href="/config/dbglpi">DB GLPI</a></li>
+                  {% endif %}
                 <li><a href="/config/reset">Reset</a></li>
             </ul>
 

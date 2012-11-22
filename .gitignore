@@ -1,3 +1,4 @@
+config/*.yaml
 asm.sublime*
 note.txt
 doc/html/*

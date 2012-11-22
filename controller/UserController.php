@@ -22,7 +22,8 @@
             if (isPost()) {
                 $username = $_POST['username'];
                 $password = $_POST['password'];
-                $auth = User::authenticate($username, $password);
+                $user = new User();
+                $auth = $user->authenticate($username, $password);
 
 
                 switch ($auth->getCode()) {
@@ -39,6 +40,7 @@
 
                     case Result::SUCCESS:
                         $_SESSION['user'] = $auth->getIdentity();
+                        $_SESSION['role'] = $user->getRole($auth->getIdentity());
                         $this->redirect('/');
                         break;
 

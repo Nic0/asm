@@ -71,12 +71,13 @@
         static public function setConfig($post) {
             $post = self::postToArray($post);
             $reader = new YamlR();
-            $config = $reader->fromFile(self::$filename);
+            $filename = self::handleUserConfigName();
+            $config = $reader->fromFile($filename);
 
             $merged_config = array_merge_recursive_distinct($config, $post);
 
             $writer = new YamlW();
-            echo $writer->toFile(self::$filename, $merged_config);
+            echo $writer->toFile($filename, $merged_config);
         }
 
         /**
