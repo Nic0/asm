@@ -92,7 +92,7 @@
         // Therefore, 1900 wasn't a leap year but 2000 was."
 
         $unixTimeStamp=intval($secsAfterADEpoch-$AD2Unix);
-        $myDate = date("d/m/Y", $unixTimeStamp); // formatted date
+        $myDate = date("d/m/Y H:m", $unixTimeStamp); // formatted date
 
         return $myDate;
     }
