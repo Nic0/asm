@@ -86,12 +86,12 @@
         static public function getJsonConfig () {
 
             $reader = new YamlR();
-            $configArray = $reader->fromFile(self::$filename);
+            $configAdmin = $reader->fromFile(self::$filename);
             $userFilename = self::handleUserConfigName();
             $configUser = $reader->fromFile($userFilename);
             $configMerge = array_merge_recursive_distinct($configAdmin, $configUser);
 
-            $json = json_encode($configArray);
+            $json = json_encode($configMerge);
             return $json;
         }
 
