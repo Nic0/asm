@@ -87,6 +87,10 @@
 
             $reader = new YamlR();
             $configArray = $reader->fromFile(self::$filename);
+            $userFilename = self::handleUserConfigName();
+            $configUser = $reader->fromFile($userFilename);
+            $configMerge = array_merge_recursive_distinct($configAdmin, $configUser);
+
             $json = json_encode($configArray);
             return $json;
         }
