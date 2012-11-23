@@ -29,14 +29,14 @@ jQuery(document).ready(function($) {
     setup_config_tabs();
     $('[name="username"]').focus();
 
-    $('.host').change(function() {
-        var hostid = $('.host').val();
-        $('.item').load('/state/ajax_zabbix_host', { 'hostid': hostid }, function  (data) {
+    $('.hostid').change(function() {
+        var hostid = $('.hostid').val();
+        $('.itemid').load('/state/ajax_zabbix_host', { 'hostid': hostid }, function  (data) {
             // body...
         });
     });
 
-    $('.item').change(function() {
+    $('.itemid').change(function() {
         // do something... or not
     });
 });

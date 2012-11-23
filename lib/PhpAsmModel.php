@@ -13,8 +13,11 @@
          * @note  Si des méthodes commune à tout les modèles GLPI doit être implémenté
          *        cette classe est le bon endroit.
          */
-        public function __construct() {
-            parent::__construct('phpasm');
+        public function __construct($name=null) {
+            if ($name == null) {
+                $name = 'phpasm';
+            }
+            parent::__construct($name);
         }
 
     }

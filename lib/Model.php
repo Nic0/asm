@@ -5,6 +5,10 @@
      */
     class Model {
 
+        public function create ($data) {
+            return $this->createObjectFromSingleData($data, 'State');
+        }
+
         /**
          * @brief Construction d'un objet grâce à un tableau, ou un autre objet.
          * @param  mixed  $data  Array ou ArrayObject provenant d'une requête

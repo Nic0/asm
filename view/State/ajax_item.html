@@ -1,7 +1,7 @@
 <div class="control-group">
-    <label class="control-label" for="item">Items</label>
+    <label class="control-label" for="itemid">Items</label>
     <div class="controls">
-        <select name="item" class="item">
+        <select name="itemid" class="itemid">
             {% for i in item %}
                 <option value="{{ i.itemid }}" id="{{ i.lastvalue }}">{{ i.name }} ({{ i.lastvalue }})</option>
             {% endfor %}
@@ -16,7 +16,8 @@
     </div>
 </div>
 
-
+{{ input('name', 'name')|raw }}
 {{ input('low', 'low', null, 'success')|raw }}
 {{ input('high', 'high', null, 'error')|raw }}
 {{ input('coeff', 'coeff', 1)|raw }}
+{{ submit('Ajouter')|raw }}

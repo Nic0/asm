@@ -3,6 +3,8 @@
     require_once '../lib/Controller.php';
     require_once '../model/ZabbixHost.php';
     require_once '../model/ZabbixItem.php';
+    require_once '../model/State.php';
+    require_once '../model/DisplayState.php';
 
     class StateController extends Controller {
 
@@ -14,11 +16,16 @@
                 $this->addData('host', $zHost->getAll());
                 $this->render();
             } else {
-                var_dump($_POST);
+                $state = new State();
+                $state = $state->create($_POST);
+                $state->save();
             }
         }
 
         public function view () {
+            $state = new DisplayState();
+            // $state = $state->getById('1');
+            $state->getAll('foobar');
             $this->render();
         }
 

@@ -85,7 +85,8 @@ jQuery(document).ready(function($) {
                     width: 1,
                     color: '#808080'
                 }],
-                max: 50000000,
+                tickPixelInterval: 30,
+                max: 100000000,
                 min: 0
             },
             tooltip: {
@@ -195,7 +196,8 @@ jQuery(document).ready(function($) {
                     width: 1,
                     color: '#808080'
                 }],
-                max: 50000000,
+                tickPixelInterval: 30,
+                max: 100000000,
                 min: 0
             },
             tooltip: {

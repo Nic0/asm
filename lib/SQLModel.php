@@ -67,5 +67,19 @@
             return $results;
         }
 
+        public function getById ($id) {
+
+            $this->sql = new Sql($this->adapter);
+            $select = $this->sql->select();
+            $select->from(strtolower(get_called_class().'s'))
+                   ->where("id=".$id);
+
+            $results = $this->select($select);
+
+
+            foreach ($results as $row) {
+                return $this->createObjectFromSingleData($row);
+            }
+        }
 
     }
