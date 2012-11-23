@@ -5,24 +5,24 @@
     <caption>Tickets GLPI, Date d'échéance dépassé</caption>
     <thead>
         <tr>
-            <th>Ticket</th>
             <th>Demandeur</th>
+            <th>Description</th>
             <th>Ouverture</th>
-            <th>Dernière modif</th>
+            <th>Dernière modification</th>
         </tr>
     </thead>
     {% for ticket in glpi_due %}
         <tr {{ displayPriority(ticket.priority, 'glpi')|raw }}>
             <td>
+                {% if ticket.type == 1 %}
+                {{ ticket.realname }} {{ ticket.firstname }}
+                {% endif %}
+            </td>
+            <td>
                 {% if ticket.name|length < config.html.glpi.maxlentitle %}
                     {{ ticket.name }}
                 {% else %}
                     {{ ticket.name|slice(0, config.html.glpi.maxlentitle) }}...
-                {% endif %}
-            </td>
-            <td>
-                {% if ticket.type == 1 %}
-                {{ ticket.realname }} {{ ticket.firstname }}
                 {% endif %}
             </td>
             <td>{{ ticket.date | date('d/m/y H:i') }}</td>
