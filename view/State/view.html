@@ -7,7 +7,31 @@
     <div class="container">
         {% include 'partial/message.html' %}
 
-            \_o<~ COIN
+        <table class="table table-bordered">
+            <tr>
+                <th>Description</th>
+                <th>Last Value</th>
+                <th>Prev Value</th>
+                <th>low / high</th>
+                <th>Tendance</th>
+            </tr>
+
+            {% for z in zabbix %}
+                <tr class="{{ level(z) }}">
+            {% if z.name == '' %}
+                    <td>{{ z.itemname }} -- {{ z.hostname }}</td>
+            {% else %}
+                    <td>{{ z.name }}</td>
+            {% endif %}
+                    <td>{{ z.lastvalue }}</td>
+                    <td>{{ z.prevvalue }}</td>
+                    <td>{{ z.low }} / {{ z.high }}</td>
+                    <td>{{ z.lastvalue - z.prevvalue }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
 
     </div>
 </div>

@@ -9,12 +9,14 @@
         public $itemname;
         public $lastvalue;
         public $prevvalue;
+        public $key_;
+        public $itemid;
 
         function __construct() {
             parent::__construct('zabbix');
         }
 
-        public function getAll ($stateList) {
+        public function getAll () {
             $state = new State();
             $data = $state->getAll();
             $where = '';
@@ -26,26 +28,35 @@
                     $where .= "i.itemid = '" . $state->itemid . "' OR ";
                 }
             }
-
-            foreach ($data as $state) {
-            }
-
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
             $select->from(array('i' => 'items'))
                    ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('hostname' => 'host'))
                    ->where($where)
-                   ->columns(array('itemname' => 'name', 'lastvalue', 'prevvalue'));
+                   ->columns(array('itemname' => 'name', 'lastvalue', 'prevvalue', 'key_', 'itemid'));
 
             $results = $this->select($select);
 
 
+            $zabbixState = array();
 
             foreach ($results as $i => $row) {
-                foreach ($data[$i] as $key => $value) {
-                    $row->$key = $value;
+
+                foreach ($data as $d) {
+                    if ($d->itemid == $row->itemid) {
+                        foreach ($d as $key => $value) {
+                            $row->$key = $value;
+                        }
+                    }
                 }
-                var_dump($row);
+
+                $item = $this->createObjectFromSingleData($row);
+                $arg = explode(',', substr(strstr($item->key_, '['), 1));
+                $arg = $arg[0];
+                $item->itemname = str_replace('$1', $arg, $item->itemname);
+                $zabbixState[] = $item;
             }
+
+            return $zabbixState;
         }
     }

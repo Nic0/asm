@@ -116,3 +116,20 @@
     }
     $this->twig->addFunction('loggedRole', new Twig_Function_Function('loggedRole'));
 
+
+    function level ($item) {
+        $value = $item->lastvalue;
+        $low = $item->low;
+        $high = $item->high;
+
+        if ($value <= $low) {
+            return "success";
+        } else if ($value <= $high) {
+            return "warning";
+        } else {
+            return "error";
+        }
+
+    }
+    $this->twig->addFunction('level', new Twig_Function_Function('level'));
+

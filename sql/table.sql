@@ -10,9 +10,9 @@ CREATE TABLE states (
     id      int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name    varchar(255),
     hostid  int NOT NULL,
-    itemid int NOT NULL,
-    low     int NOT NULL,
-    high    int NOT NULL,
+    itemid  int NOT NULL,
+    low     varchar(255) NOT NULL,
+    high    varchar(255) NOT NULL,
     coeff   int NOT NULL
 );
 

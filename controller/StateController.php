@@ -24,8 +24,7 @@
 
         public function view () {
             $state = new DisplayState();
-            // $state = $state->getById('1');
-            $state->getAll('foobar');
+            $this->addData('zabbix', $state->getAll());
             $this->render();
         }
 
