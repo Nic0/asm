@@ -19,7 +19,7 @@
             {% for z in zabbix %}
                 <tr class="{{ level(z) }}">
             {% if z.name == '' %}
-                    <td>{{ z.itemname }} -- {{ z.hostname }}</td>
+                    <td>{{ z.hostname }} -- {{ z.itemname }}</td>
             {% else %}
                     <td>{{ z.name }}</td>
             {% endif %}
