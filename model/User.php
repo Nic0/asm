@@ -37,7 +37,7 @@
         public function getRole ($login) {
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
-            $select->from('user')->where("login='".$login."'")->columns(array('role'));
+            $select->from('users')->where("login='".$login."'")->columns(array('role'));
             $result = $this->select($select);
 
             foreach ($result as $value) {

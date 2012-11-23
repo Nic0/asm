@@ -7,5 +7,12 @@
 
     class State extends AsmPhpModel {
 
+        public $id;
+        public $name;
+        public $hostid;
+        public $itemid;
+        public $low;
+        public $high;
+        public $coeff;
 
     }
