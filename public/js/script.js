@@ -47,4 +47,5 @@ jQuery(document).ready(function($) {
     setup_config_tabs();
     add_roule_trigger();
     $('[name="username"]').focus();
+
 });

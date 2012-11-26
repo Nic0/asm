@@ -7,7 +7,7 @@
             .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
             .'<div class="controls">'
             .'<input class="color" type="text" name="'.$name.'"'
-                   .'value="'.$value.'">'
+                   . 'value="'.$value.'">'
             .'</div>'
         .'</div>';
 
@@ -21,7 +21,7 @@
             .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
             .'<div class="controls">'
             .'<input type="password" name="'.$name.'"'
-                   .'value="'.$value.'">'
+                   . 'value="'.$value.'">'
             .'</div>'
         .'</div>';
 
@@ -34,8 +34,8 @@
         '<div class="control-group '.$warning.'">'
             .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
             .'<div class="controls">'
-            .'<input type="text" name="'.$name.'"'
-                   .'value="'.$value.'">'
+            .'<input type="text" name="'.$name.'" '
+                   . 'value="'.$value.'">'
             .'</div>'
         .'</div>';
 

@@ -52,4 +52,17 @@
             $result = $statement->execute();
         }
 
+        public function update ($id, $values) {
+            $this->sql = new Sql($this->adapter);
+            $update = $this->sql->update();
+
+            $update->table('states')->where('id='.$id)->set(array(
+                'name' => $values['name'],
+                'warning' => $values['warning'],
+                'alert' => $values['alert'],
+                'coeff' => $values['coeff']));
+            $statement = $this->sql->prepareStatementForSqlObject($update);
+            $result = $statement->execute();
+        }
+
     }

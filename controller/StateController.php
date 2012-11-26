@@ -51,6 +51,20 @@
         }
 
         public function update ($id) {
-            # code...
+            if (loginRole() == 'admin') {
+                if (!isPost()) {
+                    $state = new State();
+                    $this->addData('state', $state->getById($id));
+                    $this->render();
+                } else {
+                    $state = new State();
+                    $state->update($id, $_POST);
+                    flash("La mise à jour à été effectué", "success");
+                    $this->redirect('/');
+                }
+            } else {
+                flash("Vous n'avez pas les droits requis pour cette action");
+                $this->redirect('/login');
+            }
         }
     }
