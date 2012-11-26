@@ -3,6 +3,7 @@
     require_once '../lib/GLPIModel.php';
 
     use Zend\Db\Sql\Sql;
+    use Zend\Db\Sql\Expression;
 
     /**
      * @brief Modèle pour un ticket de l'application GLPI

@@ -5,6 +5,7 @@
     require_once '../model/ZabbixItem.php';
     require_once '../model/State.php';
     require_once '../model/DisplayState.php';
+    require_once '../model/GLPIStat.php';
 
     class StateController extends Controller {
 
@@ -26,8 +27,10 @@
 
         public function view () {
             $state = new DisplayState();
-            $this->addData('zabbix', $state->getAll());
-            $this->render();
+            $glpi = new GLPIStat();
+            $this->addData('zabbix', $state->getAll())
+                 ->addData('glpi', $glpi->getStats())
+                 ->render();
         }
 
 

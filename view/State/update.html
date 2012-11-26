@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Modification d'un état{% endblock %}
+
+{% block content %}
+<div class="pane ui-layout-center">
+    <div class="container">
+        {% include 'partial/message.html' %}
+
+        <h2>Modification {{ state.name }} </h2>
+
+        <form action="/state/update/{{ state.id }}" class="form-horizontal" method="post">
+            {{ input('Description', 'name', state.name)|raw }}
+            {{ input('Warning', 'warning', state.warning, 'warning')|raw }}
+            {{ input('Alert', 'alert', state.alert, 'error')|raw }}
+            {{ input('Coefficient', 'coeff', state.coeff)|raw }}
+            {{ submit('Mettre à jour')|raw }}
+        </form>
+
+    </div>
+</div>
+{% endblock %}

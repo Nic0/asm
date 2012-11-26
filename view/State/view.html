@@ -45,8 +45,29 @@
             <div class="span3 offset4">
                 <a href="/state/add"><button class="btn btn-success">Ajouter une règle</button></a>
             </div>
+            <br />
         {% endif %}
 
+        <table class="table table-bordered">
+            <tr>
+                <th>Mois</th>
+                <th>Total</th>
+                <th>En attente</th>
+                <th>Assigné</th>
+                <th>Fermé</th>
+                <th>Résolu</th>
+            </tr>
+        {% for g in glpi %}
+            <tr>
+                <td>{{ g.month }}</td>
+                <td>{{ g.total }}</td>
+                <td>{{ g.waiting }}</td>
+                <td>{{ g.assign }}</td>
+                <td>{{ g.closed }}</td>
+                <td>{{ g.solved }}</td>
+            </tr>
+        {% endfor %}
+        </table>
     </div>
 </div>
 {% endblock %}
