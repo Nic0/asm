@@ -37,6 +37,10 @@ function add_roule_trigger () {
     });
 }
 
+function confirm_delete () {
+    var r=confirm("Supprimer l'élément ?");
+    return r;
+}
 
 jQuery(document).ready(function($) {
     setup_layout();

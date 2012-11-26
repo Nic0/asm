@@ -12,8 +12,8 @@
         public $name;
         public $hostid;
         public $itemid;
-        public $low;
-        public $high;
+        public $warning;
+        public $alert;
         public $coeff;
 
         public function save () {
@@ -21,13 +21,13 @@
             $this->sql = new Sql($this->adapter);
             $insert = $this->sql->insert();
             $insert->into('states')
-                   ->columns(array('name', 'hostid', 'itemid', 'low', 'high', 'coeff'))
+                   ->columns(array('name', 'hostid', 'itemid', 'warning', 'alert', 'coeff'))
                    ->values(array(
                         'name'      => $this->name,
                         'hostid'    => $this->hostid,
                         'itemid'    => $this->itemid,
-                        'low'       => $this->low,
-                        'high'      => $this->high,
+                        'warning'   => $this->warning,
+                        'alert'     => $this->alert,
                         'coeff'     => $this->coeff
                     ));
 

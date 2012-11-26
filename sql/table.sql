@@ -11,8 +11,8 @@ CREATE TABLE states (
     name    varchar(255),
     hostid  int NOT NULL,
     itemid  int NOT NULL,
-    low     varchar(255) NOT NULL,
-    high    varchar(255) NOT NULL,
+    warning varchar(255) NOT NULL,
+    alert   varchar(255) NOT NULL,
     coeff   int NOT NULL
 );
 

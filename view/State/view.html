@@ -6,13 +6,13 @@
 <div class="pane ui-layout-center">
     <div class="container">
         {% include 'partial/message.html' %}
-
+            {{ avglevel(zabbix, config)|raw }}
         <table class="table table-bordered">
             <tr>
                 <th>Description</th>
                 <th>Last Value</th>
                 <th>Prev Value</th>
-                <th>low / high</th>
+                <th>warning / alert</th>
                 <th>Tendance</th>
                 {% if isAdmin() %}
                     <th>Action</th>
@@ -28,11 +28,11 @@
             {% endif %}
                     <td>{{ z.lastvalue }}</td>
                     <td>{{ z.prevvalue }}</td>
-                    <td>{{ z.low }} / {{ z.high }}</td>
+                    <td>{{ z.warning }} / {{ z.alert }}</td>
                     <td>{{ z.lastvalue - z.prevvalue }}</td>
                 {% if isAdmin() %}
                     <th>
-                        <a href="/state/del/{{ z.id }}"><i class="icon-trash"></i></a>
+                        <a href="/state/del/{{ z.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
                         <a href="/state/update/{{ z.id }}"><i class="icon-wrench"></i></a>
                     </th>
                 {% endif %}
@@ -46,7 +46,6 @@
                 <a href="/state/add"><button class="btn btn-success">Ajouter une règle</button></a>
             </div>
         {% endif %}
-
     </div>
 </div>
 {% endblock %}

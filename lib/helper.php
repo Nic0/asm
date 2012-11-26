@@ -123,18 +123,34 @@
 
 
     function level ($item) {
-        $value = $item->lastvalue;
-        $low = $item->low;
-        $high = $item->high;
-
-        if ($value <= $low) {
+        if ($item->point == 0) {
             return "success";
-        } else if ($value <= $high) {
+        } else if ($item->point == 1) {
             return "warning";
         } else {
             return "error";
         }
-
     }
     $this->twig->addFunction('level', new Twig_Function_Function('level'));
 
+    function avglevel ($zabbix, $config) {
+        $total = 0;
+        foreach ($zabbix as $key => $value) {
+            $total += $value->point;
+        }
+        $total /=sizeof($zabbix);
+
+        if ($total < $config->html->value->warning) {
+            $level = "alert-success";
+            $message = $config->html->msg->level->normal;
+        } else if ($total < $config->html->value->alert) {
+            $level = "alert-warning";
+            $message = $config->html->msg->level->warning;
+        } else {
+            $level = "alert-error";
+            $message = $config->html->msg->level->alert;
+        }
+
+        return '<div class="alert ' . $level . '"><strong>Etat Général</strong> '.$message.'</div>';
+    }
+    $this->twig->addFunction('avglevel', new Twig_Function_Function('avglevel'));

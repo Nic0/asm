@@ -16,10 +16,8 @@
     </div>
 </div>
 
-
-
 {{ input('Description facultative', 'name')|raw }}
-{{ input('low', 'low', null, 'success')|raw }}
-{{ input('high', 'high', null, 'error')|raw }}
+{{ input('warning', 'warning', null, 'warning')|raw }}
+{{ input('alert', 'alert', null, 'error')|raw }}
 {{ input('coeff', 'coeff', 1)|raw }}
 {{ submit('Ajouter')|raw }}

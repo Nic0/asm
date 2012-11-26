@@ -43,7 +43,7 @@
                 $state = new State();
                 $state->del($id);
                 flash("La suppression à été effectué");
-                $this->redirect('/state/view');
+                $this->redirect('/');
             } else {
                 flash("Vous n'avez pas les droits requis pour cette action");
                 $this->redirect('/login');
