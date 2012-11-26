@@ -40,6 +40,9 @@ html:
   value:
     warning: 0.66
     alert: 1.33
+  glpi:
+    warning: 30
+    alert: 50
 debug:
   auth: false
   data: false

@@ -42,14 +42,13 @@
         </table>
 
         {% if isAdmin() %}
-            <div class="span3 offset4">
-                <a href="/state/add"><button class="btn btn-success">Ajouter une règle</button></a>
-            </div>
-            <br />
+                <a href="/state/add"><button class="btn btn-success">Ajouter une règle Zabbix</button></a>
+                <br /><br />
         {% endif %}
 
+        <h2>Tickets <small>GLPI</small></h2>
         <table class="table table-bordered">
-            <tr>
+            <tr >
                 <th>Mois</th>
                 <th>Total</th>
                 <th>En attente</th>
@@ -58,7 +57,7 @@
                 <th>Résolu</th>
             </tr>
         {% for g in glpi %}
-            <tr>
+            <tr class="{{ levelGlpi(g) }}">
                 <td>{{ g.month }}</td>
                 <td>{{ g.total }}</td>
                 <td>{{ g.waiting }}</td>

@@ -133,6 +133,23 @@
     }
     $this->twig->addFunction('level', new Twig_Function_Function('level'));
 
+    function levelGlpi ($item) {
+        if ($item->month == date('F')) {
+            $conf = AsmConfig::getConfig();
+            $level = $item->assign + $item->waiting;
+            if ($level < $conf->html->glpi->warning) {
+                return 'success';
+            } else if ($level < $conf->html->glpi->alert) {
+                return 'warning';
+            } else {
+                return 'error';
+            }
+
+        }
+    }
+    $this->twig->addFunction('levelGlpi', new Twig_Function_Function('levelGlpi'));
+
+
     function avglevel ($zabbix, $config) {
         $total = 0;
         foreach ($zabbix as $key => $value) {
