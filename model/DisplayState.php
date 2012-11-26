@@ -5,6 +5,7 @@
 
     class DisplayState extends State {
 
+        public $id;
         public $hostname;
         public $itemname;
         public $lastvalue;
@@ -37,11 +38,9 @@
 
             $results = $this->select($select);
 
-
             $zabbixState = array();
 
             foreach ($results as $i => $row) {
-
                 foreach ($data as $d) {
                     if ($d->itemid == $row->itemid) {
                         foreach ($d as $key => $value) {

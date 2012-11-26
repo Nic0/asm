@@ -19,6 +19,8 @@
                 $state = new State();
                 $state = $state->create($_POST);
                 $state->save();
+                flash("L'ajout à été effectué");
+                $this->redirect('/');
             }
         }
 
@@ -36,4 +38,19 @@
             $this->render();
         }
 
+        public function del ($id) {
+            if (loginRole() == 'admin') {
+                $state = new State();
+                $state->del($id);
+                flash("La suppression à été effectué");
+                $this->redirect('/state/view');
+            } else {
+                flash("Vous n'avez pas les droits requis pour cette action");
+                $this->redirect('/login');
+            }
+        }
+
+        public function update ($id) {
+            # code...
+        }
     }

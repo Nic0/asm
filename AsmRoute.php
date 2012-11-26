@@ -44,10 +44,10 @@
         public function __construct () {
 
             $this->route = array(
-                '/' => array(
+                '/dashboard' => array(
                     'controller' =>'StaticPage',
-                    'action' => 'home',
-                    'template' => 'home'
+                    'action' => 'dashboard',
+                    'template' => 'dashboard'
                 ),
                 '/zabbix/update' => array(
                     'controller' =>'StaticPage',
@@ -81,10 +81,19 @@
                     'action' => 'add',
                     'template' => 'add'
                 ),
-                '/state/view' => array(
+                '/' => array(
                     'controller' =>'State',
                     'action' => 'view',
                     'template' => 'view'
+                ),
+                '/state/del' => array(
+                    'controller' =>'State',
+                    'action' => 'del'
+                ),
+                '/state/update' => array(
+                    'controller' =>'State',
+                    'action' => 'update',
+                    'template' => 'update'
                 ),
 
                 /**

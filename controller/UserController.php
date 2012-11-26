@@ -60,8 +60,8 @@
          * @return None
          */
         public function logout () {
-            unset($_SESSION['user']);
+            session_unset();
             flash('Vous avez été correctement déconnecté', 'success');
-            $this->redirect('login');
+            $this->redirect('/');
         }
     }

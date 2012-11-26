@@ -11,6 +11,7 @@
         public $requestURL;
         /** @brief ensemble controller/action/template qui match à la route */
         public $match;
+        public $arg = null;
 
         /**
          * @brief Trouver les controller/action/template, et appeler en fonction
@@ -46,6 +47,12 @@
             }
 
             $this->requestURL = array_values($requestURL);
+
+            if (sizeof($this->requestURL) == 3) {
+                $this->arg = $this->requestURL[2];
+                unset($this->requestURL[2]);
+            }
+
             debug($this->requestURL, 'url');
         }
 
@@ -93,7 +100,7 @@
             $controllerName = $this->match['controller'] . 'Controller';
             $controller = new $controllerName($this->getTemplate());
             $action = $this->match['action'];
-            $controller->$action();
+            $controller->$action($this->arg);
         }
 
         /**

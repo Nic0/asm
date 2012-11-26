@@ -10,6 +10,7 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             {% if logged() %}
+              <li><a href="/dashboard"><i class="icon-th-list"></i> Dashboard</a></li>
               <li><a href="/logout"><i class="icon-user"></i> Logout ({{ loggedName() }})</a></li>
               <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
             {% else %}

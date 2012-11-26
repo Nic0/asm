@@ -23,12 +23,7 @@ function setup_config_tabs () {
     });
 }
 
-
-jQuery(document).ready(function($) {
-    setup_layout();
-    setup_config_tabs();
-    $('[name="username"]').focus();
-
+function add_roule_trigger () {
     $('.hostid').change(function() {
         var hostid = $('.hostid').val();
         $('.itemid').load('/state/ajax_zabbix_host', { 'hostid': hostid }, function  (data) {
@@ -37,6 +32,15 @@ jQuery(document).ready(function($) {
     });
 
     $('.itemid').change(function() {
-        // do something... or not
+        var value = $('select.itemid option:selected').attr('id');
+        $('.lastvalue').html(value);
     });
+}
+
+
+jQuery(document).ready(function($) {
+    setup_layout();
+    setup_config_tabs();
+    add_roule_trigger();
+    $('[name="username"]').focus();
 });

@@ -38,6 +38,10 @@
       return $_SESSION['user'];
     }
 
+    function loginRole() {
+      return $_SESSION['role'];
+    }
+
     /**
      * @note pas utilisé
      */

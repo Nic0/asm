@@ -116,6 +116,11 @@
     }
     $this->twig->addFunction('loggedRole', new Twig_Function_Function('loggedRole'));
 
+    function isAdmin () {
+        return (isset($_SESSION['role']) && $_SESSION['role'] == 'admin');
+    }
+    $this->twig->addFunction('isAdmin', new Twig_Function_Function('isAdmin'));
+
 
     function level ($item) {
         $value = $item->lastvalue;

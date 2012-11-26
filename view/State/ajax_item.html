@@ -1,5 +1,5 @@
 <div class="control-group">
-    <label class="control-label" for="itemid">Items</label>
+    <label class="control-label" for="itemid">Éléments</label>
     <div class="controls">
         <select name="itemid" class="itemid">
             {% for i in item %}
@@ -16,7 +16,9 @@
     </div>
 </div>
 
-{{ input('name', 'name')|raw }}
+
+
+{{ input('Description facultative', 'name')|raw }}
 {{ input('low', 'low', null, 'success')|raw }}
 {{ input('high', 'high', null, 'error')|raw }}
 {{ input('coeff', 'coeff', 1)|raw }}

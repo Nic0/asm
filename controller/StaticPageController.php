@@ -14,7 +14,7 @@
          * @brief Page d'accueil "home" principale
          * @return None
          */
-        public function home () {
+        public function dashboard () {
             if(isLogged()) {
                 $zEvent = new ZabbixEvent();
                 $gpliTickets = new GLPITicket();
