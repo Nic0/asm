@@ -16,6 +16,7 @@
         public $warning;
         public $alert;
         public $value;
+        public $point;
 
         public function save ($post) {
             $snmp = $this->createObjectFromSingleData($post);
@@ -57,10 +58,36 @@
             foreach ($data as $snmp) {
                 if (isset($r[$snmp->id])) {
                     $snmp->value = $r[$snmp->id];
+                    $this->setPoint($snmp);
                 }
             }
 
             return $data;
+        }
+
+        public function setPoint ($snmp) {
+            $value = $snmp->value;
+            $convert = 1024*1024;
+            $warning = $snmp->warning * $convert;
+            $alert = $snmp->alert * $convert;
+
+            if ($warning < $alert) {
+                if ($value <= $warning) {
+                    $snmp->point = 0;
+                } else if ($value <= $alert) {
+                    $snmp->point = 1;
+                } else {
+                    $snmp->point = 2;
+                }
+            } else {
+                if ($value >= $warning) {
+                    $snmp->point = 0;
+                } else if ($value >= $alert) {
+                    $snmp->point = 1;
+                } else {
+                    $snmp->point = 2;
+                }
+            }
         }
 
     }

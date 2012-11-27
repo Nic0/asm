@@ -39,7 +39,7 @@ html:
       alert: "Les services sont au niveau <i>alert</i>"
   value:
     warning: 0.66
-    alert: 1.33
+    alert: 2.0
   glpi:
     warning: 30
     alert: 50

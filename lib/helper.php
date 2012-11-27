@@ -158,16 +158,16 @@
         $total /=sizeof($zabbix);
 
         if ($total < $config->html->value->warning) {
-            $level = "alert-success";
+            $level = "text-success";
             $message = $config->html->msg->level->normal;
         } else if ($total < $config->html->value->alert) {
-            $level = "alert-warning";
+            $level = "text-warning";
             $message = $config->html->msg->level->warning;
         } else {
-            $level = "alert-error";
+            $level = "text-error";
             $message = $config->html->msg->level->alert;
         }
-
+        return $level;
         return '<div class="alert ' . $level . '"><strong>Etat Général</strong> '.$message.'</div>';
     }
     $this->twig->addFunction('avglevel', new Twig_Function_Function('avglevel'));
