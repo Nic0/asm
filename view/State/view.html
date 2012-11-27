@@ -4,42 +4,57 @@
 
 {% block content %}
 <div class="pane ui-layout-center">
-    <div class="container">
-        {% include 'partial/message.html' %}
-            {{ avglevel(zabbix, config)|raw }}
-        <table class="table table-bordered">
-            <tr>
-                <th>Description</th>
-                <th>Last Value</th>
-                <th>Prev Value</th>
-                <th>warning / alert</th>
-                <th>Tendance</th>
-                {% if isAdmin() %}
-                    <th>Action</th>
-                {% endif %}
-            </tr>
+  <div class="container">
+  {% include 'partial/message.html' %}
 
-            {% for z in zabbix %}
-                <tr class="{{ level(z) }}">
-            {% if z.name == '' %}
-                    <td>{{ z.hostname }} -- {{ z.itemname }}</td>
-            {% else %}
-                    <td>{{ z.name }}</td>
-            {% endif %}
-                    <td>{{ z.lastvalue }}</td>
-                    <td>{{ z.prevvalue }}</td>
-                    <td>{{ z.warning }} / {{ z.alert }}</td>
-                    <td>{{ z.lastvalue - z.prevvalue }}</td>
-                {% if isAdmin() %}
-                    <th>
-                        <a href="/state/del/{{ z.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
-                        <a href="/state/update/{{ z.id }}"><i class="icon-wrench"></i></a>
-                    </th>
-                {% endif %}
-                </tr>
-            {% endfor %}
-        </table>
+    <div class="row">
+      <div class="span12">
+        {{ avglevel(zabbix, config)|raw }}
+      </div>
 
+      <div class="span4">
+        <h2>Serveurs <small>Zabbix</small></h2>
+        <ul>
+          {% for z in zabbix %}
+            <li class="{{ level(z) }}">
+              {% if z.name == '' %}
+                {{ z.hostname }} -- {{ z.itemname }}
+              {% else %}
+                {{ z.name }}
+              {% endif %}
+            </li>
+              {% if isAdmin() %}
+                <ul>
+                  <li>lastvalue: {{ z.lastvalue}}</li>
+                  <li>prevvalue: {{ z.prevvalue }}</li>
+                  <li>warning/alert: {{ z.warning ~ '/' ~ z.alert}}</li>
+                  <li>
+                      <a href="/state/del/{{ z.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/state/update/{{ z.id }}"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="span4">
+        <h2>Réseau <small>SNMP</small></h2>
+        <ul>
+          {% for s in snmp %}
+            <li class="text-success">{{ s.name }}</li>
+              {% if isAdmin() %}
+                <ul>
+                  <li>IP: {{ s.ip }}</li>
+                  <li>value (b/s): {{ s.value }}</li>
+                  <li>warning/alert (Mb/s): {{ s.warning ~ '/' ~ s.alert}}</li>
+                </ul>
+              {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="span4">
         <h2>Tickets <small>GLPI</small></h2>
         <table class="table table-bordered">
             <tr >
@@ -51,21 +66,24 @@
                 <th>Résolu</th>
             </tr>
         {% for g in glpi %}
-            <tr class="{{ levelGlpi(g) }}">
-                <td>{{ g.month }}</td>
-                <td>{{ g.total }}</td>
-                <td>{{ g.waiting }}</td>
-                <td>{{ g.assign }}</td>
-                <td>{{ g.closed }}</td>
-                <td>{{ g.solved }}</td>
-            </tr>
+          <tr class="{{ levelGlpi(g) }}">
+            <td>{{ g.month }}</td>
+            <td>{{ g.total }}</td>
+            <td>{{ g.waiting }}</td>
+            <td>{{ g.assign }}</td>
+            <td>{{ g.closed }}</td>
+            <td>{{ g.solved }}</td>
+          </tr>
         {% endfor %}
-
         </table>
-        {% if isAdmin() %}
-                <a href="/state/add"><button class="btn btn-success">Ajout de règles</button></a>
-                <br /><br />
-        {% endif %}
+      </div>
+    </div>
+
+  {% if isAdmin() %}
+    <div class="span12">
+      <a href="/state/add"><button class="btn btn-success">Ajout de règles</button></a>
+    </div>
+  {% endif %}
 
     </div>
 </div>

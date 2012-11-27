@@ -57,6 +57,8 @@
             foreach ($data as $snmp) {
                 $snmp->value = $r[$snmp->id];
             }
+
+            return $data;
         }
 
     }

@@ -124,11 +124,11 @@
 
     function level ($item) {
         if ($item->point == 0) {
-            return "success";
+            return "text-success";
         } else if ($item->point == 1) {
-            return "warning";
+            return "text-warning";
         } else {
-            return "error";
+            return "text-error";
         }
     }
     $this->twig->addFunction('level', new Twig_Function_Function('level'));
