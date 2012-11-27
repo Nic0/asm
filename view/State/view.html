@@ -48,6 +48,10 @@
                   <li>IP: {{ s.ip }}</li>
                   <li>value (b/s): {{ s.value|number_format(0, ',', ' ') }}</li>
                   <li>warning/alert (Mb/s): {{ s.warning ~ '/' ~ s.alert}}</li>
+                  <li>
+                      <a href="/snmp/del/{{ s.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/snmp/update/{{ s.id }}"><i class="icon-wrench"></i></a>
+                  </li>
                 </ul>
               {% endif %}
           {% endfor %}
