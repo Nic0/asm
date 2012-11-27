@@ -15,6 +15,7 @@
         public $oid;
         public $warning;
         public $alert;
+        public $value;
 
         public function save ($post) {
             $snmp = $this->createObjectFromSingleData($post);
@@ -44,15 +45,18 @@
             $select->from('snmp_input')
                    ->group('snmp_id')
                    ->where('unix_timestamp(date) > ' . (time() - (60*6)))
-                   ->columns(array(new Expression('(MAX(value) - MIN(value))/(TIMESTAMPDIFF(SECOND, MIN(date), MAX(date))) as diff'), 'snmp_id'));
+                   ->columns(array(new Expression('(MAX(value) - MIN(value))/(TIMESTAMPDIFF(SECOND, MIN(date), MAX(date))) as value'), 'snmp_id'));
 
             $result = $this->select($select);
 
+            $r = array();
             foreach ($result as $row) {
-                var_dump($row);
+                $r[$row->snmp_id] = $row->value;
             }
 
-//die;
+            foreach ($data as $snmp) {
+                $snmp->value = $r[$snmp->id];
+            }
         }
 
     }
