@@ -55,7 +55,9 @@
             }
 
             foreach ($data as $snmp) {
-                $snmp->value = $r[$snmp->id];
+                if (isset($r[$snmp->id])) {
+                    $snmp->value = $r[$snmp->id];
+                }
             }
 
             return $data;

@@ -171,3 +171,16 @@
         return '<div class="alert ' . $level . '"><strong>Etat Général</strong> '.$message.'</div>';
     }
     $this->twig->addFunction('avglevel', new Twig_Function_Function('avglevel'));
+
+
+    function snmplevel ($snmp) {
+        $convert = 1024*1024;
+        if ($snmp->value <= ($snmp->warning * $convert)) {
+            return "text-success";
+        } else if ($snmp->value <= ($snmp->alert * $convert)) {
+            return "text-warning";
+        } else {
+            return "text-error";
+        }
+    }
+    $this->twig->addFunction('snmplevel', new Twig_Function_Function('snmplevel'));
