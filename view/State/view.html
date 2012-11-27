@@ -38,13 +38,7 @@
                 {% endif %}
                 </tr>
             {% endfor %}
-
         </table>
-
-        {% if isAdmin() %}
-                <a href="/state/add"><button class="btn btn-success">Ajouter une règle Zabbix</button></a>
-                <br /><br />
-        {% endif %}
 
         <h2>Tickets <small>GLPI</small></h2>
         <table class="table table-bordered">
@@ -66,7 +60,13 @@
                 <td>{{ g.solved }}</td>
             </tr>
         {% endfor %}
+
         </table>
+        {% if isAdmin() %}
+                <a href="/state/add"><button class="btn btn-success">Ajout de règles</button></a>
+                <br /><br />
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

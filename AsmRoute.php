@@ -5,6 +5,7 @@
     require_once '../controller/UserController.php';
     require_once '../controller/ConfigController.php';
     require_once '../controller/StateController.php';
+    require_once '../controller/SnmpController.php';
 
     /**
      * @brief permet de construire un tableau servant à router les requêtes
@@ -94,6 +95,18 @@
                     'controller' =>'State',
                     'action' => 'update',
                     'template' => 'update'
+                ),
+
+                /**
+                 * Route pour SNMP
+                 */
+                '/snmp/add' => array(
+                    'controller' =>'Snmp',
+                    'action' => 'add'
+                ),
+                '/snmp/feed' => array(
+                    'controller' =>'Snmp',
+                    'action' => 'feed'
                 ),
 
                 /**
