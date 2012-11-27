@@ -23,12 +23,17 @@
             $snmp = new Snmp();
             $snmpList = $snmp->getAll('snmp', 'Snmp');
 
+            $si = new SnmpInput();
             foreach ($snmpList as $snmp) {
-                $si = new SnmpInput();
                 $si->save($snmp);
             }
 
-            // TODO: purge requete
+            $this->purge();
+        }
+
+        private function purge () {
+            $snmp = new SnmpInput();
+            $snmp->purge();
         }
 
     }

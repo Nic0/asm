@@ -4,6 +4,7 @@
 
     use Zend\Db\Sql\Sql;
     use Zend\Db\Sql\Insert;
+    use Zend\Db\Sql\Expression;
 
     class SnmpInput extends PhpAsmModel {
 
@@ -27,6 +28,14 @@
 
             $statement = $this->sql->prepareStatementForSqlObject($insert);
             $statement->execute();
+        }
+
+        public function purge () {
+            $this->sql = new Sql($this->adapter);
+            $delete = $this->sql->delete();
+            $delete->from('snmp_input')->where('unix_timestamp(date) < ' . (time() - (60*60)));
+            $statement = $this->sql->prepareStatementForSqlObject($delete);
+            $result = $statement->execute();
         }
 
     }
