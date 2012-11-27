@@ -119,7 +119,7 @@
         $_SESSION['flash'] = $flash;
     }
 
-    function snmp_get_value ($host, $community, $oid, $timeout) {
+    function snmp_get_value ($host, $community, $oid, $timeout=1000000) {
       $data = explode(' ', snmp2_get($host, $community, $oid, $timeout));
       return intval($data[1])*8;
     }

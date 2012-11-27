@@ -28,8 +28,11 @@
         public function view () {
             $state = new DisplayState();
             $glpi = new GLPIStat();
+            $snmp = new Snmp();
+
             $this->addData('zabbix', $state->getAll('states', 'DisplayState'))
                  ->addData('glpi', $glpi->getStats())
+                 ->addData('snmp', $snmp->getStats())
                  ->render();
         }
 

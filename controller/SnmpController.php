@@ -4,6 +4,9 @@
     require_once '../model/Snmp.php';
     require_once '../model/SnmpInput.php';
 
+    use Zend\Db\Sql\Sql;
+    use Zend\Db\Sql\Insert;
+
     class SnmpController extends Controller {
 
 
@@ -19,5 +22,13 @@
         public function feed () {
             $snmp = new Snmp();
             $snmpList = $snmp->getAll('snmp', 'Snmp');
+
+            foreach ($snmpList as $snmp) {
+                $si = new SnmpInput();
+                $si->save($snmp);
+            }
+
+            // TODO: purge requete
         }
+
     }
