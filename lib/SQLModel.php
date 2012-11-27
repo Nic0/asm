@@ -82,4 +82,13 @@
             }
         }
 
+        public function getAll ($table, $class) {
+            $this->sql = new Sql($this->adapter);
+            $select = $this->sql->select();
+            $select->from($table);
+            $results = $this->select($select);
+
+            return $this->createObjectFromArrayData($results, $class);
+        }
+
     }

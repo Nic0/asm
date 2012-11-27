@@ -35,15 +35,6 @@
             $statement->execute();
         }
 
-        public function getAll () {
-            $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from('states');
-            $results = $this->select($select);
-
-            return $this->createObjectFromArrayData($results);
-        }
-
         public function del ($id) {
             $this->sql = new Sql($this->adapter);
             $delete = $this->sql->delete();

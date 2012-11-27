@@ -20,7 +20,7 @@
 
         public function getAll () {
             $state = new State();
-            $data = $state->getAll();
+            $data = $state->getAll('states', 'State');
             if(!empty($data)) {
                 $where = '';
                 for ($i=0; $i < sizeof($data); $i++) {

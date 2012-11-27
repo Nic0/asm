@@ -17,6 +17,7 @@
         }
 
         public function feed () {
-
+            $snmp = new Snmp();
+            $snmpList = $snmp->getAll('snmp', 'Snmp');
         }
     }

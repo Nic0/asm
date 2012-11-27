@@ -28,7 +28,7 @@
         public function view () {
             $state = new DisplayState();
             $glpi = new GLPIStat();
-            $this->addData('zabbix', $state->getAll())
+            $this->addData('zabbix', $state->getAll('states', 'DisplayState'))
                  ->addData('glpi', $glpi->getStats())
                  ->render();
         }
