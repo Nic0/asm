@@ -7,7 +7,7 @@
     use Zend\Db\Sql\Insert;
 
     /**
-     * @brief Etat d'un élément Zabbix
+     * @brief Etat d'un élément Zabbix (base phpasm)
      */
     class State extends PhpAsmModel {
 
