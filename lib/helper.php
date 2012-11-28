@@ -238,7 +238,7 @@
         $div = '<div class="alert '.$level.'"><strong>Etat Général des Services:</strong> '.$message;
 
         if (isAdmin()) {
-            $div .= " ( $avgZabbix + $avgSnmp + $avgGlpi) / ($coeffZ + $coeffS + $coeffG ) = $average";
+            $div .= " ( $avgZabbix + $avgSnmp + $avgGlpi) / ($coeffZ + $coeffS + $coeffG ) = ".number_format($average, 2, ',', ' ');
         }
         return $div.'</div>';
    }
