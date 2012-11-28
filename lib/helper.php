@@ -234,6 +234,12 @@
             $level = "alert-error";
             $message = $config->html->msg->level->alert;
         }
-        return '<div class="alert '.$level.'"><strong>Etat Général des Services:</strong> '.$message.'</div>';
-    }
+
+        $div = '<div class="alert '.$level.'"><strong>Etat Général des Services:</strong> '.$message;
+
+        if (isAdmin()) {
+            $div .= " ( $avgZabbix + $avgSnmp + $avgGlpi) / ($coeffZ + $coeffS + $coeffG ) = $average";
+        }
+        return $div.'</div>';
+   }
     $this->twig->addFunction('overallAvg', new Twig_Function_Function('overallAvg'));

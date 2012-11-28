@@ -34,9 +34,9 @@ html:
   msg:
     auth: "En cas de probl\xE8me, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
     level:
-      normal: "Les services se portent bien"
-      warning: "Les services sont au niveau <i>warning</i>"
-      alert: "Les services sont au niveau <i>alert</i>"
+      normal: "Les services se portent bien."
+      warning: "Les services sont au niveau <i>warning</i>."
+      alert: "Les services sont au niveau <i>alert</i>."
   value:
     warning: 0.66
     alert: 1.33
@@ -46,7 +46,7 @@ html:
   coeff:
     zabbix: 1
     snmp: 1
-    glpi: 1
+    glpi: 5
 debug:
   auth: false
   data: false
