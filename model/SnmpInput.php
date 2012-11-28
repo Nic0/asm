@@ -6,13 +6,25 @@
     use Zend\Db\Sql\Insert;
     use Zend\Db\Sql\Expression;
 
+    /**
+     * @brief Stockage des données pour un SNMP donné
+     */
     class SnmpInput extends PhpAsmModel {
 
+        /** @brief Identifiant de la donnée */
         public $id;
+        /** @brief Relation avec la classe Snmp */
         public $snmp_id;
+        /** @brief Valeur brute stockée */
         public $value;
+        /** @brief date à laquel la donnée a été prise */
         public $date;
 
+        /**
+         * @brief  Fait la requête SNMP et l'enregistre dans la base snmp_input
+         * @param  Snmp $snmp objet Snmp dont les données doivent être recueillis
+         * @return None
+         */
         public function save ($snmp) {
 
             $value = snmp_get_value($snmp->ip, $snmp->community, $snmp->oid);
@@ -30,6 +42,10 @@
             $statement->execute();
         }
 
+        /**
+         * @brief Élimine de la base les données dépassés en date
+         * @return None
+         */
         public function purge () {
             $this->sql = new Sql($this->adapter);
             $delete = $this->sql->delete();

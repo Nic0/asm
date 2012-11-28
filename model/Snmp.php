@@ -6,18 +6,38 @@
     use Zend\Db\Sql\Insert;
     use Zend\Db\Sql\Expression;
 
+    /**
+     * @brief identification d'un élément SNMP
+     *
+     * Toutes données permettant d'obtenir les information par rapport à une
+     * valeur obtenue par SNMP
+     */
     class Snmp extends PhpAsmModel {
 
+        /** @brief Identifiant auto-incrémanté */
         public $id;
+        /** @brief IP */
         public $ip;
+        /** @brief Nom donnée qui serra affiché à l'utilisateur */
         public $name;
+        /** @brief Community du SNMP, généralement "public" */
         public $community;
+        /** @brief Object identifiant, spécifique à SNMP */
         public $oid;
+        /** @brief seuil de warning */
         public $warning;
+        /** @brief seuil d'alerte */
         public $alert;
+        /** @brief valeur moyenne, servant à l'affichage */
         public $value;
+        /** @brief point attribué en fonction du niveau atteint, servant à calculer la moyenne */
         public $point;
 
+        /**
+         * @brief Sauvegarde d'un élément SNMP
+         * @param  array    $post données à sauvegardé, issue d'un POST
+         * @return None
+         */
         public function save ($post) {
             $snmp = $this->createObjectFromSingleData($post);
 
@@ -38,6 +58,10 @@
             $statement->execute();
         }
 
+        /**
+         * @brief Obtient les statistiques de tout les SNMP
+         * @return array Les statistiques
+         */
         public function getStats () {
             $data = $this->getAll('snmp', 'Snmp');
 
@@ -65,6 +89,12 @@
             return $data;
         }
 
+        /**
+         * @brief Mise à jour d'un SNMP
+         * @param  int      $id     identifiant du SNMP
+         * @param  array    $values données à mettre à jours
+         * @return None
+         */
         public function update ($id, $values) {
             $this->sql = new Sql($this->adapter);
             $update = $this->sql->update();
@@ -80,6 +110,16 @@
             $result = $statement->execute();
         }
 
+        /**
+         * @brief Attribue les points en fonction du niveau d'alerte levé
+         * @param None
+         *
+         * Attribution de points en fonction de la couleur
+         *   - vert:  0 point
+         *   - jaune: 1 point
+         *   - rouge: 2 points
+         *
+         */
         private function setPoint ($snmp) {
             $value = $snmp->value;
             $convert = 1024*1024;

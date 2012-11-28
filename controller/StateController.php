@@ -7,15 +7,18 @@
     require_once '../model/DisplayState.php';
     require_once '../model/GLPIStat.php';
 
+    /**
+     * @brief Controlleur des États (correspondant à Zabbix)
+     */
     class StateController extends Controller {
 
-
+        /**
+         * @brief Ajout d'un état, gestion du formulaire
+         */
         public function add () {
             if(!isPost()) {
                 $zHost = new ZabbixHost();
-
-                $this->addData('host', $zHost->getAll());
-                $this->render();
+                $this->addData('host', $zHost->getAll())->render();
             } else {
                 $state = new State();
                 $state = $state->create($_POST);
@@ -25,6 +28,10 @@
             }
         }
 
+        /**
+         * @brief Affichage d'un état
+         * @return None
+         */
         public function view () {
             $state = new DisplayState();
             $glpi = new GLPIStat();
@@ -36,14 +43,22 @@
                  ->render();
         }
 
-
+        /**
+         * @brief Utile pour charger dynamiquement la liste des éléments en fonction
+         * d'un host
+         * @return NoneS
+         */
         public function ajax_item () {
             $hostid = $_POST['hostid'];
             $zItem = new ZabbixItem();
-            $this->addData('item', $zItem->getByHost($hostid));
-            $this->render();
+            $this->addData('item', $zItem->getByHost($hostid))->render();
         }
 
+        /**
+         * @brief Suppression d'un état
+         * @param  int   $id identifiant de l'état
+         * @return None
+         */
         public function delete ($id) {
             if (loginRole() == 'admin') {
                 $state = new State();
@@ -55,12 +70,16 @@
             }
         }
 
+        /**
+         * @brief Mise à jour d'un état
+         * @param  int $id identifiant de l'état à mettre à jour
+         * @return None
+         */
         public function update ($id) {
             if (loginRole() == 'admin') {
                 if (!isPost()) {
                     $state = new State();
-                    $this->addData('state', $state->getById($id));
-                    $this->render();
+                    $this->addData('state', $state->getById($id))->render();
                 } else {
                     $state = new State();
                     $state->update($id, $_POST);

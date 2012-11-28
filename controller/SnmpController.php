@@ -7,9 +7,14 @@
     use Zend\Db\Sql\Sql;
     use Zend\Db\Sql\Insert;
 
+    /**
+     * @brief Controlleur pour le SNMP
+     */
     class SnmpController extends Controller {
 
-
+        /**
+         * @brief Ajoute un SNMP dans la base
+         */
         public function add () {
             if(isPost()) {
                 $snmp = new Snmp();
@@ -18,7 +23,11 @@
                 $this->redirect('/');
             }
         }
-
+        /**
+         * @brief fournire des données dans la base snmp_input, en fonction des snmp disponible
+         * @return None
+         * @note URL accédé par Cron
+         */
         public function feed () {
             $snmp = new Snmp();
             $snmpList = $snmp->getAll('snmp', 'Snmp');
@@ -31,11 +40,21 @@
             $this->purge();
         }
 
+        /**
+         * @brief Supprime les vieilles données de snmp_input
+         * @return None
+         * @note URL accédé par Cron
+         */
         private function purge () {
             $snmp = new SnmpInput();
             $snmp->purge();
         }
 
+        /**
+         * @brief Suppression d'un élément SNMP (base snmp)
+         * @param  int $id identifiant à supprimer
+         * @return None
+         */
         public function delete ($id) {
             if (loginRole() == 'admin') {
                 $snmp = new Snmp();
@@ -47,6 +66,11 @@
             }
         }
 
+        /**
+         * @brief Mise à jour d'un élément SNMP dans la base snmp
+         * @param  int $id identifant snmp à mettre à jour
+         * @return None
+         */
         public function update ($id) {
             if (loginRole() == 'admin') {
                 if (isPost()) {
