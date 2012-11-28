@@ -121,7 +121,11 @@
     }
     $this->twig->addFunction('isAdmin', new Twig_Function_Function('isAdmin'));
 
-
+    /**
+     * @brief Permet d'obtenir la couleur vert/jaune/rouge pour un élément donnée
+     * @param  mixed $item élément contenant une donnée membre `point`
+     * @return string       la class à ajouter à l'élément (ex li class="text-success")
+     */
     function level ($item) {
         if ($item->point == 0) {
             return "text-success";
@@ -149,15 +153,24 @@
     }
     $this->twig->addFunction('levelGlpi', new Twig_Function_Function('levelGlpi'));
 
-
-    function avglevel ($zabbix, $config) {
+    function avgCalcul ($item) {
         $total = 0;
         $totalCoeff = 0;
-        foreach ($zabbix as $key => $value) {
+        foreach ($item as $key => $value) {
             $total += $value->point * $value->coeff;
             $totalCoeff += $value->coeff;
         }
-        $total /=($totalCoeff);
+        return $total /=($totalCoeff);
+    }
+
+    /**
+     * @brief Calcule la moyenne pondérée pour un élément
+     * @param  array $item les états d'un élément
+     * @param  array $config la configuration
+     * @return string         valeur de la classe
+     */
+    function avglevel ($item, $config) {
+        $total = avgCalcul($item);
 
         if ($total < $config->html->value->warning) {
             $level = "text-success";
@@ -170,7 +183,6 @@
             $message = $config->html->msg->level->alert;
         }
         return $level;
-        return '<div class="alert ' . $level . '"><strong>Etat Général</strong> '.$message.'</div>';
     }
     $this->twig->addFunction('avglevel', new Twig_Function_Function('avglevel'));
 
@@ -186,3 +198,42 @@
         }
     }
     $this->twig->addFunction('snmplevel', new Twig_Function_Function('snmplevel'));
+
+    function convertLevelToPoint($level) {
+        switch ($level) {
+            case 'success':
+                return 0;
+            case 'warning':
+                return 1;
+            case 'error':
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    function overallAvg ($zabbix, $snmp, $glpi, $config) {
+
+        $coeffZ = $config->html->coeff->zabbix;
+        $coeffS = $config->html->coeff->snmp;
+        $coeffG = $config->html->coeff->glpi;
+
+        $avgZabbix = avgCalcul($zabbix) * $coeffZ;
+        $avgSnmp = avgCalcul($snmp) * $coeffS;
+        $avgGlpi = convertLevelToPoint(levelGlpi($glpi[1])) * $coeffG;
+
+        $average = ($avgZabbix + $avgSnmp + $avgGlpi) / ($coeffZ + $coeffS + $coeffG);
+
+        if ($average < $config->html->value->warning) {
+            $level = "alert-success";
+            $message = $config->html->msg->level->normal;
+        } else if ($average < $config->html->value->alert) {
+            $level = "alert-warning";
+            $message = $config->html->msg->level->warning;
+        } else {
+            $level = "alert-error";
+            $message = $config->html->msg->level->alert;
+        }
+        return '<div class="alert '.$level.'"><strong>Etat Général des Services:</strong> '.$message.'</div>';
+    }
+    $this->twig->addFunction('overallAvg', new Twig_Function_Function('overallAvg'));

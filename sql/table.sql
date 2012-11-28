@@ -27,7 +27,8 @@ CREATE TABLE snmp (
     community    varchar(255) NOT NULL,
     `oid`   varchar(255) COLLATE utf8_general_ci NOT NULL,
     warning int NOT NULL,
-    alert   int NOT NULL
+    alert   int NOT NULL,
+    coeff   float NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- SNMP_INPUT
@@ -41,5 +42,3 @@ CREATE TABLE snmp_input (
 
 INSERT INTO users values ('paris_n', 'admin');
 INSERT INTO users values ('lesouef_e', 'admin');
-
--- select MAX(value) - MIN(value) as diff, snmp_id from snmp_input group by snmp_id

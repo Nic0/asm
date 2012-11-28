@@ -43,6 +43,10 @@ html:
   glpi:
     warning: 30
     alert: 50
+  coeff:
+    zabbix: 1
+    snmp: 1
+    glpi: 1
 debug:
   auth: false
   data: false
