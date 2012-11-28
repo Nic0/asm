@@ -41,8 +41,8 @@ html:
     warning: 0.66
     alert: 1.33
   glpi:
-    warning: 30
-    alert: 50
+    warning: 50
+    alert: 100
   coeff:
     zabbix: 1
     snmp: 1
