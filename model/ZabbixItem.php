@@ -4,15 +4,27 @@
 
     use Zend\Db\Sql\Sql;
 
-
+    /**
+     * @brief Gestion d'un Item par Zabbix
+     */
     class ZabbixItem extends ZabbixModel {
 
+        /** @brief identifiant de l'item */
         public $itemid;
+        /** @brief identifiant de l'host correspondant */
         public $hostid;
+        /** @brief Nom/description de l'item */
         public $name;
+        /** @brief Dernière valeur enregistrée */
         public $lastvalue;
+        /** @brief Utilitaire pour remplacer les $1 de `name` */
         public $key_;
 
+        /**
+         * @brief Obtient un Item en fonction de l'identifiant de l'host
+         * @param  int $hostid  identifiant de l'host
+         * @return ZabbixItem   Item correspondant
+         */
         public function getByHost($hostid) {
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
