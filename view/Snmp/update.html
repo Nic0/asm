@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}Modification d'un SNMP{% endblock %}
+
+{% block content %}
+<div class="pane ui-layout-center">
+    <div class="container">
+        {% include 'partial/message.html' %}
+
+        <h2>Modification {{ snmp.name }} </h2>
+
+        <form action="/snmp/update/{{ snmp.id }}" class="form-horizontal" method="post">
+
+            {{ input('ip', 'ip', snmp.ip)|raw }}
+            {{ input('name', 'name', snmp.name)|raw }}
+            {{ input('community', 'community', 'public', snmp.community)|raw }}
+            <p>Object identifier (oid), les valeurs devrait être :
+                <ul>
+                    <li>.1.3.6.1.2.1.2.2.1.10.x pour le download</li>
+                    <li>.1.3.6.1.2.1.2.2.1.16.x pour l'upload</li>
+                </ul>
+                Ou x représente le numéro de l'interface à surveiller.
+
+            </p>
+            {{ input('oid', 'oid', snmp.oid)|raw }}
+            <p>Valeurs exprimé en Mb/s</p>
+            {{ input('warning', 'warning', snmp.warning, 'warning')|raw }}
+            {{ input('alert', 'alert', snmp.alert, 'error')|raw }}
+            {{ submit('Mettre à jour')|raw }}
+
+        </form>
+    </div>
+</div>
+{% endblock %}

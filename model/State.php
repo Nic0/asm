@@ -35,14 +35,6 @@
             $statement->execute();
         }
 
-        public function del ($id) {
-            $this->sql = new Sql($this->adapter);
-            $delete = $this->sql->delete();
-            $delete->from('states')->where('id='.$id);
-            $statement = $this->sql->prepareStatementForSqlObject($delete);
-            $result = $statement->execute();
-        }
-
         public function update ($id, $values) {
             $this->sql = new Sql($this->adapter);
             $update = $this->sql->update();

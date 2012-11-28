@@ -68,4 +68,9 @@
             $this->data[$label] = $data;
             return $this;
         }
+
+        public function notAllowed () {
+            flash("Vous n'avez pas les droits requis pour cette action");
+            $this->redirect('/login');
+        }
     }

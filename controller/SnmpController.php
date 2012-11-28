@@ -36,4 +36,31 @@
             $snmp->purge();
         }
 
+        public function delete ($id) {
+            if (loginRole() == 'admin') {
+                $snmp = new Snmp();
+                $snmp->delete($id, 'snmp');
+                flash('Élément SNMP supprimé', 'success');
+                $this->redirect('/');
+            } else {
+                $this->notAllowed();
+            }
+        }
+
+        public function update ($id) {
+            if (loginRole() == 'admin') {
+                if (isPost()) {
+                    $snmp = new Snmp();
+                    $snmp->update($id, $_POST);
+                    $this->redirect('/');
+                } else {
+                    $snmp = new Snmp();
+                    $this->addData('snmp', $snmp->getById($id, 'snmp'));
+                    $this->render();
+                }
+            } else {
+                $this->notAllowed();
+            }
+        }
+
     }

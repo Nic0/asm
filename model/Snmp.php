@@ -65,7 +65,22 @@
             return $data;
         }
 
-        public function setPoint ($snmp) {
+        public function update ($id, $values) {
+            $this->sql = new Sql($this->adapter);
+            $update = $this->sql->update();
+
+            $update->table('snmp')->where('id='.$id)->set(array(
+                'ip' => $values['ip'],
+                'name' => $values['name'],
+                'community' => $values['community'],
+                'oid' => $values['oid'],
+                'warning' => $values['warning'],
+                'alert' => $values['alert']));
+            $statement = $this->sql->prepareStatementForSqlObject($update);
+            $result = $statement->execute();
+        }
+
+        private function setPoint ($snmp) {
             $value = $snmp->value;
             $convert = 1024*1024;
             $warning = $snmp->warning * $convert;

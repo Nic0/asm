@@ -44,15 +44,14 @@
             $this->render();
         }
 
-        public function del ($id) {
+        public function delete ($id) {
             if (loginRole() == 'admin') {
                 $state = new State();
-                $state->del($id);
+                $state->delete($id, 'states');
                 flash("La suppression à été effectué", 'success');
                 $this->redirect('/');
             } else {
-                flash("Vous n'avez pas les droits requis pour cette action");
-                $this->redirect('/login');
+                $this->notAllowed();
             }
         }
 
@@ -69,8 +68,7 @@
                     $this->redirect('/');
                 }
             } else {
-                flash("Vous n'avez pas les droits requis pour cette action");
-                $this->redirect('/login');
+                $this->notAllowed();
             }
         }
     }

@@ -67,11 +67,14 @@
             return $results;
         }
 
-        public function getById ($id) {
+        public function getById ($id, $class=null) {
+            if ($class === null) {
+                $class = strtolower(get_called_class().'s');
+            }
 
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
-            $select->from(strtolower(get_called_class().'s'))
+            $select->from($class)
                    ->where("id=".$id);
 
             $results = $this->select($select);
@@ -89,6 +92,14 @@
             $results = $this->select($select);
 
             return $this->createObjectFromArrayData($results, $class);
+        }
+
+        public function delete ($id, $table) {
+            $this->sql = new Sql($this->adapter);
+            $delete = $this->sql->delete();
+            $delete->from($table)->where('id='.$id);
+            $statement = $this->sql->prepareStatementForSqlObject($delete);
+            $result = $statement->execute();
         }
 
     }

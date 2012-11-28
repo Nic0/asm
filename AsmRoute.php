@@ -89,7 +89,7 @@
                 ),
                 '/state/del' => array(
                     'controller' =>'State',
-                    'action' => 'del'
+                    'action' => 'delete'
                 ),
                 '/state/update' => array(
                     'controller' =>'State',
@@ -107,6 +107,15 @@
                 '/snmp/feed' => array(
                     'controller' =>'Snmp',
                     'action' => 'feed'
+                ),
+                '/snmp/del' => array(
+                    'controller' =>'Snmp',
+                    'action' => 'delete'
+                ),
+                '/snmp/update' => array(
+                    'controller' =>'Snmp',
+                    'action' => 'update',
+                    'template' => 'update'
                 ),
 
                 /**

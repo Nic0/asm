@@ -13,7 +13,7 @@
       </div>
 
       <div class="span4">
-        <h2 class="{{ avglevel(zabbix, config)}}">Serveurs <small>Zabbix</small></h2>
+        <h2 class="{{ avglevel(zabbix, config)}}">Serveurs {% if isAdmin() %}<small>Zabbix</small>{% endif %}</h2>
         <ul>
           {% for z in zabbix %}
             <li class="{{ level(z) }}">
@@ -39,7 +39,7 @@
       </div>
 
       <div class="span4">
-        <h2 class="{{ avglevel(snmp, config)}}">Accès Internet <small>SNMP</small></h2>
+        <h2 class="{{ avglevel(snmp, config)}}">Accès Internet {% if isAdmin() %}<small>SNMP</small>{% endif %}</h2>
         <ul>
           {% for s in snmp %}
             <li class="{{ snmplevel(s) }}">{{ s.name }}</li>
@@ -59,7 +59,7 @@
       </div>
 
       <div class="span4">
-        <h2>Tickets <small>GLPI</small></h2>
+        <h2>Tickets {% if isAdmin() %}<small>GLPI</small>{% endif %}</h2>
         <table class="table table-bordered">
             <tr >
                 <th>Mois</th>
