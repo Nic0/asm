@@ -15,7 +15,7 @@ CREATE TABLE states (
     itemid  int NOT NULL,
     warning varchar(255) COLLATE utf8_general_ci NOT NULL,
     alert   varchar(255) COLLATE utf8_general_ci NOT NULL,
-    coeff   int NOT NULL
+    coeff   float NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- SNMP

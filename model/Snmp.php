@@ -32,6 +32,7 @@
         public $value;
         /** @brief point attribué en fonction du niveau atteint, servant à calculer la moyenne */
         public $point;
+        public $coeff = 1;
 
         /**
          * @brief Sauvegarde d'un élément SNMP

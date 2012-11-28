@@ -25,9 +25,10 @@
             </li>
               {% if isAdmin() %}
                 <ul>
-                  <li>lastvalue: {{ z.lastvalue|number_format(2, ',', ' ')}}</li>
-                  <li>prevvalue: {{ z.prevvalue|number_format(2, ',', ' ') }}</li>
-                  <li>warning/alert: {{ z.warning ~ '/' ~ z.alert}}</li>
+                  <li>Lastvalue: {{ z.lastvalue|number_format(2, ',', ' ')}}</li>
+                  <li>Prevvalue: {{ z.prevvalue|number_format(2, ',', ' ') }}</li>
+                  <li>Warning/Alert: {{ z.warning ~ '/' ~ z.alert}}</li>
+                  <li>Coefficient: {{ z.coeff }}</li>
                   <li>
                       <a href="/state/del/{{ z.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
                       <a href="/state/update/{{ z.id }}"><i class="icon-wrench"></i></a>

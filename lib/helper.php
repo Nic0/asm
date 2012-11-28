@@ -152,10 +152,12 @@
 
     function avglevel ($zabbix, $config) {
         $total = 0;
+        $totalCoeff = 0;
         foreach ($zabbix as $key => $value) {
-            $total += $value->point;
+            $total += $value->point * $value->coeff;
+            $totalCoeff += $value->coeff;
         }
-        $total /=sizeof($zabbix);
+        $total /=($totalCoeff);
 
         if ($total < $config->html->value->warning) {
             $level = "text-success";
