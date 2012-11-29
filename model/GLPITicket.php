@@ -55,7 +55,6 @@
 
             $config = AsmConfig::getConfig();
 
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                 ->select()
                 ->from(array('t' => 'glpi_tickets'))
@@ -66,8 +65,8 @@
                 ->order($config->db->glpi->orderby . ' DESC')
                 ->where("status != 'closed' AND status != 'solved'")
                 ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
-            $results = $this->select($select);
 
+            $results = $this->select($select);
             $data = $this->createObjectFromArrayData($results);
 
             return $data;
@@ -77,7 +76,6 @@
 
             $config = AsmConfig::getConfig();
 
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                 ->select()
                 ->from(array('t' => 'glpi_tickets'))

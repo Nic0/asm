@@ -19,7 +19,7 @@
          * @return array tableau d'objet ZabbixHost comportant la totalité des hosts
          */
         public function getAll() {
-            $this->sql = new Sql($this->adapter);
+
             $select = $this->sql->select();
             $select->from('hosts')->columns(array('hostid', 'host'));
 

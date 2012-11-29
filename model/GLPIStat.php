@@ -26,12 +26,12 @@
 
         private function getMonthlyStats($month, $year, $letterMonth) {
 
-            $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from(array('t' => 'glpi_tickets'))
-                   ->where("MONTH(date) = ".$month." and YEAR(date) = ".$year)
-                   ->group('status')
-                   ->columns(array(new Expression('COUNT(*) as total'), 'status'));
+            $select = $this->sql
+                ->select()
+                ->from(array('t' => 'glpi_tickets'))
+                ->where("MONTH(date) = ".$month." and YEAR(date) = ".$year)
+                ->group('status')
+                ->columns(array(new Expression('COUNT(*) as total'), 'status'));
             $results = $this->select($select);
 
             $stat = new GLPIStat();

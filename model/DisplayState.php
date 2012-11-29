@@ -57,11 +57,12 @@
                     }
                 }
                 $this->sql = new Sql($this->adapter);
-                $select = $this->sql->select();
-                $select->from(array('i' => 'items'))
-                       ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('hostname' => 'host'))
-                       ->where($where)
-                       ->columns(array('itemname' => 'name', 'lastvalue', 'prevvalue', 'key_', 'itemid'));
+                $select = $this->sql
+                    ->select()
+                    ->from(array('i' => 'items'))
+                        ->join(array('h' => 'hosts'), 'i.hostid = h.hostid', array('hostname' => 'host'))
+                    ->where($where)
+                    ->columns(array('itemname' => 'name', 'lastvalue', 'prevvalue', 'key_', 'itemid'));
 
                 $results = $this->select($select);
 

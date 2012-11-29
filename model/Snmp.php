@@ -52,11 +52,12 @@
             $data = $this->getAll();
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from('snmp_input')
-                   ->group('snmp_id')
-                   ->where('unix_timestamp(date) > ' . (time() - (60*6)))
-                   ->columns(array(new Expression('(MAX(value) - MIN(value))/(TIMESTAMPDIFF(SECOND, MIN(date), MAX(date))) as value'), 'snmp_id'));
+            $select = $this->sql
+                ->select()
+                ->from('snmp_input')
+                ->group('snmp_id')
+                ->where('unix_timestamp(date) > ' . (time() - (60*6)))
+                ->columns(array(new Expression('(MAX(value) - MIN(value))/(TIMESTAMPDIFF(SECOND, MIN(date), MAX(date))) as value'), 'snmp_id'));
 
             $result = $this->select($select);
 
@@ -82,16 +83,16 @@
          * @return None
          */
         public function update ($id, $values) {
-            $this->sql = new Sql($this->adapter);
-            $update = $this->sql->update();
 
-            $update->table('snmp')->where('id='.$id)->set(array(
-                'ip' => $values['ip'],
-                'name' => $values['name'],
-                'community' => $values['community'],
-                'oid' => $values['oid'],
-                'warning' => $values['warning'],
-                'alert' => $values['alert']));
+            $update = $this->sql
+                ->update()
+                ->table('snmp')->where('id='.$id)->set(array(
+                    'ip' => $values['ip'],
+                    'name' => $values['name'],
+                    'community' => $values['community'],
+                    'oid' => $values['oid'],
+                    'warning' => $values['warning'],
+                    'alert' => $values['alert']));
             $statement = $this->sql->prepareStatementForSqlObject($update);
             $result = $statement->execute();
         }

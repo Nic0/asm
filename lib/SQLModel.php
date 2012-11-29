@@ -45,7 +45,7 @@
                'database' => $mysql->dbname,
                'driver_options'  => array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "utf8"')
             ));
-
+            $this->sql = new Sql($this->adapter);
         }
 
         /**
@@ -69,7 +69,6 @@
 
         public function getById ($id) {
 
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                 ->select()
                 ->from($this->get_table_name())
@@ -82,7 +81,6 @@
 
         public function getAll () {
 
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                 ->select()
                 ->from($this->get_table_name());
@@ -90,15 +88,14 @@
             return $this->createObjectFromArrayData($this->select($select));
         }
 
-        public function delete ($id, $table=null) {
+        public function delete ($id) {
 
-            $this->sql = new Sql($this->adapter);
             $delete = $this->sql
                ->delete()
                ->from($this->get_table_name())
                ->where('id='.$id);
-            $statement = $this->sql->prepareStatementForSqlObject($delete);
-            $result = $statement->execute();
+
+            $this->execute($delete);
         }
 
         public function create ($post) {
@@ -108,15 +105,18 @@
         public function save () {
             $objectArray = (array) $this;
             unset($objectArray['adapter']);
-            $this->sql = new Sql($this->adapter);
+
             $insert = $this->sql
                 ->insert()
                 ->into($this->get_table_name())
                 ->columns(array_keys($objectArray))
                 ->values($objectArray);
 
-            $statement = $this->sql->prepareStatementForSqlObject($insert);
-            $statement->execute();
+            $this->execute($insert);
+        }
+
+        public function execute ($request) {
+            $this->sql->prepareStatementForSqlObject($request)->execute();
         }
 
         private function get_table_name() {
