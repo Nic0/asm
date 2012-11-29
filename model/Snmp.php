@@ -2,8 +2,6 @@
 
     require_once '../lib/PhpAsmModel.php';
 
-    use Zend\Db\Sql\Sql;
-    use Zend\Db\Sql\Insert;
     use Zend\Db\Sql\Expression;
 
     /**
@@ -51,7 +49,6 @@
         public function getStats () {
             $data = $this->getAll();
 
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                 ->select()
                 ->from('snmp_input')

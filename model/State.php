@@ -3,9 +3,6 @@
     require_once '../lib/ZabbixModel.php';
     require_once '../lib/PhpAsmModel.php';
 
-    use Zend\Db\Sql\Sql;
-    use Zend\Db\Sql\Insert;
-
     /**
      * @brief Etat d'un élément Zabbix (base phpasm)
      */
@@ -38,7 +35,6 @@
          * @return None
          */
         public function update ($id, $values) {
-            $this->sql = new Sql($this->adapter);
             $update = $this->sql->update();
 
             $update->table('state')->where('id='.$id)->set(array(

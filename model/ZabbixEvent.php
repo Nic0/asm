@@ -2,8 +2,6 @@
 
     require_once '../lib/ZabbixModel.php';
 
-    use Zend\Db\Sql\Sql;
-
     /**
      * @brief Modèle pour un évènement (trigger) de Zabbix
      */
@@ -50,7 +48,6 @@
 
             $config = AsmConfig::getConfig();
 
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                    ->select()
                    ->from(array('e' => 'events'))

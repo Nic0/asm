@@ -2,7 +2,6 @@
 
     require_once '../lib/PhpAsmModel.php';
 
-    use Zend\Db\Sql\Sql;
     use Zend\Authentication\AuthenticationService;
     use Zend\Authentication\Adapter\Ldap as AuthAdapter;
 
@@ -48,7 +47,6 @@
          * @return string        Rôle de l'utilisateur (admin, null)
          */
         public function getRole ($login) {
-            $this->sql = new Sql($this->adapter);
             $select = $this->sql
                 ->select()
                 ->from('user')

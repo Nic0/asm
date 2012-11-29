@@ -2,8 +2,6 @@
 
     require_once '../lib/ZabbixModel.php';
 
-    use Zend\Db\Sql\Sql;
-
     /**
      * @brief Gestion d'un Host par Zabbix
      */
@@ -20,8 +18,10 @@
          */
         public function getAll() {
 
-            $select = $this->sql->select();
-            $select->from('hosts')->columns(array('hostid', 'host'));
+            $select = $this->sql
+                ->select()
+                ->from('hosts')
+                ->columns(array('hostid', 'host'));
 
             $result = $this->select($select);
             return $this->createObjectFromArrayData($result);

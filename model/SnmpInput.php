@@ -2,10 +2,6 @@
 
     require_once '../lib/PhpAsmModel.php';
 
-    use Zend\Db\Sql\Sql;
-    use Zend\Db\Sql\Insert;
-    use Zend\Db\Sql\Expression;
-
     /**
      * @brief Stockage des données pour un SNMP donné
      */

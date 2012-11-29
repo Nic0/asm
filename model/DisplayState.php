@@ -1,6 +1,5 @@
 <?php
 
-    use Zend\Db\Sql\Sql;
     require_once '../model/State.php';
 
     /**
@@ -56,7 +55,7 @@
                         $where .= "i.itemid = '" . $state->itemid . "' OR ";
                     }
                 }
-                $this->sql = new Sql($this->adapter);
+
                 $select = $this->sql
                     ->select()
                     ->from(array('i' => 'items'))

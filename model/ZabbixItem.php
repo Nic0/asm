@@ -2,8 +2,6 @@
 
     require_once '../lib/ZabbixModel.php';
 
-    use Zend\Db\Sql\Sql;
-
     /**
      * @brief Gestion d'un Item par Zabbix
      */
@@ -26,7 +24,7 @@
          * @return ZabbixItem   Item correspondant
          */
         public function getByHost($hostid) {
-            $this->sql = new Sql($this->adapter);
+
             $select = $this->sql->select();
             $select->from('items')
                    ->where("hostid = '" . $hostid . "' AND lastvalue IS NOT NULL")

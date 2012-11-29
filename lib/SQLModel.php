@@ -18,6 +18,7 @@
          * avec la base de données
          */
         public $adapter;
+        public $sql;
 
         /**
          * @brief création de la liaison à la base de données
