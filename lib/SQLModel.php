@@ -90,12 +90,10 @@
 
         public function delete ($id) {
 
-            $delete = $this->sql
+            $this->execute($this->sql
                ->delete()
                ->from($this->get_table_name())
-               ->where('id='.$id);
-
-            $this->execute($delete);
+               ->where('id='.$id));
         }
 
         public function create ($post) {
@@ -106,13 +104,11 @@
             $objectArray = (array) $this;
             unset($objectArray['adapter']);
 
-            $insert = $this->sql
+            $this->execute($this->sql
                 ->insert()
                 ->into($this->get_table_name())
                 ->columns(array_keys($objectArray))
-                ->values($objectArray);
-
-            $this->execute($insert);
+                ->values($objectArray));
         }
 
         public function execute ($request) {

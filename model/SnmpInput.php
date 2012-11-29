@@ -29,17 +29,16 @@
 
             $value = snmp_get_value($snmp->ip, $snmp->community, $snmp->oid);
 
-            $this->sql = new Sql($this->adapter);
-            $insert = $this->sql
+            $this->execute($this->sql
                 ->insert()
                 ->into('snmp_input')
                 ->columns(array('snmp_id', 'value'))
                 ->values(array(
                     'snmp_id'   => $snmp->id,
                     'value'     => $value
-                ));
+                ))
 
-            $this->execute($insert);
+            );
         }
 
         /**
@@ -47,13 +46,12 @@
          * @return None
          */
         public function purge () {
-            $this->sql = new Sql($this->adapter);
-            $delete = $this->sql
+
+            $this->execute($this->sql
                 ->delete()
                 ->from('snmp_input')
-                ->where('unix_timestamp(date) < ' . (time() - (60*60)));
-
-            $this->execute($delete);
+                ->where('unix_timestamp(date) < ' . (time() - (60*60)))
+            );
         }
 
     }
