@@ -67,36 +67,33 @@
             return $results;
         }
 
-        public function getById ($id, $class=null) {
-
-            if ($class === null) $class = strtolower(get_called_class());
+        public function getById ($id) {
 
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
-            $select->from($class)->where("id=".$id);
+            $select->from($this->get_table_name())
+                   ->where("id=".$id);
             $results = $this->select($select);
 
             return $this->createObjectFromSingleData($results[0]);
 
         }
 
-        public function getAll ($table=null, $class=null) {
-
-            if ($class === null) $class = get_called_class();
-            if ($table === null) $table = strtolower(get_called_class());
+        public function getAll () {
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select()->from($table);
+            $select = $this->sql->select()
+                                ->from($this->get_table_name());
 
-            return $this->createObjectFromArrayData($this->select($select), $class);
+            return $this->createObjectFromArrayData($this->select($select));
         }
 
         public function delete ($id, $table=null) {
 
-            if ($table === null) $table = strtolower(get_called_class());
-
             $this->sql = new Sql($this->adapter);
-            $delete = $this->sql->delete()->from($table)->where('id='.$id);
+            $delete = $this->sql->delete()
+                           ->from($this->get_table_name())
+                           ->where('id='.$id);
             $statement = $this->sql->prepareStatementForSqlObject($delete);
             $result = $statement->execute();
         }
@@ -110,12 +107,16 @@
             unset($objectArray['adapter']);
             $this->sql = new Sql($this->adapter);
             $insert = $this->sql->insert();
-            $insert->into(strtolower(get_called_class()))
+            $insert->into($this->get_table_name())
                    ->columns(array_keys($objectArray))
                    ->values($objectArray);
 
             $statement = $this->sql->prepareStatementForSqlObject($insert);
             $statement->execute();
+        }
+
+        private function get_table_name() {
+            return strtolower(get_called_class());
         }
 
     }
