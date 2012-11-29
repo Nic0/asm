@@ -21,8 +21,7 @@
                 $this->addData('host', $zHost->getAll())->render();
             } else {
                 $state = new State();
-                $state = $state->create($_POST);
-                $state->save();
+                $state->create($_POST)->save();
                 flash("L'ajout à été effectué", 'success');
                 $this->redirect('/');
             }

@@ -103,7 +103,7 @@
         public function save () {
             $objectArray = (array) $this;
             unset($objectArray['adapter']);
-
+            unset($objectArray['sql']);
             $this->execute($this->sql
                 ->insert()
                 ->into($this->get_table_name())
