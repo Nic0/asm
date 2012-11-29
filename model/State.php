@@ -39,7 +39,7 @@
 
             $this->sql = new Sql($this->adapter);
             $insert = $this->sql->insert();
-            $insert->into('states')
+            $insert->into('state')
                    ->columns(array('name', 'hostid', 'itemid', 'warning', 'alert', 'coeff'))
                    ->values(array(
                         'name'      => $this->name,
@@ -64,7 +64,7 @@
             $this->sql = new Sql($this->adapter);
             $update = $this->sql->update();
 
-            $update->table('states')->where('id='.$id)->set(array(
+            $update->table('state')->where('id='.$id)->set(array(
                 'name' => $values['name'],
                 'warning' => $values['warning'],
                 'alert' => $values['alert'],

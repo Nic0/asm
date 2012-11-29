@@ -37,7 +37,7 @@
             $glpi = new GLPIStat();
             $snmp = new Snmp();
 
-            $this->addData('zabbix', $state->getAll('states', 'DisplayState'))
+            $this->addData('zabbix', $state->getAll('states'))
                  ->addData('glpi', $glpi->getStats())
                  ->addData('snmp', $snmp->getStats())
                  ->render();
