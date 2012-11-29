@@ -36,7 +36,6 @@
 
         /**
          * @brief Sauvegarde d'un élément SNMP
-         * @param  array    $post données à sauvegardé, issue d'un POST
          * @return None
          */
         public function save () {
