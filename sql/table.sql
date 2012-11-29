@@ -45,7 +45,7 @@ CREATE TABLE snmp_input (
 --
 
 INSERT INTO user values ('paris_n', 'admin');
-INSERT INTO user values ('lesouef_e', 'admin');
+INSERT INTO user values ('elesouef', 'admin');
 
 INSERT INTO `snmp` (`ip`, `name`, `community`, `oid`, `warning`, `alert`, `coeff`) VALUES
 ('10.0.72.1', 'Renater download', 'public', '.1.3.6.1.2.1.2.2.1.10.1', 50, 70, 1),
