@@ -18,11 +18,12 @@
         public function add () {
             if(isPost()) {
                 $snmp = new Snmp();
-                $snmp->save($_POST);
+                $snmp->create($_POST)->save();
                 flash('Élément SNMP rajouté', 'success');
                 $this->redirect('/');
             }
         }
+
         /**
          * @brief fournire des données dans la base snmp_input, en fonction des snmp disponible
          * @return None
@@ -30,7 +31,7 @@
          */
         public function feed () {
             $snmp = new Snmp();
-            $snmpList = $snmp->getAll('snmp', 'Snmp');
+            $snmpList = $snmp->getAll();
 
             $si = new SnmpInput();
             foreach ($snmpList as $snmp) {
@@ -58,7 +59,7 @@
         public function delete ($id) {
             if (loginRole() == 'admin') {
                 $snmp = new Snmp();
-                $snmp->delete($id, 'snmp');
+                $snmp->delete($id);
                 flash('Élément SNMP supprimé', 'success');
                 $this->redirect('/');
             } else {
@@ -79,7 +80,7 @@
                     $this->redirect('/');
                 } else {
                     $snmp = new Snmp();
-                    $this->addData('snmp', $snmp->getById($id, 'snmp'));
+                    $this->addData('snmp', $snmp->getById($id));
                     $this->render();
                 }
             } else {

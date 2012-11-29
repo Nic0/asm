@@ -85,10 +85,13 @@
             }
         }
 
-        public function getAll ($table, $class=null) {
+        public function getAll ($table=null, $class=null) {
 
             if ($class === null) {
                 $class = get_called_class();
+            }
+            if ($table === null) {
+                $table = strtolower(get_called_class());
             }
 
             $this->sql = new Sql($this->adapter);
@@ -100,8 +103,8 @@
         }
 
         public function delete ($id, $table=null) {
-            if ($class === null) {
-                $class = strtolower(get_called_class());
+            if ($table === null) {
+                $table = strtolower(get_called_class());
             }
 
             $this->sql = new Sql($this->adapter);
@@ -109,6 +112,23 @@
             $delete->from($table)->where('id='.$id);
             $statement = $this->sql->prepareStatementForSqlObject($delete);
             $result = $statement->execute();
+        }
+
+        public function create ($post) {
+            return $this->createObjectFromSingleData($post);
+        }
+
+        public function save () {
+            $objectArray = (array) $this;
+            unset($objectArray['adapter']);
+            $this->sql = new Sql($this->adapter);
+            $insert = $this->sql->insert();
+            $insert->into(strtolower(get_called_class()))
+                   ->columns(array_keys($objectArray))
+                   ->values($objectArray);
+
+            $statement = $this->sql->prepareStatementForSqlObject($insert);
+            $statement->execute();
         }
 
     }

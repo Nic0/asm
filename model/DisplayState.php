@@ -44,7 +44,8 @@
          */
         public function getAll () {
             $state = new State();
-            $data = $state->getAll('state', 'State');
+            $data = $state->getAll();
+
             if(!empty($data)) {
                 $where = '';
                 for ($i=0; $i < sizeof($data); $i++) {

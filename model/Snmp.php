@@ -39,24 +39,10 @@
          * @param  array    $post données à sauvegardé, issue d'un POST
          * @return None
          */
-        public function save ($post) {
-            $snmp = $this->createObjectFromSingleData($post);
-
-            $this->sql = new Sql($this->adapter);
-            $insert = $this->sql->insert();
-            $insert->into('snmp')
-                   ->columns(array('ip', 'community', 'name', 'oid', 'warning', 'alert'))
-                   ->values(array(
-                        'ip'        => $snmp->ip,
-                        'community' => $snmp->community,
-                        'name'      => $snmp->name,
-                        'oid'       => $snmp->oid,
-                        'warning'   => $snmp->warning,
-                        'alert'     => $snmp->alert
-                    ));
-
-            $statement = $this->sql->prepareStatementForSqlObject($insert);
-            $statement->execute();
+        public function save () {
+            unset($this->value);
+            unset($this->point);
+            parent::save();
         }
 
         /**
@@ -64,7 +50,7 @@
          * @return array Les statistiques
          */
         public function getStats () {
-            $data = $this->getAll('snmp', 'Snmp');
+            $data = $this->getAll();
 
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();

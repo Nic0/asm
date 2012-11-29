@@ -32,29 +32,6 @@
         public $coeff;
 
         /**
-         * @brief Sauvegarde d'un état dans la table states
-         * @return None
-         */
-        public function save () {
-
-            $this->sql = new Sql($this->adapter);
-            $insert = $this->sql->insert();
-            $insert->into('state')
-                   ->columns(array('name', 'hostid', 'itemid', 'warning', 'alert', 'coeff'))
-                   ->values(array(
-                        'name'      => $this->name,
-                        'hostid'    => $this->hostid,
-                        'itemid'    => $this->itemid,
-                        'warning'   => $this->warning,
-                        'alert'     => $this->alert,
-                        'coeff'     => $this->coeff
-                    ));
-
-            $statement = $this->sql->prepareStatementForSqlObject($insert);
-            $statement->execute();
-        }
-
-        /**
          * @brief Mise à jour d'un état
          * @param  int   $id     identifiant de l'état
          * @param  array $values valuers à mettre à jour

@@ -37,7 +37,7 @@
             $glpi = new GLPIStat();
             $snmp = new Snmp();
 
-            $this->addData('zabbix', $state->getAll('states'))
+            $this->addData('zabbix', $state->getAll())
                  ->addData('glpi', $glpi->getStats())
                  ->addData('snmp', $snmp->getStats())
                  ->render();
@@ -62,7 +62,7 @@
         public function delete ($id) {
             if (loginRole() == 'admin') {
                 $state = new State();
-                $state->delete($id, 'states');
+                $state->delete($id);
                 flash("La suppression à été effectué", 'success');
                 $this->redirect('/');
             } else {
