@@ -56,6 +56,6 @@
                 ->columns(array('role'));
             $result = $this->select($select);
 
-            return $result->current();
+            return $result->current()->role;
         }
     }
