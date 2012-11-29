@@ -70,20 +70,22 @@
         public function getById ($id) {
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from($this->get_table_name())
-                   ->where("id=".$id);
-            $results = $this->select($select);
+            $select = $this->sql
+                ->select()
+                ->from($this->get_table_name())
+                ->where("id=".$id);
+            $result = $this->select($select)->current();
 
-            return $this->createObjectFromSingleData($results[0]);
+            return $this->createObjectFromSingleData($result);
 
         }
 
         public function getAll () {
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select()
-                                ->from($this->get_table_name());
+            $select = $this->sql
+                ->select()
+                ->from($this->get_table_name());
 
             return $this->createObjectFromArrayData($this->select($select));
         }
@@ -91,9 +93,10 @@
         public function delete ($id, $table=null) {
 
             $this->sql = new Sql($this->adapter);
-            $delete = $this->sql->delete()
-                           ->from($this->get_table_name())
-                           ->where('id='.$id);
+            $delete = $this->sql
+               ->delete()
+               ->from($this->get_table_name())
+               ->where('id='.$id);
             $statement = $this->sql->prepareStatementForSqlObject($delete);
             $result = $statement->execute();
         }
@@ -106,10 +109,11 @@
             $objectArray = (array) $this;
             unset($objectArray['adapter']);
             $this->sql = new Sql($this->adapter);
-            $insert = $this->sql->insert();
-            $insert->into($this->get_table_name())
-                   ->columns(array_keys($objectArray))
-                   ->values($objectArray);
+            $insert = $this->sql
+                ->insert()
+                ->into($this->get_table_name())
+                ->columns(array_keys($objectArray))
+                ->values($objectArray);
 
             $statement = $this->sql->prepareStatementForSqlObject($insert);
             $statement->execute();

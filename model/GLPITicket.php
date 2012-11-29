@@ -56,15 +56,16 @@
             $config = AsmConfig::getConfig();
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from(array('t' => 'glpi_tickets'))
-                   ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array('type'))
-                   ->join(array('u' => 'glpi_users'), 'r.users_id = u.id', array('realname', 'firstname'))
-                   ->limit($config->db->glpi->limit)
-                   ->group('t.id')
-                   ->order($config->db->glpi->orderby . ' DESC')
-                   ->where("status != 'closed' AND status != 'solved'")
-                   ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
+            $select = $this->sql
+                ->select()
+                ->from(array('t' => 'glpi_tickets'))
+                    ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array('type'))
+                    ->join(array('u' => 'glpi_users'), 'r.users_id = u.id', array('realname', 'firstname'))
+                ->limit($config->db->glpi->limit)
+                ->group('t.id')
+                ->order($config->db->glpi->orderby . ' DESC')
+                ->where("status != 'closed' AND status != 'solved'")
+                ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
             $results = $this->select($select);
 
             $data = $this->createObjectFromArrayData($results);
@@ -77,15 +78,16 @@
             $config = AsmConfig::getConfig();
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from(array('t' => 'glpi_tickets'))
-                   ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array('type'))
-                   ->join(array('u' => 'glpi_users'), 'r.users_id = u.id', array('realname', 'firstname'))
-                   ->limit($config->db->glpi->limit)
-                   ->group('t.id')
-                   ->order($config->db->glpi->orderby . ' DESC')
-                   ->where("status != 'closed' AND status != 'solved' AND due_date IS NOT NULL AND due_date <= CURRENT_TIMESTAMP")
-                   ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
+            $select = $this->sql
+                ->select()
+                ->from(array('t' => 'glpi_tickets'))
+                    ->join(array('r' => 'glpi_tickets_users'), 't.id = r.tickets_id', array('type'))
+                    ->join(array('u' => 'glpi_users'), 'r.users_id = u.id', array('realname', 'firstname'))
+                ->limit($config->db->glpi->limit)
+                ->group('t.id')
+                ->order($config->db->glpi->orderby . ' DESC')
+                ->where("status != 'closed' AND status != 'solved' AND due_date IS NOT NULL AND due_date <= CURRENT_TIMESTAMP")
+                ->columns(array('date', 'name', 'content', 'priority', 'status', 'date_mod'));
             $results = $this->select($select);
 
             $data = $this->createObjectFromArrayData($results);
