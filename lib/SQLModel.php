@@ -68,48 +68,35 @@
         }
 
         public function getById ($id, $class=null) {
-            if ($class === null) {
-                $class = strtolower(get_called_class());
-            }
+
+            if ($class === null) $class = strtolower(get_called_class());
 
             $this->sql = new Sql($this->adapter);
             $select = $this->sql->select();
-            $select->from($class)
-                   ->where("id=".$id);
-
+            $select->from($class)->where("id=".$id);
             $results = $this->select($select);
 
+            return $this->createObjectFromSingleData($results[0]);
 
-            foreach ($results as $row) {
-                return $this->createObjectFromSingleData($row);
-            }
         }
 
         public function getAll ($table=null, $class=null) {
 
-            if ($class === null) {
-                $class = get_called_class();
-            }
-            if ($table === null) {
-                $table = strtolower(get_called_class());
-            }
+            if ($class === null) $class = get_called_class();
+            if ($table === null) $table = strtolower(get_called_class());
 
             $this->sql = new Sql($this->adapter);
-            $select = $this->sql->select();
-            $select->from($table);
-            $results = $this->select($select);
+            $select = $this->sql->select()->from($table);
 
-            return $this->createObjectFromArrayData($results, $class);
+            return $this->createObjectFromArrayData($this->select($select), $class);
         }
 
         public function delete ($id, $table=null) {
-            if ($table === null) {
-                $table = strtolower(get_called_class());
-            }
+
+            if ($table === null) $table = strtolower(get_called_class());
 
             $this->sql = new Sql($this->adapter);
-            $delete = $this->sql->delete();
-            $delete->from($table)->where('id='.$id);
+            $delete = $this->sql->delete()->from($table)->where('id='.$id);
             $statement = $this->sql->prepareStatementForSqlObject($delete);
             $result = $statement->execute();
         }
