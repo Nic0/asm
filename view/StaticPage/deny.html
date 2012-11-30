@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}Log de Deny{% endblock %}
+
+{% block content %}
+
+<div class="pane ui-layout-center">
+    <div class="container">
+    {% include 'partial/message.html' %}
+        <div class="row">
+            <div class="span8">
+                <h2>Classement IP Source</h2>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Source</th>
+                        <th>Destination</th>
+                    </tr>
+                {% for key, d in deny %}
+                    <tr>
+                        <td><h3>{{ key }} <small>({{ d.compteur }})</small></h3></td>
+                        <td>
+                            {% for ip, nbr_ip in d %}
+                                {% if ip != 'compteur' %}
+                                    {{ ip }}<span class="occurence">{{ nbr_ip }}</span><br />
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+
+            <div class="span4">
+                <h2>IP Destination</h2>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>IP de destination</th>
+                        <th>Occurence</th>
+                    </tr>
+                    {% for ip, count in dst %}
+                    <tr>
+                        <td>{{ ip }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
