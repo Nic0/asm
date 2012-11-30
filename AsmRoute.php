@@ -126,6 +126,17 @@
                     'action' => 'ajax_item',
                     'template' => 'ajax_item'
                 ),
+
+                /**
+                 * Deny
+                 */
+
+                '/deny' => array(
+                    'controller' =>'StaticPage',
+                    'action' => 'deny',
+                    'template' => 'deny'
+                ),
+
                 /**
                  * Route pour USER
                  */

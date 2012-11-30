@@ -76,3 +76,8 @@ table td {
 .graph {
     height: 200px;
 }
+
+.occurence {
+    color:#666;
+    float: right;
+}

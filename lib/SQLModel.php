@@ -18,6 +18,8 @@
          * avec la base de données
          */
         public $adapter;
+
+        /** @brief Sql connection provenant de Zend\Db\Sql\Sql */
         public $sql;
 
         /**
@@ -37,7 +39,7 @@
         public function __construct($name) {
             $mysql = AsmConfig::getConfig()->mysql->$name;
 
-            $this->adapter = new Zend\Db\Adapter\Adapter(array(
+            $this->adapter = new Adapter(array(
                'driver'   => $mysql->driver,
                'host'     => $mysql->host,
                'port'     => $mysql->port,
