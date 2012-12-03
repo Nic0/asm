@@ -1,3 +1,0 @@
-[2012-12-03 14:44:02] Codeception.ALERT: Missing argument 2 for WebGuy::selectOption(), called in /home/nicolas/public_html/asm/tests/acceptance/AddZabbixCept.php on line 9 and defined [] []
-[2012-12-03 14:44:02] Codeception.INFO: # ERROR # [] []
-[2012-12-03 14:44:02] Codeception.INFO: PASSED [] []
