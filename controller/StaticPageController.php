@@ -99,7 +99,8 @@
             $file_handle = fopen($file, "r");
 
             $ip_regex = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
-            $regexp = '/Deny.*src inside:('.$ip_regex.').*dst outside:('.$ip_regex.'\/\d{1,3})/';
+            //$regexp = '/Deny.*src inside:('.$ip_regex.').*dst outside:('.$ip_regex.'\/\d{1,3})/';
+            $regexp = '/Deny.*src inside:(.*)\/\d{1,5}.*dst outside:('.$ip_regex.'\/\d{1,5})/';
             $data = array();
             $dstlist = array();
             while (!feof($file_handle)) {

@@ -26,6 +26,7 @@
             <p>Valeurs exprimé en Mb/s</p>
             {{ input('warning', 'warning', snmp.warning, 'warning')|raw }}
             {{ input('alert', 'alert', snmp.alert, 'error')|raw }}
+            {{ input('coefficient', 'coeff', snmp.coeff)|raw }}
             {{ submit('Mettre à jour')|raw }}
 
         </form>

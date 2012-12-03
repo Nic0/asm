@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/jquery-ui.css" />
+    <link rel="stylesheet" href="/css/layout-default.css" />
+    <title>État des services</title>
+
+    <script src="/js/jquery.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/jquery.layout-latest.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/jscolor/jscolor.js"></script></head>
+<body>
+    <div id="container" style="font-size: 0.85em">
+        <div class="pane ui-layout-north">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/">ASM</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+                          <li><a href="/dashboard"><i class="icon-th-list"></i> Dashboard</a></li>
+              <li><a href="/logout"><i class="icon-user"></i> Logout (paris_n)</a></li>
+              <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
+                      </ul>
+          <ul class="nav pull-right">
+            <li class="pull-right"><a name="update">10:57</a></li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+        <div class="pane ui-layout-center">
+  <div class="container">
+  
+    <div class="row">
+        <div class="alert alert-success"><strong>Etat Général des Services:</strong> Les services se portent bien. ( 0.36363636363636 + 0 + 0) / (1 + 1 + 1 ) = 0,12</div>
+
+      <div class="span4">
+        <h2 class="text-success">Serveurs <small>Zabbix</small></h2>
+        <ul>
+                      <li class="text-success">
+                              Espace Libre Bureautique
+                          </li>
+                              <ul>
+                  <li>Lastvalue: 46,00</li>
+                  <li>Prevvalue: 46,00</li>
+                  <li>Warning/Alert: 50/70</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/state/del/1" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/state/update/1"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-warning">
+                              description perso, load5 Xen10
+                          </li>
+                              <ul>
+                  <li>Lastvalue: 0,33</li>
+                  <li>Prevvalue: 0,33</li>
+                  <li>Warning/Alert: 0.2/0.8</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/state/del/2" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/state/update/2"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-warning">
+                              Charge du processeur du Courrier
+                          </li>
+                              <ul>
+                  <li>Lastvalue: 6,95</li>
+                  <li>Prevvalue: 11,67</li>
+                  <li>Warning/Alert: 5/10</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/state/del/3" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/state/update/3"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-success">
+                              Charge sur Auth
+                          </li>
+                              <ul>
+                  <li>Lastvalue: 0,02</li>
+                  <li>Prevvalue: 0,01</li>
+                  <li>Warning/Alert:  0.016580/ 0.02</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/state/del/4" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/state/update/4"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-success">
+                              Espace disponible sur Xen10
+                          </li>
+                              <ul>
+                  <li>Lastvalue: 17,28</li>
+                  <li>Prevvalue: 17,41</li>
+                  <li>Warning/Alert: 10/5</li>
+                  <li>Coefficient: 1.5</li>
+                  <li>
+                      <a href="/state/del/5" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/state/update/5"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                </ul>
+      </div>
+
+      <div class="span4">
+        <h2 class="text-success">Accès Internet <small>SNMP</small></h2>
+        <ul>
+                      <li class="text-success">Renater download</li>
+                              <ul>
+                  <li>IP: 10.0.72.1</li>
+                  <li>value (b/s): 404 993</li>
+                  <li>warning/alert (Mb/s): 50/70</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/snmp/del/1" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/snmp/update/1"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-success">Renater upload</li>
+                              <ul>
+                  <li>IP: 10.0.72.1</li>
+                  <li>value (b/s): 2 317 822</li>
+                  <li>warning/alert (Mb/s): 5/70</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/snmp/del/2" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/snmp/update/2"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-success">Adista download</li>
+                              <ul>
+                  <li>IP: 10.0.72.9</li>
+                  <li>value (b/s): 6 050 525</li>
+                  <li>warning/alert (Mb/s): 50/70</li>
+                  <li>Coefficient: 1</li>
+                  <li>
+                      <a href="/snmp/del/3" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/snmp/update/3"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                    <li class="text-success">Adista upload</li>
+                              <ul>
+                  <li>IP: 10.0.72.9</li>
+                  <li>value (b/s): 546 172</li>
+                  <li>warning/alert (Mb/s): 50/70</li>
+                  <li>Coefficient: 1.5</li>
+                  <li>
+                      <a href="/snmp/del/4" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                      <a href="/snmp/update/4"><i class="icon-wrench"></i></a>
+                  </li>
+                </ul>
+                                </ul>
+      </div>
+
+      <div class="span4">
+        <h2 class="text-success">Tickets <small>GLPI</small></h2>
+        <table class="table table-bordered">
+            <tr >
+                <th>Mois</th>
+                <th>Total</th>
+                <th>En attente</th>
+                <th>Assigné</th>
+            </tr>
+                  <tr class="">
+            <td>November</td>
+            <td>363</td>
+            <td>13</td>
+            <td>47</td>
+          </tr>
+                  <tr class="success">
+            <td>December</td>
+            <td>6</td>
+            <td></td>
+            <td>5</td>
+          </tr>
+                </table>
+      </div>
+    </div>
+
+      <div class="span12">
+      <a href="/state/add"><button class="btn btn-success">Ajout de règles</button></a>
+    </div>
+  
+    </div>
+</div>
+    </div>
+</body>
+</html>

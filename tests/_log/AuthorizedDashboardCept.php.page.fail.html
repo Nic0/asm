@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/jquery-ui.css" />
+    <link rel="stylesheet" href="/css/layout-default.css" />
+    <title>ASM - Dashboard</title>
+
+    <script src="/js/jquery.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/jquery.layout-latest.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/jscolor/jscolor.js"></script></head>
+<body>
+    <div id="container" style="font-size: 0.85em">
+        <div class="pane ui-layout-north">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/">ASM</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+                          <li><a href="/dashboard"><i class="icon-th-list"></i> Dashboard</a></li>
+              <li><a href="/logout"><i class="icon-user"></i> Logout (paris_n)</a></li>
+              <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
+                      </ul>
+          <ul class="nav pull-right">
+            <li class="pull-right"><a name="update">11:37</a></li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+        
+    <div class="pane ui-layout-west">
+                    <div id="snmp">
+                <div class="graph">
+    <div id="renater"></div>
+    <div id="adista"></div>
+</div>            </div>
+                            <div id="zabbix">
+                <table class="table
+    table-condensed    table-bordered">
+    <caption>Triggers levés par Zabbix</caption>
+    <thead>
+        <tr>
+            <th>Host</th>
+            <th>Description</th>
+            <th>Dernier changement</th>
+        </tr>
+    </thead>
+            <tr style='background-color: #FFBFBF' 
+                     >
+
+            <td>
+                Msbd64
+            </td>
+            <td>
+                Espace disque faible sur Msbd64 volume d:
+            </td>
+            <td>
+                01/12/12 22:21
+            </td>
+        </tr>
+            <tr style='background-color: #FFCECE' 
+                     >
+
+            <td>
+                Bes
+            </td>
+            <td>
+                Service BB Polling Engine indisponible sur Bes
+            </td>
+            <td>
+                20/11/12 17:06
+            </td>
+        </tr>
+            <tr style='background-color: #FFBFBF' 
+                     >
+
+            <td>
+                Accueil-Tel
+            </td>
+            <td>
+                Espace disque faible sur Accueil-Tel volume c:
+            </td>
+            <td>
+                01/10/12 12:02
+            </td>
+        </tr>
+    </table>            </div>
+                            <div id="badpasswd">
+                <table class="table
+    table-condensed    table-bordered">
+    <caption>Comptes bloqués sur LDAP</caption>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Login</th>
+            <th>Date du blocage</th>
+        </tr>
+    </thead>
+    <tbody>
+                    <tr class="badpasswd">
+                <td>Poste formation 4</td>
+                <td>poste4</td>
+                <td>30/10/2012 09:53</td>
+            </tr>
+                    <tr class="badpasswd">
+                <td>Poste formation 12</td>
+                <td>poste12</td>
+                <td>30/10/2012 09:47</td>
+            </tr>
+                    <tr class="badpasswd">
+                <td>Invité</td>
+                <td>Invité</td>
+                <td>05/03/2012 09:55</td>
+            </tr>
+            </tbody>
+</table>            </div>
+            </div>
+
+    <div class="pane ui-layout-center">
+                            <div id="glpi">
+                <table class="table
+    table-condensed    table-bordered">
+    <caption>Tickets GLPI</caption>
+    <thead>
+        <tr>
+            <th>Demandeur</th>
+            <th>Description</th>
+            <th>Ouverture</th>
+            <th>Dernière modification</th>
+        </tr>
+    </thead>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                LE MASSON Corinne
+                            </td>
+            <td>
+                                    Pret de video
+                            </td>
+            <td>03/12/12 11:04</td>
+            <td>03/12/12 11:15</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                LEMOINE Marianne
+                            </td>
+            <td>
+                                    suppression adresse mail &quot;Générale de l&#039;...
+                            </td>
+            <td>03/12/12 11:02</td>
+            <td>03/12/12 11:04</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                SCEBAT Claude
+                            </td>
+            <td>
+                                     fichier RMH 295.
+                            </td>
+            <td>03/12/12 11:00</td>
+            <td>03/12/12 11:02</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                RAOUS Sophie
+                            </td>
+            <td>
+                                    Demande de confirmation de résa matériel...
+                            </td>
+            <td>03/12/12 10:57</td>
+            <td>03/12/12 11:00</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                MARELLE Caroline
+                            </td>
+            <td>
+                                    Ajout de desitnataire dans carnet adress...
+                            </td>
+            <td>30/11/12 14:53</td>
+            <td>03/12/12 10:22</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                SAIDA Françoise
+                            </td>
+            <td>
+                                    demande cartouche
+                            </td>
+            <td>03/12/12 10:02</td>
+            <td>03/12/12 10:10</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                BERTHET Noëmie
+                            </td>
+            <td>
+                                    lenteur/plantage de sa session
+                            </td>
+            <td>03/12/12 09:57</td>
+            <td>03/12/12 10:02</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                BURNOUF Maryse
+                            </td>
+            <td>
+                                    Restauration de fichier
+                            </td>
+            <td>03/12/12 09:56</td>
+            <td>03/12/12 09:57</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                MARELLE Caroline
+                            </td>
+            <td>
+                                    Problème d&#039;impression
+                            </td>
+            <td>03/12/12 09:55</td>
+            <td>03/12/12 09:56</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                DESCHREVEL Claudine
+                            </td>
+            <td>
+                                    Problème impression sous excel
+                            </td>
+            <td>03/12/12 09:24</td>
+            <td>03/12/12 09:29</td>
+        </tr>
+    </table>            </div>
+                            <div id="glpi_due">
+                <table class="table
+    table-condensed    table-bordered">
+    <caption>Tickets GLPI, Date d'échéance dépassé</caption>
+    <thead>
+        <tr>
+            <th>Demandeur</th>
+            <th>Description</th>
+            <th>Ouverture</th>
+            <th>Dernière modification</th>
+        </tr>
+    </thead>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                TIRILLY Emmanuelle
+                            </td>
+            <td>
+                                    word plante  lors copier coller
+                            </td>
+            <td>27/11/12 10:54</td>
+            <td>03/12/12 08:40</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                RAVENEL Katia
+                            </td>
+            <td>
+                                    Entrainement papier
+                            </td>
+            <td>28/11/12 10:04</td>
+            <td>03/12/12 08:40</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                JACOBS DE GOUVILLE Laurence
+                            </td>
+            <td>
+                                    pb audio
+                            </td>
+            <td>29/11/12 11:21</td>
+            <td>03/12/12 08:40</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                BRAUN Lauriane
+                            </td>
+            <td>
+                                    Souci à l&#039;impression : nécessite d&#039;appuy...
+                            </td>
+            <td>29/11/12 15:48</td>
+            <td>03/12/12 08:40</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                FLAUSS Isabelle
+                            </td>
+            <td>
+                                    maj CD REEF
+                            </td>
+            <td>19/11/12 09:20</td>
+            <td>30/11/12 12:59</td>
+        </tr>
+            <tr style='background-color: #FFCECE' >
+            <td>
+                                MARIE ludovic
+                            </td>
+            <td>
+                                    Réinitialisation mot de passe / Mr Marie...
+                            </td>
+            <td>30/11/12 09:52</td>
+            <td>30/11/12 09:56</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                CHAUVOIS Raphaël
+                            </td>
+            <td>
+                                    mails supprimés de son ipad
+                            </td>
+            <td>27/11/12 15:08</td>
+            <td>30/11/12 08:49</td>
+        </tr>
+            <tr style='background-color: #FFBFBF' >
+            <td>
+                                BURNOUF Maryse
+                            </td>
+            <td>
+                                    pb pdf
+                            </td>
+            <td>22/10/12 10:37</td>
+            <td>29/11/12 16:40</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                MERRET Patrick
+                            </td>
+            <td>
+                                    Demande des mise à jour logiciel
+                            </td>
+            <td>26/11/12 11:46</td>
+            <td>29/11/12 14:53</td>
+        </tr>
+            <tr style='background-color: #F4F10B' >
+            <td>
+                                CHARBONNIER Annick
+                            </td>
+            <td>
+                                    espace de stockage (collaborateur de gro...
+                            </td>
+            <td>28/11/12 15:18</td>
+            <td>29/11/12 13:50</td>
+        </tr>
+    </table>            </div>
+                    </div>
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/graph.js"></script>
+    <script src="/js/update.js"></script>
+    </div>
+</body>
+</html>

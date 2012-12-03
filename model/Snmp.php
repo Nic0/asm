@@ -89,7 +89,8 @@
                     'community' => $values['community'],
                     'oid' => $values['oid'],
                     'warning' => $values['warning'],
-                    'alert' => $values['alert']));
+                    'coeff' => $values['coeff'],
+                    'warning' => $values['warning']));
             $statement = $this->sql->prepareStatementForSqlObject($update);
             $result = $statement->execute();
         }

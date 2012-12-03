@@ -34,7 +34,7 @@
         '<div class="control-group '.$warning.'">'
             .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
             .'<div class="controls">'
-            .'<input type="text" name="'.$name.'" '
+            .'<input id="'.$name.'" type="text" name="'.$name.'" '
                    . 'value="'.$value.'">'
             .'</div>'
         .'</div>';

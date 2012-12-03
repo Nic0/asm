@@ -77,6 +77,7 @@
                 if (isPost()) {
                     $snmp = new Snmp();
                     $snmp->update($id, $_POST);
+                    flash('Élément SNMP mis à jour', 'success');
                     $this->redirect('/');
                 } else {
                     $snmp = new Snmp();
