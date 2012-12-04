@@ -40,9 +40,15 @@
          * @param  string $json donnée json à utiliser
          * @return None
          */
-        public function renderJson ($json) {
+        public function renderJson ($json=null) {
             header('Content-Type: application/json');
-            echo $json;
+            if ($json != null) {
+                echo $json;
+            } else {
+                unset($this->data['session']);
+                unset($this->data['config']);
+                echo json_encode($this->data);
+            }
         }
 
         /**

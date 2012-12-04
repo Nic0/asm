@@ -1,26 +1,24 @@
-<div class="pane ui-layout-north">
-  <div class="navbar">
-    <div class="navbar-inner">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="/">ASM</a>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
-            {% if logged() %}
-              <li><a href="/dashboard"><i class="icon-th-list"></i> Dashboard</a></li>
-              <li><a href="/logout"><i class="icon-user"></i> Logout ({{ loggedName() }})</a></li>
-              <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
-            {% else %}
-              <li><a href="/login"><i class="icon-user"></i> Login</a></li>
-            {% endif %}
-          </ul>
-          <ul class="nav pull-right">
-            <li class="pull-right"><a name="update">{{ "now"|date('H:i') }}</a></li>
-          </ul>
-        </div>
-    </div>
+<div class="navbar">
+  <div class="navbar-inner">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">ASM</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          {% if logged() %}
+            <li><a href="/dashboard"><i class="icon-th-list"></i> Dashboard</a></li>
+            <li><a href="/logout"><i class="icon-user"></i> Logout ({{ loggedName() }})</a></li>
+            <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
+          {% else %}
+            <li><a href="/login"><i class="icon-user"></i> Login</a></li>
+          {% endif %}
+        </ul>
+        <ul class="nav pull-right">
+          <li class="pull-right"><a name="update">{{ "now"|date('H:i') }}</a></li>
+        </ul>
+      </div>
   </div>
 </div>

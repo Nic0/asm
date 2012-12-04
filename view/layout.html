@@ -13,7 +13,9 @@
 </head>
 <body>
     <div id="container" style="font-size: {{ config.css.font}}em">
-        {% include 'partial/navbar.html' %}
+        <div class="pane ui-layout-north">
+            {% include 'partial/navbar.html' %}
+        </div>
 
         {% block content %}{% endblock %}
     </div>

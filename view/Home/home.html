@@ -1,0 +1,44 @@
+{% extends 'home_layout.html' %}
+
+{% block title %}{{ config.home.title }}{% endblock %}
+
+{% block content %}
+<div id="home">
+    <div class="span6">
+        {% if config.home.placeholder1 is defined %}
+            <div id="{{ config.home.placeholder1 }}">
+                {% include 'Home/' ~ config.home.placeholder1 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.home.placeholder2 is defined %}
+            <div id="{{ config.home.placeholder2 }}">
+                {% include 'Home/' ~ config.home.placeholder2 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.home.placeholder3 is defined %}
+            <div id="{{ config.home.placeholder3 }}">
+                {% include 'Home/' ~ config.home.placeholder3 ~ '.html' %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="span6">
+        {% if config.home.placeholder4 is defined %}
+            <div id="{{ config.home.placeholder4 }}">
+                {% include 'Home/' ~ config.home.placeholder4 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.home.placeholder5 is defined %}
+            <div id="{{ config.home.placeholder5 }}">
+                {% include 'Home/' ~ config.home.placeholder5 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.home.placeholder6 is defined %}
+            <div id="{{ config.home.placeholder6 }}">
+                {% include 'Home/' ~ config.home.placeholder6 ~ '.html' %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

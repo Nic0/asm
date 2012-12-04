@@ -50,4 +50,30 @@
             );
         }
 
+        public function getLast ($snmp_id) {
+            $select = $this->sql
+                ->select()
+                ->from('snmp_input')
+                ->order('date DESC')
+                ->where('snmp_id = ' .$snmp_id)
+                ->limit(20)
+                ->columns(array('value', 'date'));
+
+
+            $result = $this->select($select);
+
+            $data = array();
+            foreach ($result as $row) {
+                $snmp = new SnmpInput();
+                $snmp->value = $row->value;
+                $snmp->date = $row->date;
+                unset($snmp->snmp_id);
+                unset($snmp->adapter);
+                unset($snmp->sql);
+                unset($snmp->id);
+                $data[] = $snmp;
+            }
+            return $data;
+        }
+
     }

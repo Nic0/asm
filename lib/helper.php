@@ -173,16 +173,13 @@
         $total = avgCalcul($item);
 
         if ($total < $config->html->value->warning) {
-            $level = "text-success";
-            $message = $config->html->msg->level->normal;
+            $level = "green";
         } else if ($total < $config->html->value->alert) {
-            $level = "text-warning";
-            $message = $config->html->msg->level->warning;
+            $level = "yellow";
         } else {
-            $level = "text-error";
-            $message = $config->html->msg->level->alert;
+            $level = "red";
         }
-        return $level;
+        return $config->home->image->$level;
     }
     $this->twig->addFunction('avglevel', new Twig_Function_Function('avglevel'));
 

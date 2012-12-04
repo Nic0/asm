@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
 
                         for (i = -19; i <= 0; i++) {
                             data.push({
-                                x: time + i * 1000,
+                                x: time + i*5 * 1000,
                                 y: 0
                             });
                         }
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
 
                         for (i = -19; i <= 0; i++) {
                             data.push({
-                                x: time + i * 1000,
+                                x: time + i*5 * 1000,
                                 y: 0
                             });
                         }
@@ -224,7 +224,7 @@ jQuery(document).ready(function($) {
 
                         for (i = -19; i <= 0; i++) {
                             data.push({
-                                x: time + i * 1000,
+                                x: time + i*5 * 1000,
                                 y: 0
                             });
                         }
@@ -241,7 +241,7 @@ jQuery(document).ready(function($) {
 
                         for (i = -19; i <= 0; i++) {
                             data.push({
-                                x: time + i * 1000,
+                                x: time + i*5 * 1000,
                                 y: 0
                             });
                         }

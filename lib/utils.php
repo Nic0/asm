@@ -123,3 +123,16 @@
       $data = explode(' ', snmp2_get($host, $community, $oid, $timeout));
       return intval($data[1])*8;
     }
+
+    function days_from_open_days ($open_days) {
+        $weekday = date('N');
+        $days = 0;
+        for ($i=0; $i < $open_days; $i++) {
+            if ((($weekday - $i) % 5) == 0) {
+                $days += 3;
+            } else {
+                $days += 1;
+            }
+        }
+        return $days;
+    }

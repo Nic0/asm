@@ -8,7 +8,7 @@
     /**
      * @brief Controlleur pour la page principale
      */
-    class StaticPageController extends Controller {
+    class DashboardController extends Controller {
 
         /**
          * @brief Page d'accueil "home" principale

@@ -28,21 +28,6 @@
         }
 
         /**
-         * @brief Affichage d'un état
-         * @return None
-         */
-        public function view () {
-            $state = new DisplayState();
-            $glpi = new GLPIStat();
-            $snmp = new Snmp();
-
-            $this->addData('zabbix', $state->getAll())
-                 ->addData('glpi', $glpi->getStats())
-                 ->addData('snmp', $snmp->getStats())
-                 ->render();
-        }
-
-        /**
          * @brief Utile pour charger dynamiquement la liste des éléments en fonction
          * d'un host
          * @return NoneS

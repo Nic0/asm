@@ -1,7 +1,8 @@
 <?php
 
     require_once '../lib/Route.php';
-    require_once '../controller/StaticPageController.php';
+    require_once '../controller/DashboardController.php';
+    require_once '../controller/HomeController.php';
     require_once '../controller/UserController.php';
     require_once '../controller/ConfigController.php';
     require_once '../controller/StateController.php';
@@ -45,33 +46,53 @@
         public function __construct () {
 
             $this->route = array(
+
+                /**
+                 * Route pour Dashboard
+                 */
                 '/dashboard' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'dashboard',
                     'template' => 'dashboard'
                 ),
                 '/zabbix/update' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'updateZabbix',
                     'template' => 'zabbix'
                 ),
                 '/glpi/update' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'updateGlpi',
                     'template' => 'glpi'
                 ),
                 '/badpasswd/update' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'updateBadpasswd',
                     'template' => 'badpasswd'
                 ),
                 '/snmp_renater' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'snmp_renater'
                 ),
                 '/snmp_adista' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'snmp_adista'
+                ),
+                /**
+                 * Route pour Home
+                 */
+                '/' => array(
+                    'controller' =>'Home',
+                    'action' => 'home',
+                    'template' => 'home'
+                ),
+                '/ajax/glpi_stats' => array(
+                    'controller' =>'Home',
+                    'action' => 'ajax_glpi_stats'
+                ),
+                '/ajax/init_snmp' => array(
+                    'controller' =>'Home',
+                    'action' => 'ajax_init_snmp'
                 ),
                 /**
                  * Route pour STATE
@@ -81,11 +102,6 @@
                     'controller' =>'State',
                     'action' => 'add',
                     'template' => 'add'
-                ),
-                '/' => array(
-                    'controller' =>'State',
-                    'action' => 'view',
-                    'template' => 'view'
                 ),
                 '/state/del' => array(
                     'controller' =>'State',
@@ -132,7 +148,7 @@
                  */
 
                 '/deny' => array(
-                    'controller' =>'StaticPage',
+                    'controller' =>'Dashboard',
                     'action' => 'deny',
                     'template' => 'deny'
                 ),

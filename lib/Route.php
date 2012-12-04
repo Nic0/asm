@@ -1,7 +1,5 @@
 <?php
 
-    require_once '../controller/StaticPageController.php';
-
     /**
      * @brief traitement de la route renseigné dans la classe fille
      */

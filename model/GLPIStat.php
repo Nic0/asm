@@ -9,41 +9,29 @@
      */
     class GLPIStat extends GLPIModel {
 
-        public $assign;
-        public $closed;
-        public $solved;
-        public $waiting;
         public $total;
-        public $month;
+        public $date;
 
         public function getStats () {
-            return array(
-                $this->getMonthlyStats(date('m',strtotime("-1 month")), date('Y',strtotime("-1 month")), date('F',strtotime("-1 month"))),
-                $this->getMonthlyStats(date('m'), date('Y'), date('F'))
-                );
-        }
-
-        private function getMonthlyStats($month, $year, $letterMonth) {
+            $days = days_from_open_days(20);
 
             $select = $this->sql
                 ->select()
                 ->from(array('t' => 'glpi_tickets'))
-                ->where("MONTH(date) = ".$month." and YEAR(date) = ".$year)
-                ->group('status')
-                ->columns(array(new Expression('COUNT(*) as total'), 'status'));
-            $results = $this->select($select);
+                ->where("date(date) > (now() - interval ".$days." day)")
+                ->group(new Expression('date(date)'))
+                ->columns(array(new Expression('COUNT(*) as total'), 'date'));
+            $result = $this->select($select);
 
-            $stat = new GLPIStat();
-            $total = 0;
-            foreach ($results as $row) {
-                $attr = $row->status;
-                $val = $row->total;
-                $total += $val;
-                $stat->$attr = $val;
+            $data = array();
+            foreach ($result as $row) {
+                $object = $this->createObjectFromSingleData($row);
+                unset($object->adapter);
+                unset($object->sql);
+                $data[] = $object;
+
             }
-            $stat->total = $total;
-            $stat->month = $letterMonth;
-            return $stat;
-        }
 
+            return $data;
+        }
     }

@@ -57,4 +57,25 @@ debug:
   route: false
   url: false
   session: false
+home:
+  image:
+    green: button-green-on.png
+    yellow: button-yellow-on.png
+    red: button-red-on.png
+  snmp:
+    warning:
+      level: 60
+      color: FF8C00
+    error:
+      level: 85
+      color: FF0000
+    update: 5
+    height: 350
+  placeholder1: snmp
+  placeholder2: ~
+  placeholder3: ~
+  placeholder4: ~
+  placeholder5: ~
+  placeholder6: ~
+  title: État des services
 ...
