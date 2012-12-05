@@ -71,10 +71,12 @@ home:
       color: FF0000
     update: 5
     height: 350
+  glpibar:
+    height: 350
   placeholder1: snmp
   placeholder2: ~
   placeholder3: ~
-  placeholder4: ~
+  placeholder4: glpibar
   placeholder5: ~
   placeholder6: ~
   title: État des services

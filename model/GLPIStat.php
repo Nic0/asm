@@ -20,14 +20,16 @@
                 ->from(array('t' => 'glpi_tickets'))
                 ->where("date(date) > (now() - interval ".$days." day)")
                 ->group(new Expression('date(date)'))
-                ->columns(array(new Expression('COUNT(*) as total'), 'date'));
+                ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(day(date), concat(\'/\', month(date))) as date')));
             $result = $this->select($select);
 
             $data = array();
             foreach ($result as $row) {
                 $object = new GLPIStat();
-                $object->value = (int)$row->value;
+                $object->total = $row->total;
                 $object->date = $row->date;
+                unset($object->sql);
+                unset($object->adapter);
                 $data[] = $object;
 
             }

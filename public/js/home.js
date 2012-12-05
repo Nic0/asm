@@ -1,4 +1,4 @@
-function plot_graph (conf) {
+function plot_snmp_graph (conf) {
 
     Highcharts.setOptions({
         global: {
@@ -161,6 +161,84 @@ function plot_graph (conf) {
     var adista = new Highcharts.Chart(options);
 }
 
+function plot_glpi_columns_graph () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'home-glpibar',
+                type: 'column'
+            },
+            title: null,
+            xAxis: {
+                categories: (function() {
+                    // generate an array of random data
+                    var data = [];
+                        $.ajax({
+                            'async': false,
+                            'global': false,
+                            'url': "/ajax/glpi_stats",
+                            'dataType': "json",
+                            'success': function (json) {
+                                var item = json.glpi;
+                                for (i = 0; i < 20; i++) {
+                                    data.push(
+                                        item[i].date
+                                    );
+                                }
+
+                            }
+                        });
+                    return data;
+                })()
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Nombre de tickets'
+                }
+            },
+            legend: false,
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' tickets';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Tickets Ouvert',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [];
+                        $.ajax({
+                            'async': false,
+                            'global': false,
+                            'url': "/ajax/glpi_stats",
+                            'dataType': "json",
+                            'success': function (json) {
+                                var item = json.glpi;
+                                for (i = 0; i < 20; i++) {
+                                    data.push(
+                                        parseInt(item[i].total)
+                                    );
+                                }
+
+                            }
+                        });
+                    return data;
+                })()
+            }]
+        });
+    });
+
+};
+
 function ajax_config () {
     var json = (function () {
     $.ajax({
@@ -169,7 +247,8 @@ function ajax_config () {
         'url': "/config/config.json",
         'dataType': "json",
         'success': function (data) {
-            plot_graph(data);
+            plot_snmp_graph(data);
+            plot_glpi_columns_graph();
         }
     });
     })();
