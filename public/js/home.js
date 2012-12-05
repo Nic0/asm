@@ -180,7 +180,7 @@ function plot_glpi_columns_graph () {
                             'url': "/ajax/glpi_stats",
                             'dataType': "json",
                             'success': function (json) {
-                                var item = json.glpi;
+                                var item = json.glpi.open;
                                 for (i = 0; i < 20; i++) {
                                     data.push(
                                         item[i].date
@@ -198,7 +198,16 @@ function plot_glpi_columns_graph () {
                     text: 'Nombre de tickets'
                 }
             },
-            legend: false,
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
             tooltip: {
                 formatter: function() {
                     return ''+
@@ -211,29 +220,55 @@ function plot_glpi_columns_graph () {
                     borderWidth: 0
                 }
             },
-                series: [{
-                name: 'Tickets Ouvert',
-                data: (function() {
-                    // generate an array of random data
-                    var data = [];
-                        $.ajax({
-                            'async': false,
-                            'global': false,
-                            'url': "/ajax/glpi_stats",
-                            'dataType': "json",
-                            'success': function (json) {
-                                var item = json.glpi;
-                                for (i = 0; i < 20; i++) {
-                                    data.push(
-                                        parseInt(item[i].total)
-                                    );
-                                }
+            colors: ['#3465a4'],
+            series: [
+                {
+                    name: 'Tickets Ouverts',
+                    data: (function() {
+                        // generate an array of random data
+                        var data = [];
+                            $.ajax({
+                                'async': false,
+                                'global': false,
+                                'url': "/ajax/glpi_stats",
+                                'dataType': "json",
+                                'success': function (json) {
+                                    var item = json.glpi.open;
+                                    for (i = 0; i < 20; i++) {
+                                        data.push(
+                                            parseInt(item[i].total)
+                                        );
+                                    }
 
-                            }
-                        });
-                    return data;
-                })()
-            }]
+                                }
+                            });
+                        return data;
+                    })()
+                },
+                {
+                    name: 'Tickets Fermés',
+                    data: (function() {
+                        // generate an array of random data
+                        var data = [];
+                            $.ajax({
+                                'async': false,
+                                'global': false,
+                                'url': "/ajax/glpi_stats",
+                                'dataType': "json",
+                                'success': function (json) {
+                                    var item = json.glpi.close;
+                                    for (i = 0; i < 20; i++) {
+                                        data.push(
+                                            parseInt(item[i].total)
+                                        );
+                                    }
+
+                                }
+                            });
+                        return data;
+                    })()
+                },
+            ]
         });
     });
 
