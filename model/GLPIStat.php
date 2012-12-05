@@ -63,7 +63,7 @@
         }
 
         private function getStatsTypeRequest ($type) {
-            $days = days_from_open_days(20);
+            $days = days_from_open_days(10);
 
             $select = $this->sql
                 ->select()
