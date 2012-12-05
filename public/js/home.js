@@ -163,114 +163,91 @@ function plot_snmp_graph (conf) {
 
 function plot_glpi_columns_graph () {
     var chart;
-    $(document).ready(function() {
-        chart = new Highcharts.Chart({
-            chart: {
-                renderTo: 'home-glpibar',
-                type: 'column'
-            },
-            title: null,
-            xAxis: {
-                categories: (function() {
-                    // generate an array of random data
-                    var data = [];
-                        $.ajax({
-                            'async': false,
-                            'global': false,
-                            'url': "/ajax/glpi_stats",
-                            'dataType': "json",
-                            'success': function (json) {
-                                var item = json.glpi.open;
-                                for (i = 0; i < 20; i++) {
-                                    data.push(
-                                        item[i].date
-                                    );
-                                }
+    var data = {
+        date:[],
+        open: [],
+        close: []
+    };
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url': "/ajax/glpi_stats",
+        'dataType': "json",
+        'success': function (json) {
+            var item = json.glpi.open;
+            for (i = 0; i < 20; i++) {
+                data.date.push(
+                    item[i].date
+                );
+            }
 
-                            }
-                        });
-                    return data;
-                })()
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Nombre de tickets'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
-            },
-            tooltip: {
-                formatter: function() {
-                    return ''+
-                        this.x +': '+ this.y +' tickets';
-                }
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            colors: ['#3465a4'],
-            series: [
-                {
-                    name: 'Tickets Ouverts',
-                    data: (function() {
-                        // generate an array of random data
-                        var data = [];
-                            $.ajax({
-                                'async': false,
-                                'global': false,
-                                'url': "/ajax/glpi_stats",
-                                'dataType': "json",
-                                'success': function (json) {
-                                    var item = json.glpi.open;
-                                    for (i = 0; i < 20; i++) {
-                                        data.push(
-                                            parseInt(item[i].total)
-                                        );
-                                    }
+            var item = json.glpi.open;
+            for (i = 0; i < 20; i++) {
+                data.open.push(
+                    parseInt(item[i].total)
+                );
+            }
 
-                                }
-                            });
-                        return data;
-                    })()
-                },
-                {
-                    name: 'Tickets Fermés',
-                    data: (function() {
-                        // generate an array of random data
-                        var data = [];
-                            $.ajax({
-                                'async': false,
-                                'global': false,
-                                'url': "/ajax/glpi_stats",
-                                'dataType': "json",
-                                'success': function (json) {
-                                    var item = json.glpi.close;
-                                    for (i = 0; i < 20; i++) {
-                                        data.push(
-                                            parseInt(item[i].total)
-                                        );
-                                    }
+            var item = json.glpi.close;
+            for (i = 0; i < 20; i++) {
+                data.close.push(
+                    parseInt(item[i].total)
+                );
+            }
 
-                                }
-                            });
-                        return data;
-                    })()
-                },
-            ]
-        });
+        }
     });
+
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'home-glpibar',
+            type: 'column'
+        },
+        title: null,
+        xAxis: {
+            categories: data.date
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Nombre de tickets'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            backgroundColor: '#FFFFFF',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            shadow: true
+        },
+        tooltip: {
+            formatter: function() {
+                return ''+
+                    this.x +': '+ this.y +' tickets';
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        colors: ['#3465a4'],
+        series: [
+            {
+                name: 'Tickets Ouverts',
+                data: data.open
+            },
+            {
+                name: 'Tickets Fermés',
+                data: data.close
+            },
+        ]
+    });
+
 
 };
 
