@@ -62,6 +62,9 @@
             $result = $this->getStatsTypeRequest('1');
             $total=0;
             foreach ($result as $row) {
+                if (is_numeric(substr($row->name, 0, 1))) {
+                    $row->name = substr($row->name, 2);
+                }
                 $data['incident'][$row->name] = $row->total;
                 $total += $row->total;
             }
@@ -70,6 +73,9 @@
             $result = $this->getStatsTypeRequest('2');
             $total=0;
             foreach ($result as $row) {
+                if (is_numeric(substr($row->name, 0, 1))) {
+                    $row->name = substr($row->name, 2);
+                }
                 $data['demande'][$row->name] = $row->total;
                 $total += $row->total;
             }
