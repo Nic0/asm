@@ -1,11 +1,11 @@
 function plot_graph (conf) {
-        Highcharts.setOptions({
+
+    Highcharts.setOptions({
         global: {
             useUTC: false
         }
     });
 
-    var adista;
     var last = {
         "adista": {
             down: {
@@ -19,14 +19,13 @@ function plot_graph (conf) {
 
     var point;
 
-    renater = new Highcharts.Chart({
+    var options = {
         chart: {
             renderTo: 'home-adista',
             type: 'spline',
             marginRight: 10,
             events: {
                 load: function() {
-
                     // set up the updating of the chart each second
                     var download = this.series[0];
                     var upload = this.series[1];
@@ -104,21 +103,29 @@ function plot_graph (conf) {
         exporting: {
             enabled: false
         },
+        colors: ['#0091FE', '#65FF00'],
         series: [
             {
                 name: 'Download',
                 data: (function() {
                     // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -29; i <= 0; i++) {
-                        data.push({
-                            x: time + i*5 * 1000,
-                            y: 0
+                    var data = [];
+                        $.ajax({
+                            'async': false,
+                            'global': false,
+                            'url': "/ajax/init_snmp",
+                            'dataType': "json",
+                            'success': function (json) {
+                                var time = (new Date()).getTime();
+                                var item = json.down;
+                                for (i = -20; i < 0; i++) {
+                                    data.push({
+                                        x: time + i*5 * 1000,
+                                        y: parseInt( (item[i+21].value - item[i+20].value) / 5 )
+                                    });
+                                }
+                            }
                         });
-                    }
                     return data;
                 })()
             },
@@ -126,37 +133,44 @@ function plot_graph (conf) {
                 name: 'Upload',
                 data: (function() {
                     // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -29; i <= 0; i++) {
-                        data.push({
-                            x: time + i*5 * 1000,
-                            y: 0
+                    var data = [];
+                        $.ajax({
+                            'async': false,
+                            'global': false,
+                            'url': "/ajax/init_snmp",
+                            'dataType': "json",
+                            'success': function (json) {
+                                var time = (new Date()).getTime();
+                                var item = json.up;
+                                for (i = -20; i < 0; i++) {
+                                    data.push({
+                                        x: time + i*5 * 1000,
+                                        y: parseInt( (item[i+21].value - item[i+20].value) / 5 )
+                                    });
+                                }
+                            }
                         });
-                    }
                     return data;
                 })()
-            },
+            }
         ]
-    });
+    };
+
+
+    var adista = new Highcharts.Chart(options);
 }
 
 function ajax_config () {
     var json = (function () {
-    var json = null;
     $.ajax({
         'async': false,
         'global': false,
         'url': "/config/config.json",
         'dataType': "json",
         'success': function (data) {
-            json = data;
-            plot_graph(json);
+            plot_graph(data);
         }
     });
-    return json;
     })();
 }
 

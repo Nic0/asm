@@ -31,8 +31,8 @@
 
         public function ajax_init_snmp () {
             $snmp = new SnmpInput();
-            $this->addData('up', $snmp->getLast(3))
-                 ->addData('down', $snmp->getLast(4))
+            $this->addData('down', array_reverse($snmp->getLast(3)))
+                 ->addData('up', array_reverse($snmp->getLast(4)))
                  ->renderJson();
 
         }

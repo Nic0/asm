@@ -25,9 +25,9 @@
 
             $data = array();
             foreach ($result as $row) {
-                $object = $this->createObjectFromSingleData($row);
-                unset($object->adapter);
-                unset($object->sql);
+                $object = new GLPIStat();
+                $object->value = (int)$row->value;
+                $object->date = $row->date;
                 $data[] = $object;
 
             }
