@@ -342,7 +342,7 @@ function plot_glpi_pie_graph () {
             }
         },
         tooltip: {
-            valueSuffix: '%'
+            valueSuffix: ''
         },
         series: [{
             name: 'Browsers',
@@ -362,7 +362,7 @@ function plot_glpi_pie_graph () {
             dataLabels: {
                 formatter: function() {
                     // display only if larger than 1
-                    return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%'  : null;
+                    return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y  : null;
                 }
             }
         }]
