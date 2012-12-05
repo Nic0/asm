@@ -118,12 +118,13 @@ function plot_graph (conf) {
                             'success': function (json) {
                                 var time = (new Date()).getTime();
                                 var item = json.down;
-                                for (i = -20; i < 0; i++) {
+                                for (i = -40; i < 0; i++) {
                                     data.push({
                                         x: time + i*5 * 1000,
-                                        y: parseInt( (item[i+21].value - item[i+20].value) / 5 )
+                                        y: parseInt( (item[i+41].value - item[i+40].value) / 5 )
                                     });
                                 }
+
                             }
                         });
                     return data;
@@ -142,10 +143,10 @@ function plot_graph (conf) {
                             'success': function (json) {
                                 var time = (new Date()).getTime();
                                 var item = json.up;
-                                for (i = -20; i < 0; i++) {
+                                for (i = -40; i < 0; i++) {
                                     data.push({
                                         x: time + i*5 * 1000,
-                                        y: parseInt( (item[i+21].value - item[i+20].value) / 5 )
+                                        y: parseInt( (item[i+41].value - item[i+40].value) / 5 )
                                     });
                                 }
                             }

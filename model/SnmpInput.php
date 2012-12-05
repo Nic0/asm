@@ -56,7 +56,7 @@
                 ->from('snmp_input')
                 ->order('date DESC')
                 ->where('snmp_id = ' .$snmp_id)
-                ->limit(21)
+                ->limit(41)
                 ->columns(array('value', 'date'));
 
 
