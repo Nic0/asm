@@ -275,7 +275,8 @@ function plot_glpi_pie_graph () {
             data = [{
                     y: json.glpi.incident.total,
                     //color: '#0091FE',
-                    color: colors[0],
+                    color: '#c17d11',
+                    //color: colors[0],
                     drilldown: {
                         name: 'Types d\'incidents',
                         categories: incident_categories,
@@ -285,7 +286,8 @@ function plot_glpi_pie_graph () {
                 }, {
                     y: json.glpi.demande.total,
                     //color: '#65FF00',
-                    color: colors[1],
+                    color: '#75507b',
+                    //color: colors[1],
                     drilldown: {
                         name: 'Types d\'incidents',
                         categories: demande_categories,
