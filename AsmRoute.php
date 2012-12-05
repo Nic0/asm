@@ -90,6 +90,10 @@
                     'controller' =>'Home',
                     'action' => 'ajax_glpi_stats'
                 ),
+                '/ajax/glpi_type' => array(
+                    'controller' =>'Home',
+                    'action' => 'ajax_glpi_type'
+                ),
                 '/ajax/init_snmp' => array(
                     'controller' =>'Home',
                     'action' => 'ajax_init_snmp'

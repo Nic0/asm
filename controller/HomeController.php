@@ -36,4 +36,10 @@
                  ->renderJson();
 
         }
+
+        public function ajax_glpi_type ($value='') {
+            $glpi = new GLPIStat();
+            $this->addData('glpi', $glpi->getStatsType())
+                 ->renderJson();
+        }
     }

@@ -36,4 +36,54 @@
 
             return $data;
         }
+
+        public function getStatsType () {
+            $data = array('incident' => array(), 'demande' => array());
+
+            $result = $this->getStatsTypeRequest('1');
+            $total=0;
+            foreach ($result as $row) {
+                $data['incident'][$row->name] = $row->total;
+                $total += $row->total;
+            }
+            $data['incident']['total'] = $total;
+
+            $result = $this->getStatsTypeRequest('2');
+            $total=0;
+            foreach ($result as $row) {
+                $data['demande'][$row->name] = $row->total;
+                $total += $row->total;
+            }
+            $data['demande']['total'] = $total;
+
+            arsort($data['incident']);
+            arsort($data['demande']);
+
+            return $data;
+        }
+
+        private function getStatsTypeRequest ($type) {
+            $days = days_from_open_days(20);
+
+            $select = $this->sql
+                ->select()
+                ->from(array('t' => 'glpi_tickets'))
+                ->join(array('c' => 'glpi_itilcategories'), 't.itilcategories_id = c.id', array())
+                ->join(array('cc' => 'glpi_itilcategories'), 'c.itilcategories_id = cc.id', array('name'))
+                ->where("date(date) > (now() - interval ".$days." day)")
+                ->where('type = '.$type)
+                ->group('name')
+                ->columns(array(new Expression('COUNT(*) as total')));
+
+            return $this->select($select);
+        }
     }
+
+
+/*
+SELECT count(*), cc.name FROM `glpi_tickets` as t
+inner join glpi_itilcategories as c on t.itilcategories_id = c.itilcategories_id
+inner join glpi_itilcategories as cc on t.itilcategories_id = cc.id
+group by c.itilcategories_id
+order by date desc
+ */

@@ -63,6 +63,7 @@ home:
     yellow: button-yellow-on.png
     red: button-red-on.png
   snmp:
+    title: Accès Internet
     warning:
       level: 60
       color: FF8C00
@@ -73,11 +74,15 @@ home:
     height: 350
   glpibar:
     height: 350
+    title: Tickets Ouverts
+  glpipie:
+    height: 350
+    title: Types de Tickets
   placeholder1: snmp
   placeholder2: ~
   placeholder3: ~
-  placeholder4: glpibar
-  placeholder5: ~
+  placeholder4: glpipie
+  placeholder5: glpibar
   placeholder6: ~
   title: État des services
 ...
