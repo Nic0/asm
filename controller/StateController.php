@@ -35,7 +35,11 @@
         public function ajax_item () {
             $hostid = $_POST['hostid'];
             $zItem = new ZabbixItem();
-            $this->addData('item', $zItem->getByHost($hostid))->render();
+            $group = new Group();
+
+            $this->addData('item', $zItem->getByHost($hostid))
+                 ->addData('group', $group->nested($group->getAll()))
+                 ->render();
         }
 
         /**
@@ -64,10 +68,9 @@
                 if (!isPost()) {
                     $state = new State();
                     $group = new Group();
-                    $group = $group->nested($group->getAll());
 
                     $this->addData('state', $state->getById($id))
-                         ->addData('group', $group)
+                         ->addData('group', $group->nested($group->getAll()))
                          ->render();
                 } else {
                     $state = new State();
