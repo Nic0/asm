@@ -42,7 +42,8 @@
                 'name' => $values['name'],
                 'warning' => $values['warning'],
                 'alert' => $values['alert'],
-                'coeff' => $values['coeff']));
+                'coeff' => $values['coeff'],
+                'group_id' => $values['group_id']));
             $statement = $this->sql->prepareStatementForSqlObject($update);
             $result = $statement->execute();
         }

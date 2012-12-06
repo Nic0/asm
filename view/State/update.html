@@ -10,12 +10,35 @@
         <h2>Modification {{ state.name }} </h2>
 
         <form action="/state/update/{{ state.id }}" class="form-horizontal" method="post">
+
+            <div class="control-group">
+                <label class="control-label" for="group_id">Groupement</label>
+                <div class="controls">
+                    <select name="group_id">
+                        {% for g in group %}
+                            <optgroup label="{{ g.name }}">
+                                {% for sousgroup in g.sous_group %}
+                                    <option value="{{ sousgroup.id }}"
+                                    {% if state.group_id == sousgroup.id %}
+                                        selected="selected"
+                                    {% endif %}
+                                    >
+                                        {{ sousgroup.name }}
+                                    </option>
+                                {% endfor %}
+                            </optgroup>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
             {{ input('Description', 'name', state.name)|raw }}
             {{ input('Warning', 'warning', state.warning, 'warning')|raw }}
             {{ input('Alert', 'alert', state.alert, 'error')|raw }}
             {{ input('Coefficient', 'coeff', state.coeff)|raw }}
             {{ submit('Mettre à jour')|raw }}
         </form>
+
 
     </div>
 </div>

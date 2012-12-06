@@ -30,6 +30,10 @@
                                 <li>Précédante valeur: {{ state.prevvalue }}</li>
                                 <li>Warning/Alert: {{ state.warning ~ '/' ~ state.alert}}</li>
                                 <li>Coeff: {{ state.coeff }}</li>
+                                <li>
+                                    <a href="/state/del/{{ state.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                                    <a href="/state/update/{{ state.id }}"><i class="icon-wrench"></i></a>
+                                </li>
                             </ul>
                         {% endfor %}
                     </ul>

@@ -63,7 +63,12 @@
             if (loginRole() == 'admin') {
                 if (!isPost()) {
                     $state = new State();
-                    $this->addData('state', $state->getById($id))->render();
+                    $group = new Group();
+                    $group = $group->nested($group->getAll());
+
+                    $this->addData('state', $state->getById($id))
+                         ->addData('group', $group)
+                         ->render();
                 } else {
                     $state = new State();
                     $state->update($id, $_POST);
