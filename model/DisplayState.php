@@ -49,11 +49,6 @@
             $group = new Group();
             $group = $group->getAll();
 
-
-//var_dump($data[1]->sous_group[3]->state); die;
-
-            //return $data;
-
             if(!empty($state)) {
                 $where = '';
                 for ($i=0; $i < sizeof($state); $i++) {
