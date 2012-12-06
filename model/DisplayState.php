@@ -1,6 +1,7 @@
 <?php
 
     require_once '../model/State.php';
+    require_once '../model/Group.php';
 
     /**
      * @brief Affichage d'un état Zabbix (base zabbix)
@@ -42,17 +43,25 @@
          * @return array Tableau d'état de zabbix
          */
         public function getAll () {
+            $data = array();
             $state = new State();
-            $data = $state->getAll();
+            $state = $state->getAll();
+            $group = new Group();
+            $group = $group->getAll();
 
-            if(!empty($data)) {
+
+//var_dump($data[1]->sous_group[3]->state); die;
+
+            //return $data;
+
+            if(!empty($state)) {
                 $where = '';
-                for ($i=0; $i < sizeof($data); $i++) {
-                    $state = $data[$i];
-                    if ($i == sizeof($data)-1) {
-                        $where .= "i.itemid = '" . $state->itemid . "'";
+                for ($i=0; $i < sizeof($state); $i++) {
+                    $s = $state[$i];
+                    if ($i == sizeof($state)-1) {
+                        $where .= "i.itemid = '" . $s->itemid . "'";
                     } else {
-                        $where .= "i.itemid = '" . $state->itemid . "' OR ";
+                        $where .= "i.itemid = '" . $s->itemid . "' OR ";
                     }
                 }
 
@@ -68,9 +77,9 @@
                 $zabbixState = array();
 
                 foreach ($results as $i => $row) {
-                    foreach ($data as $d) {
-                        if ($d->itemid == $row->itemid) {
-                            foreach ($d as $key => $value) {
+                    foreach ($state as $s) {
+                        if ($s->itemid == $row->itemid) {
+                            foreach ($s as $key => $value) {
                                 $row->$key = $value;
                             }
                         }
@@ -90,7 +99,20 @@
                 }
                 usort($zabbixState, "cmp");
 
-                return $zabbixState;
+                foreach ($group as $g) {
+                    if ($g->group_id == null) {
+                        $data[$g->id] = $g;
+                    } else {
+                        $data[$g->group_id]->sous_group[$g->id] = $g;
+                        foreach ($zabbixState as $s) {
+                            if ($s->group_id == $g->id) {
+                                $data[$g->group_id]->sous_group[$g->id]->state[] = $s;
+                            }
+                        }
+                    }
+                }
+
+                return $data;
             }
         }
 

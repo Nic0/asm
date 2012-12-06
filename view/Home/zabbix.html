@@ -1,0 +1,26 @@
+<div class="offset3">
+    <h2>{{ config.home.zabbix.title }} {% if isAdmin() %}<small>Zabbix</small> {% endif %}<img src="/img/{{ avglevel(snmp, config) }}"/></h2>
+</div>
+
+<div class="offset2">
+    {% for metagroup in zabbix %}
+        <h3>{{ metagroup.name }}</h3>
+        <ul>
+            {% for group in metagroup.sous_group %}
+                <li>{{ group.name }}</li>
+                <ul>
+                    {% for state in group.state %}
+                        <li>{{ state.name }}</li>
+                        <ul>
+                            <li>Dernière valeur: {{ state.lastvalue }}</li>
+                            <li>Précédante valeur: {{ state.prevvalue }}</li>
+                            <li>Warning/Alert: {{ state.warning ~ '/' ~ state.alert}}</li>
+                            <li>Coeff: {{ state.coeff }}</li>
+                            <li>Point: {{ state.point }}</li>
+                        </ul>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>

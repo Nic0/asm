@@ -163,37 +163,24 @@ function plot_snmp_graph (conf) {
 
 function plot_glpi_columns_graph () {
     var chart;
-    var data = {
-        date:[],
-        open: [],
-        close: []
-    };
+    var data = {date: [], open: [], close: []};
+
     $.ajax({
         'async': false,
         'global': false,
         'url': "/ajax/glpi_stats",
         'dataType': "json",
         'success': function (json) {
-            var item = json.glpi.open;
-            for (i = 0; i < 20; i++) {
-                data.date.push(
-                    item[i].date
-                );
-            }
 
-            var item = json.glpi.open;
-            for (i = 0; i < 20; i++) {
-                data.open.push(
-                    parseInt(item[i].total)
-                );
-            }
+            $.each(json.glpi.open, function(key, value) {
+                data.date.push(value.date);
+                data.open.push(parseInt(value.total));
+            })
 
-            var item = json.glpi.close;
-            for (i = 0; i < 20; i++) {
-                data.close.push(
-                    parseInt(item[i].total)
-                );
-            }
+            $.each(json.glpi.close, function(key, value) {
+                data.close.push(parseInt(value.total));
+            })
+
 
         }
     });
@@ -256,7 +243,7 @@ function plot_glpi_pie_graph () {
 
     var colors = Highcharts.getOptions().colors,
         categories = ['Incidents', 'Demandes'],
-        name = 'Browser brands';
+        name = 'Tickets GLPI';
     var data = [];
     $.ajax({
         'async': false,

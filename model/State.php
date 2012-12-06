@@ -27,6 +27,7 @@
         public $alert;
         /** @brief coefficient, ou pondération à affecter */
         public $coeff;
+        public $group_id;
 
         /**
          * @brief Mise à jour d'un état

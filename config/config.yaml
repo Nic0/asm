@@ -78,8 +78,10 @@ home:
   glpipie:
     height: 350
     title: Types de Tickets
+  zabbix:
+    title: Etat des serveurs
   placeholder1: snmp
-  placeholder2: ~
+  placeholder2: zabbix
   placeholder3: ~
   placeholder4: glpipie
   placeholder5: glpibar
