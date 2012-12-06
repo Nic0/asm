@@ -137,6 +137,20 @@
     }
     $this->twig->addFunction('level', new Twig_Function_Function('level'));
 
+    function levelimg ($item) {
+        $conf = AsmConfig::getConfig();
+        if ($item->point == 0) {
+            $level = "green";
+        } else if ($item->point == 1) {
+            $level = "yellow";
+        } else {
+            $level = "red";
+        }
+
+        return $config->home->image->$level;
+    }
+    $this->twig->addFunction('levelimg', new Twig_Function_Function('levelimg'));
+
     function levelGlpi ($item) {
         if ($item->month == date('F')) {
             $conf = AsmConfig::getConfig();
@@ -169,7 +183,8 @@
      * @param  array $config la configuration
      * @return string         valeur de la classe
      */
-    function avglevel ($item, $config) {
+    function avglevel ($item, $config=null) {
+        $config = AsmConfig::getConfig();
         $total = avgCalcul($item);
 
         if ($total < $config->html->value->warning) {
