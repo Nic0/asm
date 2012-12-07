@@ -13,7 +13,8 @@
         public $date;
 
         public function getStats () {
-            $days = days_from_open_days(20);
+            $config = AsmConfig::getConfig();
+            $days = days_from_open_days($config->home->glpibar->days);
 
             $select = $this->sql
                 ->select()
@@ -88,7 +89,8 @@
         }
 
         private function getStatsTypeRequest ($type) {
-            $days = days_from_open_days(10);
+            $config = AsmConfig::getConfig();
+            $days = days_from_open_days($config->home->glpipie->days);
 
             $select = $this->sql
                 ->select()
@@ -103,12 +105,3 @@
             return $this->select($select);
         }
     }
-
-
-/*
-SELECT count(*), cc.name FROM `glpi_tickets` as t
-inner join glpi_itilcategories as c on t.itilcategories_id = c.itilcategories_id
-inner join glpi_itilcategories as cc on t.itilcategories_id = cc.id
-group by c.itilcategories_id
-order by date desc
- */

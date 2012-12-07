@@ -75,9 +75,11 @@ home:
   glpibar:
     height: 350
     title: Tickets
+    days: 20
   glpipie:
     height: 350
     title: Types de Tickets
+    days: 10
   zabbix:
     title: Etat des serveurs
   placeholder1: snmp

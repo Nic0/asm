@@ -1,4 +1,4 @@
 <div class="offset3">
-    <h2>{{ config.home.glpibar.title }} {% if isAdmin() %}<small>GLPI</small>{% endif %}<img src="/img/{{ avglevel(snmp, config) }}"/></h2>
+    <h2>{{ config.home.glpibar.title }} <small>Sur les {{ config.home.glpibar.days}} derniers jours</small> {% if isAdmin() %}<small>GLPI</small>{% endif %}<img src="/img/{{ avglevel(snmp, config) }}"/></h2>
 </div>
 <div id="home-glpibar" style="height: {{ config.home.glpibar.height }}px;"></div>
