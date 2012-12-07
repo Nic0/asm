@@ -91,21 +91,17 @@ chart = new Highcharts.Chart({
     title: {
         text: null
     },
-    yAxis: {
-        title: {
-            text: 'Total percent market share'
-        }
-    },
+
     plotOptions: {
         pie: {
-            shadow: false
+            shadow: true
         }
     },
     tooltip: {
         valueSuffix: ''
     },
     series: [{
-        name: 'Browsers',
+        name: 'Tickets',
         data: browserData,
         size: '60%',
         dataLabels: {
@@ -116,7 +112,7 @@ chart = new Highcharts.Chart({
             distance: -30
         }
     }, {
-        name: 'Versions',
+        name: 'Tickets',
         data: versionsData,
         innerSize: '60%',
         dataLabels: {
