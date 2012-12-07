@@ -12,6 +12,7 @@
         public $total;
         public $date;
 
+        // GLPI BAR
         public function getStats () {
             $config = AsmConfig::getConfig();
             $days = days_from_open_days($config->home->glpibar->days);
@@ -21,7 +22,7 @@
                 ->from(array('t' => 'glpi_tickets'))
                 ->where("date(date) > (now() - interval ".$days." day)")
                 ->group(new Expression('date(date)'))
-                ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(day(date), concat(\'/\', month(date))) as date')));
+                ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(DAYNAME(date), concat(\' \', concat(day(date), concat(\'/\', month(date))))) as date')));
             $result = $this->select($select);
 
             $data = array('open' => array(), 'solved' => array()) ;
@@ -33,6 +34,15 @@
                 unset($object->adapter);
                 $data['open'][] = $object;
 
+            }
+
+            // localisation
+            foreach ($data['open'] as $open) {
+                $open->date = str_replace('Monday', 'Lun', $open->date);
+                $open->date = str_replace('Tuesday', 'Mar', $open->date);
+                $open->date = str_replace('Wednesday', 'Mer', $open->date);
+                $open->date = str_replace('Thursday', 'Jeu', $open->date);
+                $open->date = str_replace('Friday', 'Ven', $open->date);
             }
 
 
