@@ -1,38 +1,30 @@
-{% extends 'home_layout.html' %}
+<form action="/group/add" class="form-horizontal" method="post">
+<fieldset>
+    <legend>Ajout d'un groupe</legend>
 
-{% block title %}Ajout d'un groupe{% endblock %}
+    {{ input('Libellé du groupe', 'name')|raw}}
+    {{ input('Coefficient', 'coeff')|raw}}
 
-{% block content %}
-<div class="container">
-    <form action="/group/add" class="form-horizontal" method="post">
-    <fieldset>
-        <legend>Ajout d'un groupe</legend>
-
-        {{ input('Libellé du groupe', 'name')|raw}}
-        {{ input('Coefficient', 'coeff')|raw}}
-
-        <div class="control-group">
-            <label class="control-label" for="group_id">Groupe Parent</label>
-            <div class="controls">
-                <select name="group_id">
-                    <option value="0">à la racine</option>
-                    {% for group in groups %}
-                        <option value="{{ group.id }}">{{ group.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+    <div class="control-group">
+        <label class="control-label" for="group_id">Groupe Parent</label>
+        <div class="controls">
+            <select name="group_id">
+                <option value="0">à la racine</option>
+                {% for group in groups %}
+                    <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
         </div>
+    </div>
 
-        <div class="control-group">
-            <label class="control-label" for="group_id">Logo</label>
-            <div class="controls">
-                <input type="file" name="logo" accept="image/*">
-            </div>
+    <div class="control-group">
+        <label class="control-label" for="group_id">Logo</label>
+        <div class="controls">
+            <input type="file" name="logo" accept="image/*">
         </div>
+    </div>
 
-        {{ submit('Ajouter')|raw }}
+    {{ submit('Ajouter')|raw }}
 
-    </fieldset>
-    </form>
-</div>
-{% endblock %}
+</fieldset>
+</form>

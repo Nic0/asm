@@ -192,6 +192,11 @@ function ajax_config () {
     })();
 }
 
+function confirm_delete () {
+    var r=confirm("Supprimer l'élément ?");
+    return r;
+}
+
 jQuery(document).ready(function($) {
     ajax_config();
 });

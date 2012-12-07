@@ -223,8 +223,15 @@
                  */
                 '/group/add' => array(
                     'controller' =>'Group',
-                    'action' => 'add',
-                    'template' => 'add'
+                    'action' => 'add'
+                ),
+                '/group/del' => array(
+                    'controller' =>'Group',
+                    'action' => 'delete'
+                ),
+                '/group/update' => array(
+                    'controller' =>'Group',
+                    'action' => 'delete'
                 ),
             );
             parent::__construct();

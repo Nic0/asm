@@ -1,15 +1,16 @@
 <form action="/state/add" class="form-horizontal" method="post">
-
-<div class="control-group">
-    <label class="control-label" for="hostid">Host</label>
-    <div class="controls">
-        <select name="hostid" class="hostid">
-            {% for h in host %}
-                <option value="{{ h.hostid }}">{{ h.host }}</option>
-            {% endfor %}
-        </select>
+<fieldset>
+    <legend>Ajout d'une règle pour Zabbix</legend>
+    <div class="control-group">
+        <label class="control-label" for="hostid">Host</label>
+        <div class="controls">
+            <select name="hostid" class="hostid">
+                {% for h in host %}
+                    <option value="{{ h.hostid }}">{{ h.host }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
-</div>
-<div class="itemid"></div>
-
+    <div class="itemid"></div>
+</fieldset>
 </form>

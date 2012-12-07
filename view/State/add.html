@@ -10,6 +10,7 @@
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#zabbix" data-toggle="tab">Zabbix</a></li>
                 <li><a href="#snmp" data-toggle="tab">SNMP</a></li>
+                <li><a href="#group" data-toggle="tab">Groupe</a></li>
             </ul>
 
 
@@ -19,6 +20,9 @@
                 </div>
                 <div class="tab-pane fade" id="snmp">
                     {% include 'State/add_snmp.html' %}
+                </div>
+                <div class="tab-pane fade" id="group">
+                    {% include 'Group/add.html' %}
                 </div>
             </div>
         </div>

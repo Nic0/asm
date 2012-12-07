@@ -158,11 +158,15 @@
                         $points_sg += $state->point * $state->coeff;
                         $coeff_sg += $state->coeff;
                     }
-                    $sg->point = $points_sg / $coeff_sg;
+                    if ($coeff_sg != 0) {
+                        $sg->point = $points_sg / $coeff_sg;
+                    }
                     $points_g += $sg->point * $sg->coeff;
                     $coeff_g += $sg->coeff;
                 }
-                $group->point = $points_g / $coeff_g;
+                if ($coeff_g != 0) {
+                    $group->point = $points_g / $coeff_g;
+                }
             }
         }
     }

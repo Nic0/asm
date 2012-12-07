@@ -4,7 +4,10 @@
 <div class="span12">
     {% for metagroup in zabbix %}
         <div class="offset1">
-            <h3><img src="/img/icon/medium/{{ levelimg(metagroup) }}"/> {{ metagroup.name }}</h3>
+            <h3>
+                <img src="/img/icon/medium/{{ levelimg(metagroup) }}"/> {{ metagroup.name }}  <a href="/group/del/{{ metagroup.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                <a href="/group/update/{{ metagroup.id }}"><i class="icon-wrench"></i></a>
+            </h3>
         </div>
 
         <table class="table">
@@ -15,6 +18,8 @@
                 </td>
                 <td>
                     {{ group.name }}
+                    <a href="/group/del/{{ group.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                    <a href="/group/update/{{ group.id }}"><i class="icon-wrench"></i></a>
                 </td>
                 <td>
                     <img src="/img/icon/small/{{ levelimg(group) }}" alt="">

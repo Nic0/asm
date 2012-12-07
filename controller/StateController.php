@@ -18,7 +18,10 @@
         public function add () {
             if(!isPost()) {
                 $zHost = new ZabbixHost();
-                $this->addData('host', $zHost->getAll())->render();
+                $group = new Group();
+                $this->addData('host', $zHost->getAll())
+                     ->addData('groups', $group->nested($group->getAll()))
+                     ->render();
             } else {
                 $state = new State();
                 $state->create($_POST)->save();

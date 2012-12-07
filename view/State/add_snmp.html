@@ -1,5 +1,8 @@
 <form action="/snmp/add" class="form-horizontal" method="post">
-
+    <div class="alert alert-warning">
+        <strong>Plus utilisé</strong> L'ajout de SNMP n'a plus vraiment d'utilités, suite aux changements de l'application. Il est cependant laissé si besoin
+        de faire évoluer l'application.
+    </div>
     {{ input('ip', 'ip')|raw }}
     {{ input('name', 'name')|raw }}
     {{ input('community', 'community', 'public')|raw }}
