@@ -7,6 +7,7 @@
     require_once '../controller/ConfigController.php';
     require_once '../controller/StateController.php';
     require_once '../controller/SnmpController.php';
+    require_once '../controller/GroupController.php';
 
     /**
      * @brief permet de construire un tableau servant à router les requêtes
@@ -215,6 +216,15 @@
                     'controller' =>'Config',
                     'action' => 'ajax_reset',
                     'template' => '_reset'
+                ),
+
+                /**
+                 * Route pour les groupes
+                 */
+                '/group/add' => array(
+                    'controller' =>'Group',
+                    'action' => 'add',
+                    'template' => 'add'
                 ),
             );
             parent::__construct();

@@ -6,7 +6,7 @@
     class Model {
 
         public function create ($data) {
-            return $this->createObjectFromSingleData($data, 'State');
+            return $this->createObjectFromSingleData($data);
         }
 
         /**

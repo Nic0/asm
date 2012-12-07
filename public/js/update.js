@@ -50,7 +50,6 @@ function ajax_config () {
     })();
 }
 
-
 jQuery(document).ready(function($) {
     ajax_config();
 });

@@ -19,7 +19,7 @@
         public function nested ($groups) {
             $data = array();
             foreach ($groups as $g) {
-                if ($g->group_id == null) {
+                if ($g->group_id == 0) {
                     $data[$g->id] = $g;
                 } else {
                     $data[$g->group_id]->sous_group[$g->id] = $g;

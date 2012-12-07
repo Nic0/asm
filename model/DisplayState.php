@@ -96,7 +96,7 @@
 
                 // On place chaque état dans les sous groupes correspondant
                 foreach ($group as $g) {
-                    if ($g->group_id == null) {
+                    if ($g->group_id == 0) {
                         $data[$g->id] = $g;
                     } else {
                         $data[$g->group_id]->sous_group[$g->id] = $g;
