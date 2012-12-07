@@ -163,7 +163,7 @@ function plot_snmp_graph (conf) {
 
 function plot_glpi_columns_graph () {
     var chart;
-    var data = {date: [], open: [], close: []};
+    var data = {date: [], open: [], solved: []};
 
     $.ajax({
         'async': false,
@@ -177,8 +177,8 @@ function plot_glpi_columns_graph () {
                 data.open.push(parseInt(value.total));
             })
 
-            $.each(json.glpi.close, function(key, value) {
-                data.close.push(parseInt(value.total));
+            $.each(json.glpi.solved, function(key, value) {
+                data.solved.push(parseInt(value.total));
             })
 
 
@@ -229,8 +229,8 @@ function plot_glpi_columns_graph () {
                 data: data.open
             },
             {
-                name: 'Tickets Fermés',
-                data: data.close
+                name: 'Tickets Résolus',
+                data: data.solved
             },
         ]
     });

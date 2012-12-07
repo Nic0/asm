@@ -14,6 +14,7 @@
         public $group_id;
         public $sous_group = array();
         public $state = array();
+        public $point;
 
         public function nested ($groups) {
             $data = array();

@@ -23,7 +23,7 @@
                 ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(day(date), concat(\'/\', month(date))) as date')));
             $result = $this->select($select);
 
-            $data = array('open' => array(), 'closed' => array()) ;
+            $data = array('open' => array(), 'solved' => array()) ;
             foreach ($result as $row) {
                 $object = new GLPIStat();
                 $object->total = $row->total;
@@ -38,9 +38,9 @@
             $select = $this->sql
                 ->select()
                 ->from(array('t' => 'glpi_tickets'))
-                ->where("date(closedate) > (now() - interval ".$days." day)")
-                ->group(new Expression('date(closedate)'))
-                ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(day(date), concat(\'/\', month(date))) as date')));
+                ->where("date(solvedate) > (now() - interval ".$days." day)")
+                ->group(new Expression('date(solvedate)'))
+                ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(day(solvedate), concat(\'/\', month(solvedate))) as date')));
             $result = $this->select($select);
 
             foreach ($result as $row) {
@@ -49,7 +49,7 @@
                 $object->date = $row->date;
                 unset($object->sql);
                 unset($object->adapter);
-                $data['close'][] = $object;
+                $data['solved'][] = $object;
 
             }
 

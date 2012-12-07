@@ -74,7 +74,7 @@ home:
     height: 350
   glpibar:
     height: 350
-    title: Tickets Ouverts
+    title: Tickets
   glpipie:
     height: 350
     title: Types de Tickets

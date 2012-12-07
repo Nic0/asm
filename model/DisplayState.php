@@ -94,6 +94,7 @@
                 }
                 usort($zabbixState, "cmp");
 
+                // On place chaque état dans les sous groupes correspondant
                 foreach ($group as $g) {
                     if ($g->group_id == null) {
                         $data[$g->id] = $g;
@@ -107,6 +108,9 @@
                     }
                 }
 
+                // On attribue les points aux sous groupes
+                $this->setGroupPoint($data);
+
                 return $data;
             }
         }
@@ -115,7 +119,7 @@
          * @brief Attribue un point (0,1,2) en fonction de la couleur, utile pour la moyenne
          * @param State $zabbix état zabbix
          */
-        public function setPoint ($zabbix) {
+        private function setPoint ($zabbix) {
             $value = $zabbix->lastvalue;
 
             $warning = $zabbix->warning;
@@ -136,6 +140,15 @@
                     $zabbix->point = 1;
                 } else {
                     $zabbix->point = 2;
+                }
+            }
+        }
+
+        private function setGroupPoint ($groups) {
+
+            foreach ($groups as $group) {
+                foreach ($group->sous_group as $sg) {
+                    //var_dump($sg);
                 }
             }
         }
