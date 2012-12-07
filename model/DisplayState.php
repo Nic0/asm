@@ -146,10 +146,23 @@
 
         private function setGroupPoint ($groups) {
 
+
             foreach ($groups as $group) {
+                $coeff_g = 0;
+                $points_g = 0;
+
                 foreach ($group->sous_group as $sg) {
-                    //var_dump($sg);
+                    $coeff_sg =0;
+                    $points_sg = 0;
+                    foreach ($sg->state as $state) {
+                        $points_sg += $state->point * $state->coeff;
+                        $coeff_sg += $state->coeff;
+                    }
+                    $sg->point = $points_sg / $coeff_sg;
+                    $points_g += $sg->point * $sg->coeff;
+                    $coeff_g += $sg->coeff;
                 }
+                $group->point = $points_g / $coeff_g;
             }
         }
     }

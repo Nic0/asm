@@ -1,10 +1,10 @@
 <div class="offset3">
-    <h2>{{ config.home.zabbix.title }} {% if isAdmin() %}<small>Zabbix</small> {% endif %}<img src="/img/icon/medium/{{ avglevel(snmp, config) }}"/></h2>
+    <h2><img src="/img/icon/medium/{{ avglevel(zabbix) }}"/> {{ config.home.zabbix.title }} {% if isAdmin() %}<small>Zabbix</small> {% endif %}</h2>
 </div>
 <div class="span12">
     {% for metagroup in zabbix %}
 
-            <h3>{{ metagroup.name }}</h3>
+            <h3><img src="/img/icon/medium/{{ levelimg(metagroup) }}"/> {{ metagroup.name }}</h3>
 
         <table class="table">
         {% for group in metagroup.sous_group %}
@@ -16,7 +16,7 @@
                     {{ group.name }}
                 </td>
                 <td>
-                    <img src="/img/icon/small/{{ avglevel(group.state) }}" alt="">
+                    <img src="/img/icon/small/{{ levelimg(group) }}" alt="">
                 </td>
 
 

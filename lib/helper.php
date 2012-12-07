@@ -139,15 +139,16 @@
 
     function levelimg ($item) {
         $conf = AsmConfig::getConfig();
-        if ($item->point == 0) {
+
+        if ($item->point < $conf->html->value->warning) {
             $level = "green";
-        } else if ($item->point == 1) {
+        } else if ($item->point < $conf->html->value->alert) {
             $level = "yellow";
         } else {
             $level = "red";
         }
 
-        return $config->home->image->$level;
+        return $conf->home->image->$level;
     }
     $this->twig->addFunction('levelimg', new Twig_Function_Function('levelimg'));
 
