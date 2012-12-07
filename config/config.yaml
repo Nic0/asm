@@ -75,7 +75,7 @@ home:
   glpibar:
     height: 350
     title: Tickets
-    days: 20
+    days: 10
     update: 600
   glpipie:
     height: 350

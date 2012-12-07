@@ -61,11 +61,11 @@ chart = new Highcharts.Chart({
     colors: ['#3465a4'],
     series: [
         {
-            name: 'Tickets Ouverts',
+            name: 'Tickets Ouverts / Journée',
             data: data.open
         },
         {
-            name: 'Tickets Résolus',
+            name: 'Tickets Résolus / Journée',
             data: data.solved
         },
     ]
