@@ -82,6 +82,7 @@ home:
     days: 10
   zabbix:
     title: Etat des serveurs
+    update: 60
   placeholder1: snmp
   placeholder2: zabbix
   placeholder3: ~

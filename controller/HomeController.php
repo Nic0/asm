@@ -42,4 +42,10 @@
             $this->addData('glpi', $glpi->getStatsType())
                  ->renderJson();
         }
+
+        public function ajax_zabbix () {
+            $state = new DisplayState();
+
+            $this->addData('zabbix', $state->getAll())->render();
+        }
     }

@@ -98,6 +98,12 @@
                     'controller' =>'Home',
                     'action' => 'ajax_init_snmp'
                 ),
+                '/ajax/zabbix_home' => array(
+                    'controller' =>'Home',
+                    'action' => 'ajax_zabbix',
+                    'template' => 'zabbix'
+                ),
+
                 /**
                  * Route pour STATE
                  */

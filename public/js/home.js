@@ -370,6 +370,12 @@ function plot_glpi_pie_graph () {
     });
 }
 
+function ajaxify_load (conf) {
+    setInterval(function() {
+        $('#zabbix').load('/ajax/zabbix_home');
+    }, conf.home.zabbix.update * 1000);
+}
+
 function ajax_config () {
     var json = (function () {
     $.ajax({
@@ -381,6 +387,7 @@ function ajax_config () {
             plot_snmp_graph(data);
             plot_glpi_columns_graph();
             plot_glpi_pie_graph();
+            ajaxify_load(data);
         }
     });
     })();
