@@ -103,7 +103,16 @@
                     'action' => 'ajax_zabbix',
                     'template' => 'zabbix'
                 ),
-
+                '/ajax/glpipie_home' => array(
+                    'controller' =>'Home',
+                    'action' => 'ajax_glpipie',
+                    'template' => 'glpipie'
+                ),
+                '/ajax/glpibar_home' => array(
+                    'controller' =>'Home',
+                    'action' => 'ajax_glpibar',
+                    'template' => 'glpibar'
+                ),
                 /**
                  * Route pour STATE
                  */

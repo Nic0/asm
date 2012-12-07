@@ -39,13 +39,19 @@
 
         public function ajax_glpi_type ($value='') {
             $glpi = new GLPIStat();
-            $this->addData('glpi', $glpi->getStatsType())
-                 ->renderJson();
+            $this->addData('glpi', $glpi->getStatsType())->renderJson();
         }
 
         public function ajax_zabbix () {
             $state = new DisplayState();
-
             $this->addData('zabbix', $state->getAll())->render();
+        }
+
+        public function ajax_glpipie () {
+            $this->render();
+        }
+
+        public function ajax_glpibar () {
+            $this->render();
         }
     }

@@ -161,219 +161,18 @@ function plot_snmp_graph (conf) {
     var adista = new Highcharts.Chart(options);
 }
 
-function plot_glpi_columns_graph () {
-    var chart;
-    var data = {date: [], open: [], solved: []};
-
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': "/ajax/glpi_stats",
-        'dataType': "json",
-        'success': function (json) {
-
-            $.each(json.glpi.open, function(key, value) {
-                data.date.push(value.date);
-                data.open.push(parseInt(value.total));
-            })
-
-            $.each(json.glpi.solved, function(key, value) {
-                data.solved.push(parseInt(value.total));
-            })
-
-
-        }
-    });
-
-    chart = new Highcharts.Chart({
-        chart: {
-            renderTo: 'home-glpibar',
-            type: 'column'
-        },
-        title: null,
-        xAxis: {
-            categories: data.date
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Nombre de tickets'
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            backgroundColor: '#FFFFFF',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 100,
-            y: 70,
-            floating: true,
-            shadow: true
-        },
-        tooltip: {
-            formatter: function() {
-                return ''+
-                    this.x +': '+ this.y +' tickets';
-            }
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        colors: ['#3465a4'],
-        series: [
-            {
-                name: 'Tickets Ouverts',
-                data: data.open
-            },
-            {
-                name: 'Tickets Résolus',
-                data: data.solved
-            },
-        ]
-    });
-
-
-};
-
-function plot_glpi_pie_graph () {
-    var chart;
-
-    var colors = Highcharts.getOptions().colors,
-        categories = ['Incidents', 'Demandes'],
-        name = 'Tickets GLPI';
-    var data = [];
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': "/ajax/glpi_type",
-        'dataType': "json",
-        'success': function (json) {
-
-            var incident_categories = [];
-            var incident_data = [];
-            var demande_categories = [];
-            var demande_data = [];
-
-            $.each(json.glpi.incident, function(key, value) {
-                if (key!='total') {
-                    incident_categories.push(key);
-                    incident_data.push(parseInt(value));
-                }
-            });
-
-            $.each(json.glpi.demande, function(key, value) {
-                if (key != 'total') {
-                    demande_categories.push(key);
-                    demande_data.push(parseInt(value));
-                }
-            });
-
-            data = [{
-                    y: json.glpi.incident.total,
-                    //color: '#0091FE',
-                    color: '#c17d11',
-                    //color: colors[0],
-                    drilldown: {
-                        name: 'Types d\'incidents',
-                        categories: incident_categories,
-                        data: incident_data,
-                        color: colors[0]
-                    }
-                }, {
-                    y: json.glpi.demande.total,
-                    //color: '#65FF00',
-                    color: '#75507b',
-                    //color: colors[1],
-                    drilldown: {
-                        name: 'Types d\'incidents',
-                        categories: demande_categories,
-                        data: demande_data,
-                        color: colors[1]
-                    }
-                }
-                ];
-
-        }
-    });
-
-
-    // Build the data arrays
-    var browserData = [];
-    var versionsData = [];
-    for (var i = 0; i < data.length; i++) {
-
-        // add browser data
-        browserData.push({
-            name: categories[i],
-            y: data[i].y,
-            color: data[i].color
-        });
-
-        // add version data
-        for (var j = 0; j < data[i].drilldown.data.length; j++) {
-            var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
-            versionsData.push({
-                name: data[i].drilldown.categories[j],
-                y: data[i].drilldown.data[j],
-                color: Highcharts.Color(data[i].color).brighten(brightness).get()
-            });
-        }
-    }
-
-    // Create the chart
-    chart = new Highcharts.Chart({
-        chart: {
-            renderTo: 'home-glpipie',
-            type: 'pie'
-        },
-        title: {
-            text: null
-        },
-        yAxis: {
-            title: {
-                text: 'Total percent market share'
-            }
-        },
-        plotOptions: {
-            pie: {
-                shadow: false
-            }
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        series: [{
-            name: 'Browsers',
-            data: browserData,
-            size: '60%',
-            dataLabels: {
-                formatter: function() {
-                    return this.y > 5 ? this.point.name : null;
-                },
-                color: 'white',
-                distance: -30
-            }
-        }, {
-            name: 'Versions',
-            data: versionsData,
-            innerSize: '60%',
-            dataLabels: {
-                formatter: function() {
-                    // display only if larger than 1
-                    return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y  : null;
-                }
-            }
-        }]
-    });
-}
-
 function ajaxify_load (conf) {
     setInterval(function() {
         $('#zabbix').load('/ajax/zabbix_home');
     }, conf.home.zabbix.update * 1000);
+
+    setInterval(function() {
+        $('#glpipie').load('/ajax/glpipie_home');
+    }, conf.home.glpipie.update * 1000);
+
+    setInterval(function() {
+        $('#glpibar').load('/ajax/glpibar_home');
+    }, conf.home.glpibar.update * 1000);
 }
 
 function ajax_config () {
@@ -385,8 +184,8 @@ function ajax_config () {
         'dataType': "json",
         'success': function (data) {
             plot_snmp_graph(data);
-            plot_glpi_columns_graph();
-            plot_glpi_pie_graph();
+            //plot_glpi_columns_graph();
+            //plot_glpi_pie_graph();
             ajaxify_load(data);
         }
     });
