@@ -1,15 +1,15 @@
-var chart;
-
-var colors = Highcharts.getOptions().colors,
-    categories = ['Incidents', 'Demandes'],
-    name = 'Tickets GLPI';
-var data = [];
 $.ajax({
     'async': false,
     'global': false,
     'url': "/ajax/glpi_type",
     'dataType': "json",
     'success': function (json) {
+
+        var chart;
+
+        var colors = Highcharts.getOptions().colors,
+            categories = ['Incidents', 'Demandes'],
+            name = 'Tickets GLPI';
 
         var incident_categories = [];
         var incident_data = [];
@@ -53,71 +53,71 @@ $.ajax({
                     color: colors[1]
                 }
             }
-            ];
+        ];
 
-// Build the data arrays
-var browserData = [];
-var versionsData = [];
-for (var i = 0; i < data.length; i++) {
+        // Build the data arrays
+        var browserData = [];
+        var versionsData = [];
+        for (var i = 0; i < data.length; i++) {
 
-    // add browser data
-    browserData.push({
-        name: categories[i],
-        y: data[i].y,
-        color: data[i].color
-    });
+            // add browser data
+            browserData.push({
+                name: categories[i],
+                y: data[i].y,
+                color: data[i].color
+            });
 
-    // add version data
-    for (var j = 0; j < data[i].drilldown.data.length; j++) {
-        var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
-        versionsData.push({
-            name: data[i].drilldown.categories[j],
-            y: data[i].drilldown.data[j],
-            color: Highcharts.Color(data[i].color).brighten(brightness).get()
-        });
-    }
-}
-
-// Create the chart
-chart = new Highcharts.Chart({
-    chart: {
-        renderTo: 'home-glpipie',
-        type: 'pie'
-    },
-    title: {
-        text: null
-    },
-
-    plotOptions: {
-        pie: {
-            shadow: true
-        }
-    },
-    tooltip: {
-        valueSuffix: ''
-    },
-    series: [{
-        name: 'Tickets',
-        data: browserData,
-        size: '60%',
-        dataLabels: {
-            formatter: function() {
-                return this.y > 5 ? this.point.name : null;
-            },
-            color: 'white',
-            distance: -30
-        }
-    }, {
-        name: 'Tickets',
-        data: versionsData,
-        innerSize: '60%',
-        dataLabels: {
-            formatter: function() {
-                // display only if larger than 1
-                return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y  : null;
+            // add version data
+            for (var j = 0; j < data[i].drilldown.data.length; j++) {
+                var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
+                versionsData.push({
+                    name: data[i].drilldown.categories[j],
+                    y: data[i].drilldown.data[j],
+                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                });
             }
         }
-    }]
-});
+
+        // Create the chart
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'home-glpipie',
+                type: 'pie'
+            },
+            title: {
+                text: null
+            },
+
+            plotOptions: {
+                pie: {
+                    shadow: true
+                }
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            series: [{
+                name: 'Tickets',
+                data: browserData,
+                size: '60%',
+                dataLabels: {
+                    formatter: function() {
+                        return this.y > 5 ? this.point.name : null;
+                    },
+                    color: 'white',
+                    distance: -30
+                }
+            }, {
+                name: 'Tickets',
+                data: versionsData,
+                innerSize: '60%',
+                dataLabels: {
+                    formatter: function() {
+                        // display only if larger than 1
+                        return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y  : null;
+                    }
+                }
+            }]
+        });
     }
 });
