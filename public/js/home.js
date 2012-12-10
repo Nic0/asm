@@ -174,6 +174,6 @@ function confirm_delete () {
     return r;
 }
 
-jQuery(document).ready(function($) {
+//jQuery(document).ready(function($) {
     ajax_config();
-});
+//});
