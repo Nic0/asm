@@ -1,5 +1,5 @@
 var chart;
-var data = {date: [], open: [], solved: []};
+var data = {date: [], open: [], solved: [], stock: []};
 
 $.ajax({
     'async': false,
@@ -17,6 +17,10 @@ $.ajax({
             data.solved.push(parseInt(value.total));
         })
 
+        $.each(json.glpi.stock, function(key, value) {
+            data.stock.push(parseInt(value.total));
+        })
+
 
     }
 });
@@ -30,19 +34,34 @@ chart = new Highcharts.Chart({
     xAxis: {
         categories: data.date
     },
-    yAxis: {
+    yAxis: [{
         min: 0,
         title: {
             text: 'Nombre de tickets'
         }
     },
+    {
+        min: 0,
+        title: {
+            text: 'Total Tickets Ouverts',
+            style: {
+                color: '#89A54E'
+            }
+        },
+        labels: {
+            style: {
+                color: '#89A54E'
+            }
+        },
+        opposite: true
+    }],
     legend: {
         layout: 'vertical',
         backgroundColor: '#FFFFFF',
         align: 'left',
         verticalAlign: 'top',
-        x: 100,
-        y: 70,
+        x: 70,
+        y: 10,
         floating: true,
         shadow: true
     },
@@ -67,6 +86,12 @@ chart = new Highcharts.Chart({
         {
             name: 'Tickets Résolus / Journée',
             data: data.solved
+        },
+        {
+            name: 'Total Ouverts',
+            type: 'spline',
+            data: data.stock,
+            yAxis: 1
         },
     ]
 });
