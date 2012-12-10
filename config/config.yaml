@@ -76,12 +76,12 @@ home:
     height: 350
     title: Tickets
     days: 15
-    update: 600
+    update: 60
   glpipie:
     height: 350
     title: Types de Tickets
     days: 10
-    update: 600
+    update: 60
   zabbix:
     title: Etat des serveurs
     update: 60
