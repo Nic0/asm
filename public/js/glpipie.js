@@ -1,5 +1,5 @@
 $.ajax({
-    'async': false,
+    'async': true,
     'global': false,
     'url': "/ajax/glpi_type",
     'dataType': "json",
