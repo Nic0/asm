@@ -55,10 +55,6 @@ $.ajax({
             }
             ];
 
-    }
-});
-
-
 // Build the data arrays
 var browserData = [];
 var versionsData = [];
@@ -122,4 +118,6 @@ chart = new Highcharts.Chart({
             }
         }
     }]
+});
+    }
 });
