@@ -3,6 +3,7 @@
     require_once '../lib/GLPIModel.php';
 
     use Zend\Db\Sql\Expression;
+    use Zend\Db\Adapter\Adapter;
 
     /**
      * @brief Modèle pour un ticket de l'application GLPI
@@ -17,6 +18,7 @@
             $config = AsmConfig::getConfig();
             $days = days_from_open_days($config->home->glpibar->days);
 
+            // requete pour les ouvertures de tickets
             $select = $this->sql
                 ->select()
                 ->from(array('t' => 'glpi_tickets'))
@@ -25,7 +27,7 @@
                 ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(DAYNAME(date), concat(\' \', concat(day(date), concat(\'/\', month(date))))) as date')));
             $result = $this->select($select);
 
-            $data = array('open' => array(), 'solved' => array()) ;
+            $data = array('open' => array(), 'solved' => array(), 'stock' => array()) ;
             foreach ($result as $row) {
                 $object = new GLPIStat();
                 $object->total = $row->total;
@@ -45,7 +47,7 @@
                 $open->date = str_replace('Friday', 'Ven', $open->date);
             }
 
-
+            // requete pour les résolutions de tickets
             $select = $this->sql
                 ->select()
                 ->from(array('t' => 'glpi_tickets'))
@@ -61,6 +63,35 @@
                 unset($object->sql);
                 unset($object->adapter);
                 $data['solved'][] = $object;
+
+            }
+
+            $sql = "select d.date, count(*) as total
+                from (
+                    select date(date) as date
+                      from glpi_tickets
+                     where date(date) > (now() - interval ".$days." day)
+                     group by date(date) desc
+                ) as d
+                 inner join glpi_tickets as t on date(t.date) >= (now() - interval ". ($days + 200) ." day)
+
+                 where d.date >= date(t.date)
+                   and (date(t.closedate) >= d.date
+                    or date(solvedate) >= d.date
+                    or (date(closedate) IS NULL
+                    and date(solvedate) IS NULL))
+
+                 group by d.date";
+
+            $test = new GLPIStat();
+            $result = $test->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
+            foreach ($result as $row) {
+                $object = new GLPIStat();
+                $object->total = $row->total;
+                $object->date = $row->date;
+                unset($object->sql);
+                unset($object->adapter);
+                $data['stock'][] = $object;
 
             }
 
