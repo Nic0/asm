@@ -1,5 +1,3 @@
-var chart;
-var data = {date: [], open: [], solved: [], stock: [], sla: []};
 
 $.ajax({
     'async': true,
@@ -8,6 +6,8 @@ $.ajax({
     'dataType': "json",
     'success': function (json) {
 
+        var chart;
+        var data = {date: [], open: [], solved: [], stock: [], sla: []};
         $.each(json.glpi.open, function(key, value) {
             data.date.push(value.date);
             data.open.push(parseInt(value.total));
