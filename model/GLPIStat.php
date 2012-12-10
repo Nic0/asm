@@ -75,7 +75,7 @@
                      where date(date) > (now() - interval ".$days." day)
                      group by date(date) desc
                 ) as d
-                 inner join glpi_tickets as t on date(t.date) >= (now() - interval ". ($days + 200) ." day)
+                 inner join glpi_tickets as t on date(t.date) >= (now() - interval ". ($days + 100) ." day)
 
                  where d.date >= date(t.date)
                    and (date(t.closedate) >= d.date
@@ -97,14 +97,20 @@
             }
 
             //requete pour le SLA
-            $sql ="select date(solvedate) as sdate, count(*) /
-                (
-                    select count(*)
-                      from glpi_tickets
-                     where solvedate is not null
-                       and due_date is not null
-                       and date(solvedate) = sdate
-                ) * 100 as total
+            $sql ="select count(*) as total
+              FROM `glpi_tickets`
+             where due_date is not null
+               and date(solvedate) >= (now() - interval ".$days." day)
+             group by date(solvedate)";
+
+            $result = $this->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
+            $total = array();
+            foreach ($result as $row) {
+                $total[] = $row->total;
+            }
+
+            //requete pour le SLA
+            $sql ="select date(solvedate) as date, count(*) as total
               FROM `glpi_tickets`
              where solvedate < due_date
                and due_date is not null
@@ -112,10 +118,11 @@
              group by date(solvedate)";
 
             $result = $this->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
-            foreach ($result as $row) {
+
+            foreach ($result as $key => $row) {
                 $object = new GLPIStat();
-                $object->total = $row->total;
-                $object->date = $row->sdate;
+                $object->total = ($row->total/($total[$key]))*100;
+                $object->date = $row->date;
                 unset($object->sql);
                 unset($object->adapter);
                 $data['sla'][] = $object;
