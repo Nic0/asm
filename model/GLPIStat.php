@@ -27,7 +27,8 @@
                 ->columns(array(new Expression('COUNT(*) as total'), new Expression('concat(DAYNAME(date), concat(\' \', concat(day(date), concat(\'/\', month(date))))) as date')));
             $result = $this->select($select);
 
-            $data = array('open' => array(), 'solved' => array(), 'stock' => array()) ;
+            $data = array('open' => array(), 'solved' => array(),
+                         'stock' => array(), 'sla' => array()) ;
             foreach ($result as $row) {
                 $object = new GLPIStat();
                 $object->total = $row->total;
@@ -66,6 +67,7 @@
 
             }
 
+            // requete pour le stock
             $sql = "select d.date, count(*) as total
                 from (
                     select date(date) as date
@@ -83,8 +85,7 @@
 
                  group by d.date";
 
-            $test = new GLPIStat();
-            $result = $test->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
+            $result = $this->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
             foreach ($result as $row) {
                 $object = new GLPIStat();
                 $object->total = $row->total;
@@ -92,6 +93,32 @@
                 unset($object->sql);
                 unset($object->adapter);
                 $data['stock'][] = $object;
+
+            }
+
+            //requete pour le SLA
+            $sql ="select date(solvedate) as sdate, count(*) /
+                (
+                    select count(*)
+                      from glpi_tickets
+                     where solvedate is not null
+                       and due_date is not null
+                       and date(solvedate) = sdate
+                ) * 100 as total
+              FROM `glpi_tickets`
+             where solvedate < due_date
+               and due_date is not null
+               and date(solvedate) >= (now() - interval ".$days." day)
+             group by date(solvedate)";
+
+            $result = $this->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
+            foreach ($result as $row) {
+                $object = new GLPIStat();
+                $object->total = $row->total;
+                $object->date = $row->sdate;
+                unset($object->sql);
+                unset($object->adapter);
+                $data['sla'][] = $object;
 
             }
 
