@@ -20,7 +20,7 @@
         '<div class="control-group">'
             .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
             .'<div class="controls">'
-            .'<input type="password" name="'.$name.'"'
+            .'<input type="password" name="'.$name.'" '
                    . 'value="'.$value.'">'
             .'</div>'
         .'</div>';
@@ -41,6 +41,39 @@
 
     }
     $this->twig->addFunction('input', new Twig_Function_Function('input'));
+
+    function homeplaceholder ($label, $name, $value=null, $warning=null) {
+
+        $data = array(
+                'snmp' => 'SNMP',
+                'zabbix' => 'Zabbix / Serveurs',
+                'glpipie' => 'GLPI Type (pie graph)',
+                'glpibar' => 'GLPI Stats (bar graph)',
+                'empty' => 'Vide'
+            );
+
+
+        $div = '<div class="control-group '.$warning.'">'
+            .'<label class="control-label" for="'.$name.'">'.$label.'</label>'
+            .'<div class="controls">'
+            .'<select name="'.$name.'">';
+
+            foreach ($data as $k => $v) {
+
+                $div .= '<option value="'.$k.'" ';
+                if ($value == $k) {
+                    $div .= 'selected="selected" ';
+                }
+                $div .= '>'.$v.'</option>';
+            }
+            $div .= '</select>'
+
+            .'</div>'
+        .'</div>';
+        return $div;
+
+    }
+    $this->twig->addFunction('homeplaceholder', new Twig_Function_Function('homeplaceholder'));
 
     function displayPriority ($priority, $element) {
         $conf = AsmConfig::getConfig();

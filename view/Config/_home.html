@@ -1,0 +1,70 @@
+<form action="/config-sys" class="form-horizontal" method="post">
+    <h2>Configuration de la page d'accueil</h2>
+
+    <fieldset>
+        <legend>SNMP / Internet</legend>
+        {{ input('Titre', 'home.snmp.title', config.home.snmp.title)|raw }}
+        {{ input('Update (s)', 'home.snmp.update', config.home.snmp.update)|raw }}
+        {{ input('Hauteur (px)', 'home.snmp.height', config.home.snmp.height)|raw }}
+        {{ input('Warning niveau', 'home.snmp.warning.level', config.home.snmp.warning.level)|raw }}
+        {{ inputcolor('Warning couleur', 'home.snmp.warning.color', config.home.snmp.warning.color)|raw }}
+        {{ input('Alert niveau', 'home.snmp.error.level', config.home.snmp.error.level)|raw }}
+        {{ inputcolor('Alert couleur', 'home.snmp.error.color', config.home.snmp.error.color)|raw }}
+    </fieldset>
+
+    <fieldset>
+        <legend>GLPI graphbar (tickets ouverts, résolus...)</legend>
+        {{ input('Titre', 'home.glpibar.title', config.home.glpibar.title)|raw }}
+        {{ input('Update (s)', 'home.glpibar.update', config.home.glpibar.update)|raw }}
+        {{ input('Hauteur (px)', 'home.glpibar.height', config.home.glpibar.height)|raw }}
+        {{ input('Jours Ouvrées', 'home.glpibar.days', config.home.glpibar.days)|raw }}
+
+        {{ inputcolor('Coureur Tickets Ouverts', 'home.glpibar.color.ouvert', config.home.glpibar.color.ouvert)|raw }}
+        {{ inputcolor('Coureur Tickets Fermés', 'home.glpibar.color.ferme', config.home.glpibar.color.ferme)|raw }}
+        {{ inputcolor('Coureur %SLA', 'home.glpibar.color.sla', config.home.glpibar.color.sla)|raw }}
+        {{ inputcolor('Coureur Objectif', 'home.glpibar.color.objectif', config.home.glpibar.color.objectif)|raw }}
+        {{ inputcolor('Coureur Tickets Total', 'home.glpibar.color.total', config.home.glpibar.color.total)|raw }}
+
+        {{ input('Legende Tickets Ouverts', 'home.glpibar.legend.ouvert', config.home.glpibar.legend.ouvert)|raw }}
+        {{ input('Legende Tickets Fermés', 'home.glpibar.legend.ferme', config.home.glpibar.legend.ferme)|raw }}
+        {{ input('Legende SLA', 'home.glpibar.legend.sla', config.home.glpibar.legend.sla)|raw }}
+        {{ input('Legende Tickets Total', 'home.glpibar.legend.total', config.home.glpibar.legend.total)|raw }}
+
+        {{ input('Y Axis tickets', 'home.glpibar.yaxis.tickets', config.home.glpibar.yaxis.tickets)|raw }}
+        {{ input('Y Axis SLA', 'home.glpibar.yaxis.sla', config.home.glpibar.yaxis.sla)|raw }}
+        {{ input('Y Axis Total', 'home.glpibar.yaxis.total', config.home.glpibar.yaxis.total)|raw }}
+
+    </fieldset>
+
+    <fieldset>
+        <legend>GLPI graphpie (incidents, demandes...)</legend>
+        {{ input('Titre', 'home.glpipie.title', config.home.glpipie.title)|raw }}
+        {{ input('Update (s)', 'home.glpipie.update', config.home.glpipie.update)|raw }}
+        {{ input('Hauteur (px)', 'home.glpipie.height', config.home.glpipie.height)|raw }}
+        {{ input('Jours Ouvrées', 'home.glpipie.days', config.home.glpipie.days)|raw }}
+    </fieldset>
+
+    <fieldset>
+        <legend>Zabbix (Serveurs)</legend>
+        {{ input('Titre', 'home.zabbix.title', config.home.zabbix.title)|raw }}
+        {{ input('Update (s)', 'home.zabbix.update', config.home.zabbix.update)|raw }}
+    </fieldset>
+
+    <fieldset>
+        <legend>Place Holder (disposition des éléments)</legend>
+
+    </fieldset>
+    <div class="span5">
+        {{ homeplaceholder('Place Holder 1','home.placeholder1', config.home.placeholder1)|raw}}
+        {{ homeplaceholder('Place Holder 2','home.placeholder2', config.home.placeholder2)|raw}}
+        {{ homeplaceholder('Place Holder 3','home.placeholder3', config.home.placeholder3)|raw}}
+    </div>
+    <div class="span5">
+        {{ homeplaceholder('Place Holder 4','home.placeholder4', config.home.placeholder4)|raw}}
+        {{ homeplaceholder('Place Holder 5','home.placeholder5', config.home.placeholder5)|raw}}
+        {{ homeplaceholder('Place Holder 6','home.placeholder6', config.home.placeholder6)|raw}}
+    </div>
+    <div class="span10">
+       {{ submit('Sauvegarder')|raw }}
+    </div>
+</form>

@@ -70,20 +70,20 @@ home:
     error:
       level: "85"
       color: FF0000
-    update: 5
-    height: 350
+    update: "5"
+    height: "350"
   glpibar:
-    height: 350
+    height: "350"
     title: Tickets
-    days: 15
-    update: 600
+    days: "15"
+    update: "600"
     objectif: 80
     color:
-      ouvert: a40000
-      ferme: 4e9a06
-      sla: edd400
-      total: ad7fa8
-      objectif: edd400
+      ouvert: A40000
+      ferme: 4E9A06
+      sla: EDD400
+      total: AD7FA8
+      objectif: EDD400
     legend:
       ouvert: "Tickets Ouverts / Journ\xE9e"
       ferme: "Tickets R\xE9solus / Journ\xE9e"
@@ -94,18 +94,18 @@ home:
       sla: '% SLA'
       total: Total Tickets Ouverts
   glpipie:
-    height: 350
+    height: "350"
     title: Types de Tickets
-    days: 10
-    update: 600
+    days: "10"
+    update: "600"
   zabbix:
     title: Etat des serveurs
-    update: 60
+    update: "60"
   placeholder1: snmp
   placeholder2: zabbix
-  placeholder3: ~
+  placeholder3: empty
   placeholder4: glpipie
   placeholder5: glpibar
-  placeholder6: ~
+  placeholder6: empty
   title: "\xC9tat des services"
 ...
