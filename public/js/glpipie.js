@@ -4,7 +4,7 @@ $.ajax({
     'url': "/ajax/glpi_type",
     'dataType': "json",
     'success': function (json) {
-
+        var conf = jQuery.parseJSON(json.conf);
         var chart;
 
         var colors = Highcharts.getOptions().colors,
@@ -32,9 +32,7 @@ $.ajax({
 
         data = [{
                 y: json.glpi.incident.total,
-                //color: '#0091FE',
-                color: '#c17d11',
-                //color: colors[0],
+                color: '#' + conf.home.glpipie.color.incident,
                 drilldown: {
                     name: 'Types d\'incidents',
                     categories: incident_categories,
@@ -43,9 +41,7 @@ $.ajax({
                 }
             }, {
                 y: json.glpi.demande.total,
-                //color: '#65FF00',
-                color: '#75507b',
-                //color: colors[1],
+                color: '#' + conf.home.glpipie.color.demande,
                 drilldown: {
                     name: 'Types d\'incidents',
                     categories: demande_categories,

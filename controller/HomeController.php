@@ -40,7 +40,9 @@
 
         public function ajax_glpi_type ($value='') {
             $glpi = new GLPIStat();
-            $this->addData('glpi', $glpi->getStatsType())->renderJson();
+            $this->addData('glpi', $glpi->getStatsType())
+                 ->addData('conf', AsmConfig::getJsonConfig())
+                 ->renderJson();
         }
 
         public function ajax_zabbix () {

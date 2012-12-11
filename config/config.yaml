@@ -72,12 +72,15 @@ home:
       color: FF0000
     update: "5"
     height: "350"
+    color:
+      download: 0091FE
+      upload: 65FF00
   glpibar:
     height: "350"
     title: Tickets
     days: "15"
     update: "600"
-    objectif: 80
+    objectif: "80"
     color:
       ouvert: A40000
       ferme: 4E9A06
@@ -98,6 +101,9 @@ home:
     title: Types de Tickets
     days: "10"
     update: "600"
+    color:
+      incident: C17D11
+      demande: 75507B
   zabbix:
     title: Etat des serveurs
     update: "60"

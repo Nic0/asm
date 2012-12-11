@@ -10,6 +10,9 @@
         {{ inputcolor('Warning couleur', 'home.snmp.warning.color', config.home.snmp.warning.color)|raw }}
         {{ input('Alert niveau', 'home.snmp.error.level', config.home.snmp.error.level)|raw }}
         {{ inputcolor('Alert couleur', 'home.snmp.error.color', config.home.snmp.error.color)|raw }}
+
+        {{ inputcolor('Couleur Download', 'home.snmp.color.download', config.home.snmp.color.download)|raw }}
+        {{ inputcolor('Couleur Upload', 'home.snmp.color.upload', config.home.snmp.color.upload)|raw }}
     </fieldset>
 
     <fieldset>
@@ -19,11 +22,11 @@
         {{ input('Hauteur (px)', 'home.glpibar.height', config.home.glpibar.height)|raw }}
         {{ input('Jours Ouvrées', 'home.glpibar.days', config.home.glpibar.days)|raw }}
 
-        {{ inputcolor('Coureur Tickets Ouverts', 'home.glpibar.color.ouvert', config.home.glpibar.color.ouvert)|raw }}
-        {{ inputcolor('Coureur Tickets Fermés', 'home.glpibar.color.ferme', config.home.glpibar.color.ferme)|raw }}
-        {{ inputcolor('Coureur %SLA', 'home.glpibar.color.sla', config.home.glpibar.color.sla)|raw }}
-        {{ inputcolor('Coureur Objectif', 'home.glpibar.color.objectif', config.home.glpibar.color.objectif)|raw }}
-        {{ inputcolor('Coureur Tickets Total', 'home.glpibar.color.total', config.home.glpibar.color.total)|raw }}
+        {{ inputcolor('Couleur Tickets Ouverts', 'home.glpibar.color.ouvert', config.home.glpibar.color.ouvert)|raw }}
+        {{ inputcolor('Couleur Tickets Fermés', 'home.glpibar.color.ferme', config.home.glpibar.color.ferme)|raw }}
+        {{ inputcolor('Couleur %SLA', 'home.glpibar.color.sla', config.home.glpibar.color.sla)|raw }}
+        {{ inputcolor('Couleur Objectif', 'home.glpibar.color.objectif', config.home.glpibar.color.objectif)|raw }}
+        {{ inputcolor('Couleur Tickets Total', 'home.glpibar.color.total', config.home.glpibar.color.total)|raw }}
 
         {{ input('Legende Tickets Ouverts', 'home.glpibar.legend.ouvert', config.home.glpibar.legend.ouvert)|raw }}
         {{ input('Legende Tickets Fermés', 'home.glpibar.legend.ferme', config.home.glpibar.legend.ferme)|raw }}
@@ -44,6 +47,8 @@
         {{ input('Update (s)', 'home.glpipie.update', config.home.glpipie.update)|raw }}
         {{ input('Hauteur (px)', 'home.glpipie.height', config.home.glpipie.height)|raw }}
         {{ input('Jours Ouvrées', 'home.glpipie.days', config.home.glpipie.days)|raw }}
+        {{ inputcolor('Couleur Incidents', 'home.glpipie.color.incident', config.home.glpipie.color.incident)|raw }}
+        {{ inputcolor('Couleur Demandes', 'home.glpipie.color.demande', config.home.glpipie.color.demande)|raw }}
     </fieldset>
 
     <fieldset>

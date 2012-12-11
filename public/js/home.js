@@ -121,7 +121,8 @@ function plot_snmp_graph (conf) {
                 exporting: {
                     enabled: false
                 },
-                colors: ['#0091FE', '#65FF00'],
+                colors: ['#' + conf.home.snmp.color.download,
+                         '#' + conf.home.snmp.color.upload],
                 series: [
                     {
                         name: 'Download',
