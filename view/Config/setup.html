@@ -10,24 +10,24 @@
 
 
             <ul id="myTab" class="nav nav-tabs">
-                <li><a href="#general" data-toggle="tab">General</a></li>
+                <li class="active"><a href="#general" data-toggle="tab">General</a></li>
                 <li><a href="#css" data-toggle="tab">CSS</a></li>
                 {% if loggedRole() == 'admin' %}
-                    <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                    <li><a href="#home" data-toggle="tab">Home</a></li>
                     <li><a href="#dbzabbix" data-toggle="tab">DB Zabbix</a></li>
                     <li><a href="#dbglpi" data-toggle="tab">DB GLPI</a></li>
                 {% endif %}
             </ul>
 
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade" id="general">
+                <div class="tab-pane fade in active" id="general">
                     {% include 'Config/_general.html' %}
                 </div>
                 <div class="tab-pane fade" id="css">
                     {% include 'Config/_css.html' %}
                 </div>
                 {% if loggedRole() == 'admin' %}
-                    <div class="tab-pane fade  in active" id="home">
+                    <div class="tab-pane fade" id="home">
                         {% include 'Config/_home.html' %}
                     </div>
                     <div class="tab-pane fade" id="dbzabbix">
