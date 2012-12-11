@@ -77,6 +77,22 @@ home:
     title: Tickets
     days: 15
     update: 600
+    objectif: 80
+    color:
+      ouvert: a40000
+      ferme: 4e9a06
+      sla: edd400
+      total: ad7fa8
+      objectif: edd400
+    legend:
+      ouvert: "Tickets Ouverts / Journée"
+      ferme: "Tickets Résolus / Journée"
+      sla: "% SLA"
+      total: "Total Ouverts"
+    yaxis:
+      tickets: Nombre de tickets
+      sla: "% SLA"
+      total: Total Tickets Ouverts
   glpipie:
     height: 350
     title: Types de Tickets

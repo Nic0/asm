@@ -5,7 +5,7 @@ $.ajax({
     'url': "/ajax/glpi_stats",
     'dataType': "json",
     'success': function (json) {
-
+        var conf = jQuery.parseJSON(json.conf);
         var chart;
         var data = {date: [], open: [], solved: [], stock: [], sla: []};
         $.each(json.glpi.open, function(key, value) {
@@ -38,38 +38,45 @@ $.ajax({
             yAxis: [{
                 min: 0,
                 title: {
-                    text: 'Nombre de tickets'
+                    text: conf.home.glpibar.yaxis.tickets
                 }
             },
             {
                 min: 0,
                 max: 100,
                 title: {
-                    text: '% SLA',
+                    text: conf.home.glpibar.yaxis.sla,
                     style: {
-                        color: '#80699B'
+                        color: '#'+conf.home.glpibar.color.sla
                     }
                 },
                 gridLineWidth: 0,
                 labels: {
                     style: {
-                        color: '#80699B'
+                        color: '#'+conf.home.glpibar.color.sla
                     }
                 },
-                opposite: true
+                opposite: true,
+                plotLines:
+                [{
+                    value: conf.home.glpibar.objectif,
+                    width: 1,
+                    color: '#'+conf.home.glpibar.color.objectif,
+                    zIndex: 5
+                }]
             },
             {
                 min: 0,
                 title: {
-                    text: 'Total Tickets Ouverts',
+                    text: conf.home.glpibar.yaxis.total,
                     style: {
-                        color: '#89A54E'
+                        color: '#'+conf.home.glpibar.color.total
                     }
                 },
                 gridLineWidth: 0,
                 labels: {
                     style: {
-                        color: '#89A54E'
+                        color: '#'+conf.home.glpibar.color.total
                     }
                 },
                 opposite: true
@@ -101,24 +108,29 @@ $.ajax({
                     borderWidth: 0
                 }
             },
-            colors: ['#3465a4'],
+            colors: [
+                '#'+conf.home.glpibar.color.ouvert,
+                '#'+conf.home.glpibar.color.ferme,
+                '#'+conf.home.glpibar.color.total,
+                '#'+conf.home.glpibar.color.sla
+            ],
             series: [
                 {
-                    name: 'Tickets Ouverts / Journée',
+                    name: conf.home.glpibar.legend.ouvert,
                     data: data.open
                 },
                 {
-                    name: 'Tickets Résolus / Journée',
+                    name: conf.home.glpibar.legend.ferme,
                     data: data.solved
                 },
                 {
-                    name: 'Total Ouverts',
+                    name: conf.home.glpibar.legend.total,
                     type: 'spline',
                     data: data.stock,
                     yAxis: 2
                 },
                 {
-                    name: '% SLA',
+                    name: conf.home.glpibar.legend.sla,
                     type: 'spline',
                     data: data.sla,
                     yAxis: 1

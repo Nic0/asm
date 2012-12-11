@@ -26,6 +26,7 @@
         public function ajax_glpi_stats () {
             $glpi = new GLPIStat();
             $this->addData('glpi', $glpi->getStats())
+                 ->addData('conf', AsmConfig::getJsonConfig())
                  ->renderJson();
         }
 
