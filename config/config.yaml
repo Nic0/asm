@@ -34,12 +34,12 @@ html:
   msg:
     auth: "En cas de probl\xE8me, merci de contacter Emmanuel Lesouef, mail: e.lesouef@crbn.fr"
     level:
-      normal: "Les services se portent bien."
-      warning: "Les services sont au niveau <i>warning</i>."
-      alert: "Les services sont au niveau <i>alert</i>."
+      normal: Les services se portent bien.
+      warning: Les services sont au niveau <i>warning</i>.
+      alert: Les services sont au niveau <i>alert</i>.
   value:
-    warning: 0.66
-    alert: 1.33
+    warning: 0.660000
+    alert: 1.330000
   glpi:
     warning: 50
     alert: 100
@@ -63,12 +63,12 @@ home:
     yellow: button-yellow-on.png
     red: button-red-on.png
   snmp:
-    title: Accès Internet
+    title: "Acc\xE8s Internet"
     warning:
-      level: 60
+      level: "65"
       color: FF8C00
     error:
-      level: 85
+      level: "85"
       color: FF0000
     update: 5
     height: 350
@@ -85,13 +85,13 @@ home:
       total: ad7fa8
       objectif: edd400
     legend:
-      ouvert: "Tickets Ouverts / Journée"
-      ferme: "Tickets Résolus / Journée"
-      sla: "% SLA"
-      total: "Total Ouverts"
+      ouvert: "Tickets Ouverts / Journ\xE9e"
+      ferme: "Tickets R\xE9solus / Journ\xE9e"
+      sla: '% SLA'
+      total: Total Ouverts
     yaxis:
       tickets: Nombre de tickets
-      sla: "% SLA"
+      sla: '% SLA'
       total: Total Tickets Ouverts
   glpipie:
     height: 350
@@ -107,5 +107,5 @@ home:
   placeholder4: glpipie
   placeholder5: glpibar
   placeholder6: ~
-  title: État des services
+  title: "\xC9tat des services"
 ...

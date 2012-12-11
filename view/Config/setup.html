@@ -1,30 +1,43 @@
 {% extends 'layout.html' %}
 
-{% block title %}ASM Configuration Database{% endblock %}
+{% block title %}ASM Configuration{% endblock %}
 
 {% block content %}
 <div class="pane ui-layout-center">
     <div class="container">
         {% include 'partial/message.html' %}
-        <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Configuration</a></li>
-                <li><a href="#tabs-css">CSS</a></li>
-                  {% if loggedRole() == 'admin' %}
-                    <li><a href="/config/dbzabbix">DB Zabbix</a></li>
-                    <li><a href="/config/dbglpi">DB GLPI</a></li>
-                  {% endif %}
-                <li><a href="/config/reset">Reset</a></li>
+
+
+
+            <ul id="myTab" class="nav nav-tabs">
+                <li><a href="#general" data-toggle="tab">General</a></li>
+                <li><a href="#css" data-toggle="tab">CSS</a></li>
+                {% if loggedRole() == 'admin' %}
+                    <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                    <li><a href="#dbzabbix" data-toggle="tab">DB Zabbix</a></li>
+                    <li><a href="#dbglpi" data-toggle="tab">DB GLPI</a></li>
+                {% endif %}
             </ul>
 
-            <div id="tabs-1">
-                {% include 'Config/_general.html' %}
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade" id="general">
+                    {% include 'Config/_general.html' %}
+                </div>
+                <div class="tab-pane fade" id="css">
+                    {% include 'Config/_css.html' %}
+                </div>
+                {% if loggedRole() == 'admin' %}
+                    <div class="tab-pane fade  in active" id="home">
+                        {% include 'Config/_home.html' %}
+                    </div>
+                    <div class="tab-pane fade" id="dbzabbix">
+                        {% include 'Config/_db_zabbix.html' %}
+                    </div>
+                    <div class="tab-pane fade" id="dbglpi">
+                        {% include 'Config/_db_glpi.html' %}
+                    </div>
+                {% endif %}
             </div>
-
-            <div id="tabs-css">
-                {% include 'Config/_css.html' %}
-            </div>
-
         </div>
     </div>
 </div>
