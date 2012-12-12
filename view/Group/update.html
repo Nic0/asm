@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block title %}Modification d'un état{% endblock %}
+
+{% block content %}
+<div class="pane ui-layout-center">
+    <div class="container">
+        {% include 'partial/message.html' %}
+
+        <h2>Modification {{ group.name }} </h2>
+
+        <form action="/group/update/{{ group.id }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Mise à jour d'un groupe</legend>
+
+            {{ input('Libellé du groupe', 'name', group.name)|raw}}
+            {{ input('Coefficient', 'coeff', group.coeff)|raw}}
+
+            <div class="control-group">
+                <label class="control-label" for="group_id">Groupe Parent</label>
+                <div class="controls">
+                    <select name="group_id">
+                        <option value="0">à la racine</option>
+                        {% for g in groups %}
+                            <option value="{{ g.id }}"
+                                {% if group.group_id == g.id %}
+                                    selected="selected"
+                                {% endif %}
+                            >{{ g.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="group_id">Logo</label>
+                <div class="controls">
+                    <input type="file" name="logo" accept="image/*">
+                </div>
+            </div>
+
+            {{ submit('Modifier')|raw }}
+
+        </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}
