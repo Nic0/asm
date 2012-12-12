@@ -13,19 +13,21 @@
             if (isPost()) {
                 $group = new Group();
                 $group = $group->create($_POST);
+                $group->logo = $_FILES["logo"]["name"];
 
 
                 move_uploaded_file($_FILES["logo"]["tmp_name"],
                                    "img/upload/" . $_FILES["logo"]["name"]);
 
                 $image = new SimpleImage();
-                $image->load("img/upload/" . $_FILES["logo"]["name"]);
+                $image->load("img/upload/" . $group->logo);
                 $image->resizeToHeight(48);
-                $image->save("img/upload/" . $_FILES["logo"]["name"]);
+                $image->save("img/upload/" . $group->logo);
 
                 unset($group->sous_group);
                 unset($group->state);
                 unset($group->point);
+
                 $group->save();
                 flash('Le groupe a été rajouté', 'success');
                 $this->redirect('/state/add');
