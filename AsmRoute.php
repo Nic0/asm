@@ -231,7 +231,8 @@
                 ),
                 '/group/update' => array(
                     'controller' =>'Group',
-                    'action' => 'delete'
+                    'action' => 'update',
+                    'template' => 'update'
                 ),
             );
             parent::__construct();

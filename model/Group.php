@@ -29,4 +29,36 @@
             return $data;
         }
 
+        public function update ($id, $values) {
+            $update = $this->sql->update();
+
+            if ($_FILES["logo"]["error"] != 0) {
+                $update->table('group')->where('id='.$id)->set(array(
+                    'name' => $values['name'],
+                    'coeff' => $values['coeff'],
+                    'group_id' => $values['group_id']));
+
+            } else {
+                $group->logo = $_FILES["logo"]["name"];
+
+
+                move_uploaded_file($_FILES["logo"]["tmp_name"],
+                                   "img/upload/" . $_FILES["logo"]["name"]);
+
+                $image = new SimpleImage();
+                $image->load("img/upload/" . $group->logo);
+                $image->resizeToHeight(48);
+                $image->save("img/upload/" . $group->logo);
+
+                $update->table('group')->where('id='.$id)->set(array(
+                    'name' => $values['name'],
+                    'coeff' => $values['coeff'],
+                    'group_id' => $values['group_id'],
+                    'logo' => $group->logo));
+
+            }
+            $statement = $this->sql->prepareStatementForSqlObject($update);
+            $result = $statement->execute();
+        }
+
     }

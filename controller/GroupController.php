@@ -46,6 +46,21 @@
         }
 
         public function update ($id) {
-            # code...
+            if (loginRole() == 'admin') {
+                if (!isPost()) {
+                    $group = new Group();
+                    $this->addData('group', $group->getById($id))
+                         ->addData('groups', $group->nested($group->getAll()))
+                         ->render();
+
+                } else {
+                    $group = new Group();
+                    $group->update($id, $_POST);
+                    flash("La mise à jour à été effectué", "success");
+                    $this->redirect('/');
+                }
+            } else {
+                $this->notAllowed();
+            }
         }
     }
