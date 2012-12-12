@@ -22,7 +22,7 @@
                 $image = new SimpleImage();
                 $image->load("img/upload/" . $group->logo);
                 $image->resizeToHeight(48);
-                $image->save("img/upload/" . $group->logo);
+                $image->save("img/upload/" . $group->logo, IMAGETYPE_PNG);
 
                 unset($group->sous_group);
                 unset($group->state);

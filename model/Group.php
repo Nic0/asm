@@ -48,7 +48,7 @@
                 $image = new SimpleImage();
                 $image->load("img/upload/" . $group->logo);
                 $image->resizeToHeight(48);
-                $image->save("img/upload/" . $group->logo);
+                $image->save("img/upload/" . $group->logo, IMAGETYPE_PNG);
 
                 $update->table('group')->where('id='.$id)->set(array(
                     'name' => $values['name'],
