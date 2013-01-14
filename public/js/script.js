@@ -1,10 +1,10 @@
 function setup_layout () {
     var layout = $('#container').layout({
         north: { resizable: false },
-        west: {size: 600},
+        west: {size: 600, resizable: true},
         stateManagement__enabled:   true,
         cookie__expires: 999,
-        cookie__path: '/',
+        cookie__path: '/dashboard',
         cookie__autoSave: true
     });
 }

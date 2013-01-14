@@ -5,7 +5,7 @@
     require_once '../lib/Model.php';
 
     /**
-     * @brief Abstraction pour l'accès à la base de donnée
+     * @brief Abstraction pour l'accès à la base de données
      *
      * Accès direct à la base de donnée, via Zend\Db. Voir la documentation de
      * Zend pour plus de détail.

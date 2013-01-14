@@ -2,7 +2,7 @@
 
     /**
      * @brief messages utilisé dans les sessions pour prévenir des actions.
-     * Par exemple si une action à été correctement accomplis.
+     * Par exemple si une action a été correctement accomplie.
      *
      * Le message flash est stocké dans la session, afin d'être affiché lors
      * de la prochaine page, ou rafraichissement.

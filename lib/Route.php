@@ -1,7 +1,7 @@
 <?php
 
     /**
-     * @brief traitement de la route renseigné dans la classe fille
+     * @brief traitement de la route renseignée dans la classe fille
      */
     class Route {
 

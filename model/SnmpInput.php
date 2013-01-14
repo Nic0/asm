@@ -3,7 +3,7 @@
     require_once '../lib/PhpAsmModel.php';
 
     /**
-     * @brief Stockage des données pour un SNMP donné
+     * @brief Stockage des données pour un OID SNMP donné
      */
     class SnmpInput extends PhpAsmModel {
 

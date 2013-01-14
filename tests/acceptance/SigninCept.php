@@ -6,7 +6,8 @@
     $I->see('Login');
 
     $I->fillField('username','paris_n');
-    $I->fillField('password','paris569');
+    $I->fillField('password','xxxxxxx');
     $I->click("S'identifier");
     $I->see('Logout (paris_n)');
 ?>
+
