@@ -59,6 +59,13 @@
             $this->addData('zabbix', $state->getAll())->render();
         }
 
+        public function partial_ajax_zabbix ($id) {
+            $state = new DisplayState();
+            $this->addData('zabbix', $state->getAll())
+                 ->addData('data', $id)
+                 ->render();
+        }
+
         public function ajax_glpipie () {
             $this->render();
         }

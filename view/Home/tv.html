@@ -1,4 +1,4 @@
-{% extends 'home_layout.html' %}
+{% extends 'tv_layout.html' %}
 
 {% block title %}{{ config.home.title }}{% endblock %}
 
@@ -6,21 +6,24 @@
 <div id="home">
     <div class="span4">
         {% if config.tv.placeholder1.type is defined %}
-            <div id="{{ config.tv.placeholder1.type }}">
+            <div id="{{ config.tv.placeholder1.type ~
+                        config.tv.placeholder1.data }}">
                 {% include 'Home/' ~ config.tv.placeholder1.type ~ 'tv.html'
                    with {'type': config.tv.placeholder1.type,
                          'data': config.tv.placeholder1.data} %}
             </div>
         {% endif %}
         {% if config.tv.placeholder2.type is defined %}
-            <div id="{{ config.tv.placeholder2.type }}">
+            <div id="{{ config.tv.placeholder2.type ~
+                        config.tv.placeholder2.data }}">
                 {% include 'Home/' ~ config.tv.placeholder2.type ~ 'tv.html'
                    with {'type': config.tv.placeholder2.type,
                          'data': config.tv.placeholder2.data} %}
             </div>
         {% endif %}
         {% if config.tv.placeholder3.type is defined %}
-            <div id="{{ config.tv.placeholder3.type }}">
+            <div id="{{ config.tv.placeholder3.type ~
+                        config.tv.placeholder3.data }}">
                 {% include 'Home/' ~ config.tv.placeholder3.type ~ 'tv.html'
                    with {'type': config.tv.placeholder3.type,
                          'data': config.tv.placeholder3.data} %}
@@ -30,21 +33,24 @@
 
     <div class="span4">
         {% if config.tv.placeholder4.type is defined %}
-            <div id="{{ config.tv.placeholder4.type }}">
+            <div id="{{ config.tv.placeholder4.type ~
+                        config.tv.placeholder4.data }}">
                 {% include 'Home/' ~ config.tv.placeholder4.type ~ 'tv.html'
                    with {'type': config.tv.placeholder4.type,
                          'data': config.tv.placeholder4.data} %}
             </div>
         {% endif %}
         {% if config.tv.placeholder5.type is defined %}
-            <div id="{{ config.tv.placeholder5.type }}">
+            <div id="{{ config.tv.placeholder5.type ~
+                        config.tv.placeholder5.data }}">
                 {% include 'Home/' ~ config.tv.placeholder5.type ~ 'tv.html'
                    with {'type': config.tv.placeholder5.type,
                          'data': config.tv.placeholder5.data} %}
             </div>
         {% endif %}
         {% if config.tv.placeholder6.type is defined %}
-            <div id="{{ config.tv.placeholder6.type }}">
+            <div id="{{ config.tv.placeholder6.type ~
+                        config.tv.placeholder6.data }}">
                 {% include 'Home/' ~ config.tv.placeholder6.type ~ 'tv.html'
                    with {'type': config.tv.placeholder6.type,
                          'data': config.tv.placeholder6.data} %}
@@ -53,21 +59,24 @@
     </div>
     <div class="span4">
         {% if config.tv.placeholder7.type is defined %}
-            <div id="{{ config.tv.placeholder7.type }}">
+            <div id="{{ config.tv.placeholder7.type ~
+                        config.tv.placeholder7.data }}">
                 {% include 'Home/' ~ config.tv.placeholder7.type ~ 'tv.html'
                    with {'type': config.tv.placeholder7.type,
                          'data': config.tv.placeholder7.data} %}
             </div>
         {% endif %}
         {% if config.tv.placeholder8.type is defined %}
-            <div id="{{ config.tv.placeholder8.type }}">
+            <div id="{{ config.tv.placeholder8.type ~
+                        config.tv.placeholder8.data }}">
                 {% include 'Home/' ~ config.tv.placeholder8.type ~ 'tv.html'
                    with {'type': config.tv.placeholder8.type,
                          'data': config.tv.placeholder8.data} %}
             </div>
         {% endif %}
         {% if config.tv.placeholder9.type is defined %}
-            <div id="{{ config.tv.placeholder9.type }}">
+            <div id="{{ config.tv.placeholder9.type ~
+                        config.tv.placeholder9.data }}">
                 {% include 'Home/' ~ config.tv.placeholder9.type ~ 'tv.html'
                    with {'type': config.tv.placeholder9.type,
                          'data': config.tv.placeholder9.data} %}

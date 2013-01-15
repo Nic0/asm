@@ -8,6 +8,7 @@
                         <a href="/group/del/{{ metagroup.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
                         <a href="/group/update/{{ metagroup.id }}"><i class="icon-wrench"></i></a>
                     {% endif %}
+                    <small>{{ "now"|date("H:i") }}</small>
                 </h3>
             </div>
 

@@ -109,6 +109,11 @@
                     'action' => 'ajax_zabbix',
                     'template' => 'zabbix'
                 ),
+                '/ajax/partial_zabbix_home' => array(
+                    'controller' =>'Home',
+                    'action' => 'partial_ajax_zabbix',
+                    'template' => 'zabbixtv'
+                ),
                 '/ajax/glpipie_home' => array(
                     'controller' =>'Home',
                     'action' => 'ajax_glpipie',
