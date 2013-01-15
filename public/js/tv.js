@@ -143,7 +143,6 @@ function plot_snmp_graph (conf) {
 
 function ajaxify_load (conf) {
     jQuery.each(conf.tv, function(key, value) {
-        console.log(value);
         if (value.type == 'zabbix') {
             setInterval(function() {
                 $('#zabbix' + value.data).load('/ajax/partial_zabbix_home/' + value.data);
