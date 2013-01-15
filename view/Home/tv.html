@@ -1,0 +1,61 @@
+{% extends 'home_layout.html' %}
+
+{% block title %}{{ config.home.title }}{% endblock %}
+
+{% block content %}
+<div id="home">
+    <div class="span4">
+        {% if config.tv.placeholder1 is defined %}
+            <div id="{{ config.tv.placeholder1 }}">
+                {% include 'Home/' ~ config.tv.placeholder1 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.tv.placeholder2 is defined %}
+            <div id="{{ config.tv.placeholder2 }}">
+                {% include 'Home/' ~ config.tv.placeholder2 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.tv.placeholder3 is defined %}
+            <div id="{{ config.tv.placeholder3 }}">
+                {% include 'Home/' ~ config.tv.placeholder3 ~ '.html' %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="span4">
+        {% if config.tv.placeholder4 is defined %}
+            <div id="{{ config.tv.placeholder4 }}">
+                {% include 'Home/' ~ config.tv.placeholder4 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.tv.placeholder5 is defined %}
+            <div id="{{ config.tv.placeholder5 }}">
+                {% include 'Home/' ~ config.tv.placeholder5 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.tv.placeholder6 is defined %}
+            <div id="{{ config.tv.placeholder6 }}">
+                {% include 'Home/' ~ config.tv.placeholder6 ~ '.html' %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="span4">
+        {% if config.tv.placeholder7 is defined %}
+            <div id="{{ config.tv.placeholder4 }}">
+                {% include 'Home/' ~ config.tv.placeholder4 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.tv.placeholder8 is defined %}
+            <div id="{{ config.tv.placeholder5 }}">
+                {% include 'Home/' ~ config.tv.placeholder5 ~ '.html' %}
+            </div>
+        {% endif %}
+        {% if config.tv.placeholder9 is defined %}
+            <div id="{{ config.tv.placeholder6 }}">
+                {% include 'Home/' ~ config.tv.placeholder6 ~ '.html' %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
