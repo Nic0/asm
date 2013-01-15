@@ -12,6 +12,9 @@
             <li><a href="/dashboard"><i class="icon-th-list"></i> Dashboard</a></li>
             <li><a href="/logout"><i class="icon-user"></i> Logout ({{ loggedName() }})</a></li>
             <li><a href="/config"><i class="icon-wrench"></i> Config</a></li>
+            {% if isAdmin() %}
+              <li><a href="/state/add"><i class="icon-plus"></i> Ajout</a></li>
+            {% endif %}
           {% else %}
             <li><a href="/login"><i class="icon-user"></i> Login</a></li>
           {% endif %}
