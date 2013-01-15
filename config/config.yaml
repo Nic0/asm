@@ -115,14 +115,31 @@ home:
   placeholder6: empty
   title: "\xC9tat des services"
 tv:
-  placeholder1: snmp
-  placeholder2: zabbix
-  placeholder3: empty
-  placeholder4: glpipie
-  placeholder5: glpibar
-  placeholder6: empty
-  placeholder7: zabbix
-  placeholder8: zabbix
-  placeholder9: empty
-
+  placeholder1:
+    type: snmp
+    data: ~
+  placeholder2:
+    type: zabbix
+    data: 1
+  placeholder3:
+    type: empty
+    data: ~
+  placeholder4:
+    type: glpipie
+    data: ~
+  placeholder5:
+    type: glpibar
+    data: ~
+  placeholder6:
+    type: empty
+    data: ~
+  placeholder7:
+    type: zabbix
+    data: 2
+  placeholder8:
+    type: zabbix
+    data: ~
+  placeholder9:
+    type: empty
+    data: ~
 ...
