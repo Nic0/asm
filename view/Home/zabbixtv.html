@@ -1,0 +1,56 @@
+<div class="span12">
+    {% for metagroup in zabbix %}
+        {% if metagroup.id == data %}
+            <div class="offset1">
+                <h3>
+                    <img src="/img/icon/medium/{{ levelimg(metagroup) }}"/> {{ metagroup.name }}
+                    {% if isAdmin() %}
+                        <a href="/group/del/{{ metagroup.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                        <a href="/group/update/{{ metagroup.id }}"><i class="icon-wrench"></i></a>
+                    {% endif %}
+                </h3>
+            </div>
+
+            <table class="table">
+            {% for group in metagroup.sous_group %}
+                <tr>
+                    <td>
+                        <img src="/img/upload/{{ group.logo }}" alt="{{ group.logo }}">
+                    </td>
+                    <td>
+                        {{ group.name }}
+                        {% if isAdmin() %}
+                            <a href="/group/del/{{ group.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                            <a href="/group/update/{{ group.id }}"><i class="icon-wrench"></i></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <img src="/img/icon/small/{{ levelimg(group) }}" alt="">
+                    </td>
+
+
+                    {% if isAdmin() %}
+                    <td>
+                        <ul>
+                            {% for state in group.state %}
+                                <li class="{{ level(state) }}">{{ state.name }}</li>
+                                <ul>
+                                    <li>Dernière valeur: {{ state.lastvalue }}</li>
+                                    <li>Précédante valeur: {{ state.prevvalue }}</li>
+                                    <li>Warning/Alert: {{ state.warning ~ '/' ~ state.alert}}</li>
+                                    <li>Coeff: {{ state.coeff }}</li>
+                                    <li>
+                                        <a href="/state/del/{{ state.id }}" onclick="return confirm_delete()"><i class="icon-trash"></i></a>
+                                        <a href="/state/update/{{ state.id }}"><i class="icon-wrench"></i></a>
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    {% endfor %}
+</div>

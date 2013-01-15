@@ -1,0 +1,5 @@
+<div class="offset3">
+    <h2>{{ config.home.glpibar.title }} {% if isAdmin() %}<small>GLPI</small>{% endif %} <small>{{ "now"|date("H:i") }}</small></h2>
+</div>
+<div id="home-glpibar" style="height: {{ config.home.glpibar.height }}px;"></div>
+<script src="/js/glpibar.js"></script>
