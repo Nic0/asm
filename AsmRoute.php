@@ -87,6 +87,11 @@
                     'action' => 'home',
                     'template' => 'home'
                 ),
+                '/tv' => array(
+                    'controller' =>'Home',
+                    'action' => 'tv',
+                    'template' => 'tv'
+                ),
                 '/ajax/glpi_stats' => array(
                     'controller' =>'Home',
                     'action' => 'ajax_glpi_stats'

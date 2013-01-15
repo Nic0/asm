@@ -23,6 +23,15 @@
                  ->render();
         }
 
+        public function tv () {
+            $state = new DisplayState();
+            $snmp = new Snmp();
+
+            $this->addData('zabbix', $state->getAll())
+                 ->addData('snmp', $snmp->getStats())
+                 ->render();
+        }
+
         public function ajax_glpi_stats () {
             $glpi = new GLPIStat();
             $this->addData('glpi', $glpi->getStats())

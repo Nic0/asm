@@ -114,4 +114,14 @@ home:
   placeholder5: glpibar
   placeholder6: empty
   title: "\xC9tat des services"
+tv:
+  placeholder1: snmp
+  placeholder2: zabbix
+  placeholder3: empty
+  placeholder4: glpipie
+  placeholder5: glpibar
+  placeholder6: empty
+  placeholder7: zabbix
+  placeholder8: zabbix
+  placeholder9: empty
 ...
