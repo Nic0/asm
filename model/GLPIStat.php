@@ -105,8 +105,8 @@
 
             $result = $this->adapter->query($sql , Adapter::QUERY_MODE_EXECUTE);
             $total = array();
-            foreach ($result as $row) {
-                $total[] = $row->total;
+            foreach ($result as $key => $row) {
+                $total[$key] = $row->total;
             }
 
             //requete pour le SLA
@@ -121,14 +121,15 @@
 
             foreach ($result as $key => $row) {
                 $object = new GLPIStat();
-                $object->total = ($row->total/($total[$key]))*100;
+
+                $object->total = (($row->total)/$total[$key])*100;
+
                 $object->date = $row->date;
                 unset($object->sql);
                 unset($object->adapter);
                 $data['sla'][] = $object;
 
             }
-
             return $data;
         }
 
